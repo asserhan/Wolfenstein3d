@@ -6,7 +6,7 @@
 #    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/07/15 10:57:52 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/07/15 11:22:35 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJ) obj_libft obj_printf $(HEADER)
 
 $(OBJ_DIR)/%.o: src/%.c $(HEADER)
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) $(MLX)  -c $< -o $@
+	$(CC) $(FLAGS)   -c $< -o $@
 
 $(OBJ_DIR)/%.o: src/*/%.c $(HEADER)
 	@mkdir -p $(@D)
