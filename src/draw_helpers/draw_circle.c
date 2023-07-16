@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_square.c                                      :+:      :+:    :+:   */
+/*   draw_circle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 11:53:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 09:14:35 by otait-ta         ###   ########.fr       */
+/*   Created: 2023/07/16 10:00:05 by otait-ta          #+#    #+#             */
+/*   Updated: 2023/07/16 10:01:08 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	draw_square(t_mlx_info *mlx_info, int *pixel_cord, int square_size,
+void	draw_circle(t_mlx_info *mlx_info, int *pixel_cord, int radius,
 		int color)
 {
 	int i;
 	int j;
+	int x;
+	int y;
 
 	i = 0;
-
-	while (i < square_size)
+	while (i < radius)
 	{
 		j = 0;
-		while (j < square_size)
+		while (j < radius)
 		{
-			// draw border with black
-			if (i == 0 || j == 0 || i == square_size - 1 || j == square_size
-				- 1)
-				draw_pixel(mlx_info, pixel_cord[0] + i, pixel_cord[1] + j,
-						BLUE);
-			else
+			x = i - radius / 2;
+			y = j - radius / 2;
+			if (x * x + y * y <= radius * radius)
 				draw_pixel(mlx_info, pixel_cord[0] + i, pixel_cord[1] + j,
 						color);
 			j++;

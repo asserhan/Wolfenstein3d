@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 09:06:48 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/16 10:02:50 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,30 @@ typedef struct s_mlx_info
 	struct s_img_data	img_data;
 }						t_mlx_info;
 
+typedef struct s_player
+{
+	// to change names
+	double				x;
+	double				y;
+	double				angle;
+	double				turn_direction;
+	double				walk_direction;
+	double				rotation_angle;
+	double				move_speed;
+	double				rotation_speed;
+}						t_player;
+
 void					init_mlx(t_mlx_info *mlx_info);
+void					init_player(t_player *player);
 void					draw_pixel(t_mlx_info *info, int x, int y, int color);
-void					draw_square(t_mlx_info *mlx_info, int x_pixel_start,
-							int y_pixel_start, int square_size);
-void					draw_mini_map(t_mlx_info *mlx_info);
+/*pixel_cord : [0] for x , [1] for y*/
+void					draw_square(t_mlx_info *mlx_info, int *pixel_cord,
+							int square_size, int color);
+void					draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
+							int radius, int color);
+void					draw_mini_map(t_mlx_info *mlx_info, char **map);
+void					draw_player(t_mlx_info *mlx_info, t_player *player);
+
 /**********************CONSTANTS*******************************/
 
 # define SQUARE_SIZE 32
@@ -54,7 +73,7 @@ void					draw_mini_map(t_mlx_info *mlx_info);
 # define GREEN 1
 # define BLUE 2
 
-# define GRID_COLS 12
+# define GRID_COLS 13
 # define GRID_ROWS 5
 
 #endif
