@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 10:02:50 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/16 10:33:19 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ struct					s_img_data
 	int					endian;
 };
 
-typedef struct s_mlx_info
-{
-	void				*mlx_ptr;
-	void				*win_ptr;
-	struct s_img_data	img_data;
-}						t_mlx_info;
-
 typedef struct s_player
 {
 	// to change names
@@ -51,6 +44,15 @@ typedef struct s_player
 	double				rotation_speed;
 }						t_player;
 
+typedef struct s_mlx_info
+{
+	void				*mlx_ptr;
+	void				*win_ptr;
+	struct s_img_data	img_data;
+	struct s_player		*player;
+	char				**map;
+}						t_mlx_info;
+
 void					init_mlx(t_mlx_info *mlx_info);
 void					init_player(t_player *player);
 void					draw_pixel(t_mlx_info *info, int x, int y, int color);
@@ -61,7 +63,7 @@ void					draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
 							int radius, int color);
 void					draw_mini_map(t_mlx_info *mlx_info, char **map);
 void					draw_player(t_mlx_info *mlx_info, t_player *player);
-
+int						key_hook(int key, t_mlx_info *info);
 /**********************CONSTANTS*******************************/
 
 # define SQUARE_SIZE 32

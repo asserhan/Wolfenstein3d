@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 09:58:34 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/16 10:33:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ int	main(void)
 	map[4] = "111111111111";
 	init_mlx(&mlx_info);
 	init_player(&player);
+	mlx_info.player = &player;
+	mlx_info.map = map;
 	draw_mini_map(&mlx_info, map);
 	draw_player(&mlx_info, &player);
+	mlx_key_hook(mlx_info.win_ptr, key_hook, &mlx_info);
 	mlx_put_image_to_window(mlx_info.mlx_ptr, mlx_info.win_ptr,
 			mlx_info.img_data.img, 0, 0);
 	mlx_loop(mlx_info.mlx_ptr);
