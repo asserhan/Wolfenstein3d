@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 16:40:23 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:53:41 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void					draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
 void					draw_mini_map(t_mlx_info *mlx_info, char **map);
 void					draw_player(t_mlx_info *mlx_info, t_player *player);
 void					draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
-							int *end_pixel_cord, int color);
+							double *end_pixel_cord, int color);
 int						key_hook(int key, t_mlx_info *info);
 /**********************CONSTANTS*******************************/
 
