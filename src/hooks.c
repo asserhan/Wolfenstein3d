@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 14:21:17 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:24:27 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int	key_hook(int key, t_mlx_info *info)
 	}
 	else if (key == 125)
 	{
-		info->player->x -= info->player->move_speed
-			* cos(info->player->rotation_angle);
-		info->player->y -= info->player->move_speed
-			* sin(info->player->rotation_angle);
+		move_backward(info);
 	}
 	else if (key == 126)
 	{
@@ -36,7 +33,7 @@ int	key_hook(int key, t_mlx_info *info)
 	draw_mini_map(info, info->map);
 	draw_player(info, info->player);
 	mlx_clear_window(info->mlx_ptr, info->win_ptr);
-	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->img_data.img, 0,
-			0);
+	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->img_data.img,
+			0, 0);
 	return (0);
 }
