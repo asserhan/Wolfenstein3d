@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 11:53:41 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:08:05 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void					draw_player(t_mlx_info *mlx_info, t_player *player);
 void					draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 							double *end_pixel_cord, int color);
 int						key_hook(int key, t_mlx_info *info);
+void					move_forward(t_mlx_info *info);
 /**********************CONSTANTS*******************************/
 
 # define SQUARE_SIZE 32
