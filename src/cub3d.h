@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 16:24:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/18 20:07:33 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void				draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 int					key_hook(int key, t_mlx_info *info);
 void				move_forward(t_mlx_info *info);
 void				move_backward(t_mlx_info *info);
+void				cast_all_rays(t_mlx_info *mlx_info);
 
 /**********************CONSTANTS*******************************/
 
@@ -80,7 +81,9 @@ void				move_backward(t_mlx_info *info);
 # define GRID_COLS 12
 # define GRID_ROWS 5
 
-# define WINDOW_WIDTH GRID_COLS *SQUARE_SIZE
-# define WINDOW_HEIGHT GRID_ROWS *SQUARE_SIZE
+# define WINDOW_WIDTH (GRID_COLS * SQUARE_SIZE)
+# define WINDOW_HEIGHT (GRID_ROWS * SQUARE_SIZE)
+# define FOV_ANGLE (60 * (M_PI / 180))
+# define NUM_RAYS WINDOW_WIDTH
 
 #endif
