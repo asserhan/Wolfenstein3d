@@ -6,12 +6,18 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:00:08 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 16:15:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:05:56 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+int	wall_check(char **map, int x, int y)
+{
+	if (x >= 0 && x < GRID_COLS && y >= 0 && y < GRID_ROWS && map[y][x] == '1')
+		return (1);
+	return (0);
+}
 void	draw_mini_map(t_mlx_info *mlx_info, char **map)
 {
 	int *cords;

@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 20:07:33 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:02:31 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_player
 	double			turn_direction;
 	double			walk_direction;
 	double			rotation_angle;
+	int				facing_up;
+	int				facing_right;
 	double			move_speed;
 	double			rotation_speed;
 }					t_player;
@@ -62,6 +64,7 @@ void				draw_square(t_mlx_info *mlx_info, int *pixel_cord,
 void				draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
 						int radius, int color);
 void				draw_mini_map(t_mlx_info *mlx_info, char **map);
+int					wall_check(char **map, int x, int y);
 void				draw_player(t_mlx_info *mlx_info, t_player *player);
 void				draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 						double *end_pixel_cord, int color);
@@ -69,7 +72,11 @@ int					key_hook(int key, t_mlx_info *info);
 void				move_forward(t_mlx_info *info);
 void				move_backward(t_mlx_info *info);
 void				cast_all_rays(t_mlx_info *mlx_info);
-
+double				normalize_angle(double angle_radians);
+int					is_face_up(double angle);
+int					is_face_right(double angle);
+int					distance_between_points(double x1, double y1, double x2,
+						double y2);
 /**********************CONSTANTS*******************************/
 
 # define SQUARE_SIZE 64
