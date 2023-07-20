@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/20 10:53:18 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:41:52 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,20 @@ void	cast_ray(double ray_angle, t_mlx_info *mlx_info)
 	p_cords[1] = mlx_info->player->y;
 	hor_wall_hit = cast_ray_horizontally(ray_angle, mlx_info);
 	ver_wall_hit = cast_ray_vertically(ray_angle, mlx_info);
-	if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
-			hor_wall_hit[1]) < distance_between_points(p_cords[0], p_cords[1],
-			ver_wall_hit[0], ver_wall_hit[1]))
-	{
-		draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
-	}
-	else
-	{
+	if (hor_wall_hit[0] == -1 && ver_wall_hit[0] != -1)
 		draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
+	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] == -1)
+		draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
+	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
+	{
+		if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
+				hor_wall_hit[1]) < distance_between_points(p_cords[0],
+																														p_cords[1],
+																														ver_wall_hit[0],
+																														ver_wall_hit[1]))
+			draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
+		else
+			draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
 	}
 }
 
