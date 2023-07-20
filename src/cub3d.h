@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/19 15:02:31 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:41:06 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int					distance_between_points(double x1, double y1, double x2,
 						double y2);
 /**********************CONSTANTS*******************************/
 
-# define SQUARE_SIZE 64
+# define SQUARE_SIZE 84
 
 # define RED 0
 # define GREEN 1
@@ -92,5 +92,8 @@ int					distance_between_points(double x1, double y1, double x2,
 # define WINDOW_HEIGHT (GRID_ROWS * SQUARE_SIZE)
 # define FOV_ANGLE (60 * (M_PI / 180))
 # define NUM_RAYS WINDOW_WIDTH
+
+# define VERTICAL 0
+# define HORIZONTAL 1
 
 #endif

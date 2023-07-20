@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:12:03 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/19 15:02:21 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:55:51 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ double	normalize_angle(double angle_radians)
 
 int	is_face_up(double angle)
 {
-	if (angle >= 0 && angle <= M_PI)
+	if (angle > 0 && angle < M_PI)
 		return (0);
 	return (1);
 }
 
 int	is_face_right(double angle)
 {
-	if (angle >= M_PI_2 && angle <= 3 * M_PI_2)
+	if (angle > M_PI_2 && angle < 3 * M_PI_2)
 		return (0);
 	return (1);
 }

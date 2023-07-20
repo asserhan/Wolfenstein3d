@@ -6,23 +6,32 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/19 17:25:40 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:53:18 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
 double	*closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
-		double y_step, double angel)
+		double y_step, double angle, int type)
 {
 	double	*first_wall_hit;
 	int		*p_cords;
-	int		to_add;
+	int		v;
+	int		h;
 
-	if (is_face_up(angel))
-		to_add = 1;
-	else
-		to_add = 0;
+	v = 0;
+	h = 0;
+	if (type == VERTICAL && !is_face_right(angle))
+	{
+		v = 1;
+		h = 0;
+	}
+	else if (type == HORIZONTAL && is_face_up(angle))
+	{
+		v = 0;
+		h = 1;
+	}
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
 	p_cords[1] = mlx_info->player->y;
@@ -32,18 +41,19 @@ double	*closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
 	while (tmp[0] >= 0 && tmp[0] < WINDOW_WIDTH && tmp[1] >= 0
 		&& tmp[1] < WINDOW_HEIGHT)
 	{
-		if (wall_check(mlx_info->map, floor(tmp[0] / SQUARE_SIZE), floor(tmp[1]
-					/ SQUARE_SIZE) - to_add))
+		if (wall_check(mlx_info->map, floor(tmp[0] / SQUARE_SIZE) - v,
+				floor(tmp[1] / SQUARE_SIZE) - h))
 		{
 			first_wall_hit[0] = tmp[0];
 			first_wall_hit[1] = tmp[1];
-			// draw_line(mlx_info, p_cords, first_wall_hit, BLUE);
-			break ;
+			return (first_wall_hit);
 		}
 		tmp[0] += x_step;
 		tmp[1] += y_step;
 	}
 	free(tmp);
+	first_wall_hit[0] = -1;
+	first_wall_hit[1] = -1;
 	return (first_wall_hit);
 }
 
@@ -71,7 +81,8 @@ double	*cast_ray_vertically(double ray_angle, t_mlx_info *mlx_info)
 		y_step *= -1;
 	tmp[0] = x_intercept;
 	tmp[1] = y_intercept;
-	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle));
+	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle,
+			VERTICAL));
 }
 double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 {
@@ -97,23 +108,31 @@ double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 		x_step *= -1;
 	tmp[0] = x_intercept;
 	tmp[1] = y_intercept;
-	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle));
+	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle,
+			HORIZONTAL));
 }
 
 void	cast_ray(double ray_angle, t_mlx_info *mlx_info)
 {
 	int		*p_cords;
-	double	*ver_wall_hit;
 	double	*hor_wall_hit;
+	double	*ver_wall_hit;
 
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
 	p_cords[1] = mlx_info->player->y;
 	hor_wall_hit = cast_ray_horizontally(ray_angle, mlx_info);
 	ver_wall_hit = cast_ray_vertically(ray_angle, mlx_info);
-	// draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
-	draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
-	// free(hor_wall_hit);
+	if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
+			hor_wall_hit[1]) < distance_between_points(p_cords[0], p_cords[1],
+			ver_wall_hit[0], ver_wall_hit[1]))
+	{
+		draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
+	}
+	else
+	{
+		draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
+	}
 }
 
 void	cast_all_rays(t_mlx_info *mlx_info)
@@ -126,7 +145,7 @@ void	cast_all_rays(t_mlx_info *mlx_info)
 	delta_angle = FOV_ANGLE / WINDOW_WIDTH;
 	ray_angle = mlx_info->player->rotation_angle - (FOV_ANGLE / 2);
 
-	while (i < 1)
+	while (i < WINDOW_WIDTH)
 	{
 		ray_angle = normalize_angle(ray_angle);
 		cast_ray(ray_angle, mlx_info);
