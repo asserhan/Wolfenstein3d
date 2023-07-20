@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:13:01 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/19 08:53:56 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:30:52 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	draw_pixel(t_mlx_info *info, int x, int y, int color)
 		green_color = 200;
 	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
 		return ;
+	x *= MAP_SCALE;
+	y *= MAP_SCALE;
 	pxl_index = (info->img_data.size_line * y) + x * 4;
 	info->img_data.addr[pxl_index] = 120;
 	info->img_data.addr[pxl_index + 1] = green_color;
