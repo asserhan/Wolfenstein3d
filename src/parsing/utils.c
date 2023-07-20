@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 19:34:46 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/20 16:57:50 by hasserao         ###   ########.fr       */
+/*   Created: 2023/07/20 14:58:11 by hasserao          #+#    #+#             */
+/*   Updated: 2023/07/20 17:53:30 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub3d.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	i;
-
-	i = 0;
-	if(!s1)
-		return(-1);
-	while ((*(unsigned char *)s1 || *(unsigned char *)s2) && i < n)
+    if(!s1)
+        return(-1);
+	while ((*(unsigned char *)s1 || *(unsigned char *)s2))
 	{
 		if (*(unsigned char *)s1 > *(unsigned char *)s2)
 			return (*(unsigned char *)s1 - *(unsigned char *)s2);
@@ -28,8 +25,36 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 				return (*(unsigned char *)s1 - *(unsigned char *)s2);
 		s1++;
 		s2++;
-		i++;
 	}
 	return (0);
 }
-
+int matrix_size(char **tab)
+{
+    int count;
+    count =0;
+    while(*tab)
+    {
+        count++;
+        tab++;
+    }
+    return(count);
+}
+void print_matrix(char **tab)
+{
+    int i;
+    int size = matrix_size(tab);
+    i = 0;
+    while(i < size)
+    {
+        ft_printf("%s\n",tab[i]);
+        i++;
+    }
+}
+void free_matrix(char **tab)
+{
+    int i;
+    i = -1;
+    while(++i)
+        free(tab[i]);
+    free(tab);
+}

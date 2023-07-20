@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/18 11:53:41 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:54:03 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,41 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+/**********************Parsing*******************************/
+
+/******get_next_line********/
+# define BUFFER_SIZE 1
+char					*get_next_line(int fd);
+size_t					ft_strlen(const char *s);
+size_t					ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t					ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char					*ft_strjoin(char const *s1, char const *s2);
+char					*ft_strchr(const char *s, int c);
+char					*ft_strdup(const char *s1);
+char					*read_and_add(int fd, char *reserve);
+char					*update_reserve(char **reserve, int i);
+char					*extract(char **reserve);
+
+/***************************/
+typedef struct s_map
+{
+	double				player_x;
+	double				player_y;
+	double				d_vue;
+	int					rows;
+	int					colmuns;
+	int					player_num;
+	char				**map;
+}						t_map;
+
+int						ft_strcmp(const char *s1, const char *s2);
+void					free_matrix(char **tab);
+void					print_matrix(char **tab);
+int						check_file(char *file);
+int						check_char(t_map *map);
+char					**get_map(t_map *map, char *file);
+/**********************************************************/
 
 struct					s_img_data
 {
