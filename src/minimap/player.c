@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 09:56:07 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/20 18:09:48 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/21 11:35:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_player(t_player *player)
 	else if (player->rotation_angle >= 3 * M_PI_2 && player->rotation_angle <= 2
 			* M_PI)
 		player->facing_right = 1;
-	player->move_speed = 10;
-	player->rotation_speed = 0.1;
+	player->move_speed = 20;
+	player->rotation_speed = 0.3;
 }
 
 void	draw_player(t_mlx_info *mlx_info, t_player *player)
@@ -47,7 +47,6 @@ void	draw_player(t_mlx_info *mlx_info, t_player *player)
 	end_pixel_cord[1] = cords[1] + sin(player->rotation_angle) * 60;
 	draw_circle(mlx_info, cords, 5, BLUE);
 	draw_line(mlx_info, cords, end_pixel_cord, RED);
-	cast_all_rays(mlx_info);
 	free(cords);
 	free(end_pixel_cord);
 }

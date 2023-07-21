@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/20 11:41:52 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:06:31 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 			HORIZONTAL));
 }
 
-void	cast_ray(double ray_angle, t_mlx_info *mlx_info)
+void	cast_ray(double ray_angle, t_mlx_info *mlx_info, int ray_id)
 {
 	int		*p_cords;
 	double	*hor_wall_hit;
@@ -124,9 +124,9 @@ void	cast_ray(double ray_angle, t_mlx_info *mlx_info)
 	hor_wall_hit = cast_ray_horizontally(ray_angle, mlx_info);
 	ver_wall_hit = cast_ray_vertically(ray_angle, mlx_info);
 	if (hor_wall_hit[0] == -1 && ver_wall_hit[0] != -1)
-		draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
+		draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray_id, ray_angle);
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] == -1)
-		draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
+		draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray_id, ray_angle);
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
 	{
 		if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
@@ -134,9 +134,9 @@ void	cast_ray(double ray_angle, t_mlx_info *mlx_info)
 																														p_cords[1],
 																														ver_wall_hit[0],
 																														ver_wall_hit[1]))
-			draw_line(mlx_info, p_cords, hor_wall_hit, BLUE);
+			draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray_id, ray_angle);
 		else
-			draw_line(mlx_info, p_cords, ver_wall_hit, BLUE);
+			draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray_id, ray_angle);
 	}
 }
 
@@ -153,7 +153,7 @@ void	cast_all_rays(t_mlx_info *mlx_info)
 	while (i < WINDOW_WIDTH)
 	{
 		ray_angle = normalize_angle(ray_angle);
-		cast_ray(ray_angle, mlx_info);
+		cast_ray(ray_angle, mlx_info, i);
 		ray_angle += delta_angle;
 		i++;
 	}
