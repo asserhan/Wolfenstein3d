@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/24 16:24:22 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:45:58 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,29 +102,6 @@ int check_borders(t_map *map)
 
 	 rows_cols_num(map);
 	i = 0;
-	while(map->map[i] && i >= 0 && i < map->rows)
-	{
-		d_space(map->map[i]) ;
-		j = 0;
-		while(map->map[i][j] && j >= 0 && j < map->cols)
-		{
-	
-			if(ft_is_space(map->map[i][j]))
-			{
-				if((i - 1) >=0 && !ft_is_space(map->map[i - 1][j]) && !ft_is_wall(map->map[i - 1][j]))
-					return(1);
-				if((i + 1) < map->rows && !ft_is_space(map->map[i + 1][j]) && !ft_is_wall(map->map[i + 1][j]))
-					return(1);
-				if((j - 1) >= 0 && !ft_is_space(map->map[i][j - 1]) && !ft_is_wall(map->map[i][j - 1]))	
-					return(1);
-				if((j + 1) < map->cols && !ft_is_space(map->map[i][j + 1]) && !ft_is_wall(map->map[i][j + 1]))	
-					return(1);
-			}
-				j++;
-		}
-		i++;
-	}
-	i = 0;
 	while(map->map[0][i])
 	{
 		if(ft_is_wall(*d_space(map->map[0] + i)) ==0)
@@ -153,6 +130,43 @@ int check_borders(t_map *map)
 			j++;
 		if(ft_is_wall(map->map[i][j - 1]) == 0)
 			return(1);
+		i++;
+	}
+	i = 0;
+	while(map->map[i] && i >= 0 && i < map->rows)
+	{
+		//d_space(map->map[i]);
+		//map->map[i]=d_space(map->map[i]) ;
+		j = 0;
+		while(map->map[i][j] && j >= 0 && j < map->cols)
+		{
+			if (i >=0)
+				printf("%d : %d => %c\n",i , j, map->map[i][j]);
+			if(map->map[i][j] == '0')
+			{
+				if((i - 1) >=0 && ft_is_space(map->map[i - 1][j]))
+					return(1);
+				if((i + 1) < map->rows && ft_is_space(map->map[i + 1][j]))
+					return(1);
+				if((j - 1) >= 0 && ft_is_space(map->map[i][j - 1]))	
+					return(1);
+				if((j + 1) < map->cols && ft_is_space(map->map[i][j + 1]))	
+					return(1);
+			}
+			j++;
+			// if(ft_is_space(map->map[i][j]))
+			// {
+			// 	if((i - 1) >=0 && !ft_is_space(map->map[i - 1][j]) && !ft_is_wall(map->map[i - 1][j]))
+			// 		return(1);
+			// 	if((i + 1) < map->rows && !ft_is_space(map->map[i + 1][j]) && !ft_is_wall(map->map[i + 1][j]))
+			// 		return(1);
+			// 	if((j - 1) >= 0 && !ft_is_space(map->map[i][j - 1]) && !ft_is_wall(map->map[i][j - 1]))	
+			// 		return(1);
+			// 	if((j + 1) < map->cols && !ft_is_space(map->map[i][j + 1]) && !ft_is_wall(map->map[i][j + 1]))	
+			// 		return(1);
+			// }
+			// 	j++;
+		}
 		i++;
 	}
 	return(0);

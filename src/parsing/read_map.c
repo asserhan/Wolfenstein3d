@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/24 17:14:51 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/24 18:38:16 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ char **get_map(t_map *map,char *file)
     map->map = read_map(file);
     if(!map->map)
         return(ft_printf("Error invalid Map\n"),free_matrix(map->map),NULL);
+    print_matrix(map->map);
     if(check_char(map))
         return(ft_printf("Error Wrong Caracteres\n"),free_matrix(map->map),NULL);
     if(check_borders(map))
         return(ft_printf("Error Map not surounded by walls \n"),free_matrix(map->map),NULL);
-    print_matrix(map->map);
     return(map->map);
 }
