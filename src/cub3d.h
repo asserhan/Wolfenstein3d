@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/20 17:54:03 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/22 19:19:46 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+//# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 /**********************Parsing*******************************/
 
@@ -44,7 +45,7 @@ typedef struct s_map
 	double				player_y;
 	double				d_vue;
 	int					rows;
-	int					colmuns;
+	int					cols;
 	int					player_num;
 	char				**map;
 }						t_map;
@@ -55,6 +56,7 @@ void					print_matrix(char **tab);
 int						check_file(char *file);
 int						check_char(t_map *map);
 char					**get_map(t_map *map, char *file);
+int check_borders(t_map *map);
 /**********************************************************/
 
 struct					s_img_data

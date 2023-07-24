@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/20 18:23:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/22 22:26:53 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int check_char(t_map *map)
 		j = -1;
 		while(map->map[i][++j])
 		{
-			if(map->map[i][j] != '1' && map->map[i][j] != '0' && map->map[i][j] != 'N' && map->map[i][j] != 'W' && map->map[i][j] != 'S' && map->map[i][j] != 'E')
+			if(map->map[i][j] != '1' && map->map[i][j] != '0' && map->map[i][j] != 'N' && map->map[i][j] != 'W' && map->map[i][j] != 'S' && map->map[i][j] != 'E' && map->map[i][j] != ' ')
 				return(1);
 			
 			if(map->map[i][j] == 'N' ||  map->map[i][j] == 'S' || map->map[i][j] == 'W' || map->map[i][j] == 'E')
@@ -44,4 +44,47 @@ int check_char(t_map *map)
 	if(map->player_num != 1)
 		return(1);
 	return(0);
+}
+void rows_cols_num(t_map *map)
+{
+	map->rows = 0;
+	map->cols = 0;
+	while(map->map[map->rows])
+	{
+		while(map->map[map->rows][map->cols])
+			map->cols++;
+		map->rows++;
+	}
+		
+}
+int is_wall(char c)
+{
+	return(c == '1');
+}
+char *skip_spaces(char *line)
+{
+	while(*line == ' ')
+		line++;
+	return(line);
+}
+int check_borders(t_map *map)
+{
+	int i;
+	char c;
+
+	i = 0;
+	rows_cols_num(map);
+	while(i < map->cols)
+	{
+		c = *skip_spaces(map->map[0]);
+		if(!is_wall(c + i))
+		{
+			printf("%c\n",c + i);	
+			return(1);
+		}
+		i++;
+		printf("%d\n",i);
+	}
+	return(0);
+
 }

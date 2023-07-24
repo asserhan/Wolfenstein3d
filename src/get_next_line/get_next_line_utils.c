@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 15:49:26 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/19 16:09:21 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:53:39 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*p;
 	size_t	len ;
-	size_t	i;
+	//size_t	i;
 
-	i = 0;
+	//i = 0;
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
