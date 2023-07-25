@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/22 19:19:46 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:04:25 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ char					*update_reserve(char **reserve, int i);
 char					*extract(char **reserve);
 
 /***************************/
+typedef struct s_parse
+{
+	char **info;
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	int rf;
+	int gf;
+	int bf;
+	int rc;
+	int gc;
+	int bc;
+	
+}	t_parse;
 typedef struct s_map
 {
 	double				player_x;
