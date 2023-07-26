@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/21 12:06:06 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:18:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ typedef struct s_player
 	double			rotation_speed;
 }					t_player;
 
+typedef struct s_ray
+{
+	double			ray_angle;
+	int				ray_id;
+
+}					t_ray;
+
 typedef struct s_mlx_info
 {
 	void			*mlx_ptr;
@@ -80,7 +87,7 @@ int					is_face_right(double angle);
 int					distance_between_points(double x1, double y1, double x2,
 						double y2);
 void				draw_3d_line(t_mlx_info *mlx_info, int *p_cords,
-						double *ray_cords, int ray_id, double ray_angle);
+						double *ray_cords, t_ray *ray);
 void	draw_line_2(t_mlx_info *mlx_info,
 					double *start_pixel_cord,
 					double *end_pixel_cord,

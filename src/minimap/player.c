@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 09:56:07 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 10:44:31 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/26 12:15:25 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_player(t_player *player)
 			* M_PI)
 		player->facing_right = 1;
 	player->move_speed = 20;
-	player->rotation_speed = 0.1;
+	player->rotation_speed = 0.19;
 }
 
 void	draw_player(t_mlx_info *mlx_info, t_player *player)

@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/21 12:06:31 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:15:00 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 			HORIZONTAL));
 }
 
-void	cast_ray(double ray_angle, t_mlx_info *mlx_info, int ray_id)
+void	cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 {
 	int		*p_cords;
 	double	*hor_wall_hit;
@@ -121,12 +121,12 @@ void	cast_ray(double ray_angle, t_mlx_info *mlx_info, int ray_id)
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
 	p_cords[1] = mlx_info->player->y;
-	hor_wall_hit = cast_ray_horizontally(ray_angle, mlx_info);
-	ver_wall_hit = cast_ray_vertically(ray_angle, mlx_info);
+	hor_wall_hit = cast_ray_horizontally(ray->ray_angle, mlx_info);
+	ver_wall_hit = cast_ray_vertically(ray->ray_angle, mlx_info);
 	if (hor_wall_hit[0] == -1 && ver_wall_hit[0] != -1)
-		draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray_id, ray_angle);
+		draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray);
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] == -1)
-		draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray_id, ray_angle);
+		draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray);
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
 	{
 		if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
@@ -134,27 +134,28 @@ void	cast_ray(double ray_angle, t_mlx_info *mlx_info, int ray_id)
 																														p_cords[1],
 																														ver_wall_hit[0],
 																														ver_wall_hit[1]))
-			draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray_id, ray_angle);
+			draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray);
 		else
-			draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray_id, ray_angle);
+			draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray);
 	}
 }
 
 void	cast_all_rays(t_mlx_info *mlx_info)
 {
 	int i;
-	double ray_angle;
 	double delta_angle;
+	t_ray ray;
 
 	i = 0;
 	delta_angle = FOV_ANGLE / WINDOW_WIDTH;
-	ray_angle = mlx_info->player->rotation_angle - (FOV_ANGLE / 2);
+	ray.ray_angle = mlx_info->player->rotation_angle - (FOV_ANGLE / 2);
 
 	while (i < WINDOW_WIDTH)
 	{
-		ray_angle = normalize_angle(ray_angle);
-		cast_ray(ray_angle, mlx_info, i);
-		ray_angle += delta_angle;
+		ray.ray_angle = normalize_angle(ray.ray_angle);
+		ray.ray_id = i;
+		cast_ray(&ray, mlx_info);
+		ray.ray_angle += delta_angle;
 		i++;
 	}
 }
