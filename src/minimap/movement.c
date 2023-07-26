@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:04:23 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/20 12:15:07 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:43:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	move_forward(t_mlx_info *info)
 
 	delta_x = 0.1;
 	delta_y = 0.1;
-	while (delta_x < info->player->move_speed
-		&& delta_y < info->player->move_speed)
+	while (delta_x < 50 && delta_y < 50)
 	{
 		new_x = info->player->x + cos(info->player->rotation_angle) * delta_x;
 		new_y = info->player->y + sin(info->player->rotation_angle) * delta_y;
@@ -35,8 +34,10 @@ void	move_forward(t_mlx_info *info)
 		else
 			return ;
 	}
-	info->player->x = new_x;
-	info->player->y = new_y;
+	info->player->x = info->player->x + cos(info->player->rotation_angle)
+		* info->player->move_speed;
+	info->player->y = info->player->y + sin(info->player->rotation_angle)
+		* info->player->move_speed;
 }
 
 void	move_backward(t_mlx_info *info)
@@ -48,8 +49,7 @@ void	move_backward(t_mlx_info *info)
 
 	delta_x = 0.1;
 	delta_y = 0.1;
-	while (delta_x < info->player->move_speed
-		&& delta_y < info->player->move_speed)
+	while (delta_x < 50 && delta_y < 50)
 	{
 		new_x = info->player->x - cos(info->player->rotation_angle) * delta_x;
 		new_y = info->player->y - sin(info->player->rotation_angle) * delta_y;
@@ -62,6 +62,8 @@ void	move_backward(t_mlx_info *info)
 		else
 			return ;
 	}
-	info->player->x = new_x;
-	info->player->y = new_y;
+	info->player->x = info->player->x - cos(info->player->rotation_angle)
+		* info->player->move_speed;
+	info->player->y = info->player->y - sin(info->player->rotation_angle)
+		* info->player->move_speed;
 }
