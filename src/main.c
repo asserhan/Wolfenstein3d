@@ -6,21 +6,54 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/19 14:42:26 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/05 17:07:31 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void ft_error(char *str)
+{
+	ft_printf("Error\n");
+	ft_putstr_fd(str,2);
+}
+void init_file(t_parse *parse,t_map *map)
+{
+	parse->no = NULL;
+	parse->so = NULL;
+	parse->we = NULL;
+	parse->ea = NULL;
+	map->map = NULL;
+	map->player_x = 0;
+	map->player_y = 0;
+	parse->rc = -1;
+	parse->gc = -1;
+	parse->bc = -1;
+	parse->rf = -1;
+	parse->gf = -1;
+	parse->bf = -1;
+	
+}
 int main(int argc,char **argv)
 {
 	t_map maps;
+	t_parse parse;
+    int fd;
+	//int fd;
 	if(argc == 2)
 	{
-		get_map(&maps,argv[1]); 
+		if(check_file(argv[1]))
+        	return(ft_error("Invalid file\n"),1);
+		if((fd = open(argv[1],O_DIRECTORY) != -1))
+			return(ft_error("Is a directory\n"),1);	
+   		if((fd = open (argv[1],O_RDONLY)) == -1)
+			return(ft_error("file does not open\n"),1);
+		init_file(&parse,&maps);
+		ft_parsing(&parse,fd);
+		get_map(&maps,fd); 
 	}
 	else
-		ft_printf("Invalid argument\n");
+		ft_error("Invalid number of arguments\n");
 	return(0);
 }
 // int	main(void)
