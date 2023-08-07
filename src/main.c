@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/05 17:07:31 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:24:52 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void ft_error(char *str)
 {
 	ft_printf("Error\n");
 	ft_putstr_fd(str,2);
+	exit(1);
 }
 void init_file(t_parse *parse,t_map *map)
 {
@@ -26,12 +27,12 @@ void init_file(t_parse *parse,t_map *map)
 	map->map = NULL;
 	map->player_x = 0;
 	map->player_y = 0;
-	parse->rc = -1;
-	parse->gc = -1;
-	parse->bc = -1;
-	parse->rf = -1;
-	parse->gf = -1;
-	parse->bf = -1;
+	parse->f.b = -1;
+	parse->f.g = -1;
+	parse->f.r = -1;
+	parse->c.b = -1;
+	parse->c.g = -1;
+	parse->c.r = -1;
 	
 }
 int main(int argc,char **argv)
@@ -50,7 +51,7 @@ int main(int argc,char **argv)
 			return(ft_error("file does not open\n"),1);
 		init_file(&parse,&maps);
 		ft_parsing(&parse,fd);
-		get_map(&maps,fd); 
+		//get_map(&maps,fd); 
 	}
 	else
 		ft_error("Invalid number of arguments\n");

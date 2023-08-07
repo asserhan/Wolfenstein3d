@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/05 19:38:24 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:15:13 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,43 @@ char *get_path(char *line)
     trim = ft_strtrim(line,white_spaces);
     if(!trim)
         return(NULL);
+    printf("%s\n",trim);
     if(open(trim,O_RDONLY) == -1)
+    {
+        printf("herre \n");
         return(free(trim),NULL);
+    }
     else
         return(trim);
 }
 void get_color(t_parse *parse,char **tab)
 {
-    char *str;
-    str = ft_strdup("");
-    int i;
-    i = -1;
-    while(tab[++i])
+
+    char **rgb;
+    (void )parse;
+
+    rgb = ft_split(tab[1],',');
+    if(!rgb)
+        return(ft_error("split\n"));
+    if(!rgb[0] || !rgb[1] || !rgb[2])
+        return(free_matrix(rgb),ft_error("in colors\n"));
+    if(tab[0][0] == 'F')
     {
-        str = ft_strjoin(str,tab[i]);
-        str = ft_strjoin(str," ");
+        parse->f.r = ft_atoi(rgb[0]);
+        parse->f.g = ft_atoi(rgb[1]);
+        parse->f.b = ft_atoi(rgb[2]);
+        if(parse->f.r < 0 || parse->f.r > 255 || parse->f.g < 0 || parse->f.g > 255 || parse->f.b < 0 || parse->f.b > 255)
+            return(free_matrix(rgb),ft_error("in colors\n"));
     }
-    str = ft_strtrim(str,white_spaces);
-    if(str[0] == 'F')
-        
-    
+    else if(tab[0][0] == 'C')
+    {
+        parse->c.r = ft_atoi(rgb[0]);
+        parse->c.g = ft_atoi(rgb[1]);
+        parse->c.b = ft_atoi(rgb[2]);
+        if(parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0 || parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
+            return(free_matrix(rgb),ft_error("colors\n"));
+    }
+    free_matrix(rgb);
 }
 void check_textures(t_parse *parse,char *line )
 {
@@ -88,10 +105,12 @@ void check_textures(t_parse *parse,char *line )
         parse->we = get_path(tab[1]);
     else if(ft_strcmp(tab[0],"EA") == 0)
         parse->ea = get_path(tab[1]);
-    else if(tab[0][0] == 'F' || tab[0][1] == 'C')
+    if(!parse->no )
+        return(free_matrix(tab),ft_error("in textures\n"));
+    else if(tab[0][0] == 'F' || tab[0][0] == 'C')
         get_color(parse,tab);
+    free_matrix(tab);
         
-    
 }
 
 void ft_parsing(t_parse *parse,int fd)
@@ -103,6 +122,7 @@ void ft_parsing(t_parse *parse,int fd)
         if(!line)
             break;
         check_textures(parse,line);
+        free(line);
     }
 }
 char **get_map(t_map *map,int fd)

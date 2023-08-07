@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/05 17:51:39 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:13:49 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ char					*update_reserve(char **reserve, int i);
 char					*extract(char **reserve);
 
 /***************************/
+typedef struct t_rgb
+{
+	int r;
+	int g;
+	int b;
+}	t_rgb;
+
 typedef struct s_parse
 {
 	char **info;
@@ -47,12 +54,8 @@ typedef struct s_parse
 	char *so;
 	char *we;
 	char *ea;
-	int rf;
-	int gf;
-	int bf;
-	int rc;
-	int gc;
-	int bc;
+	t_rgb f;
+	t_rgb c;
 	
 }	t_parse;
 typedef struct s_map
