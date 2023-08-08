@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/07 20:15:13 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:12:01 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,21 @@ char **read_map(int fd)
 char *get_path(char *line)
 {
     char *trim;
+    char *p;
     trim = ft_strtrim(line,white_spaces);
     if(!trim)
         return(NULL);
-    printf("%s\n",trim);
-    if(open(trim,O_RDONLY) == -1)
-    {
-        printf("herre \n");
+    p = trim;
+    while(*p)
+        p++;
+    p--;
+    if(*p != 'm' || *(p - 1) != 'p' || *(p - 2) != 'x' || *(p - 3) != '.')
         return(free(trim),NULL);
-    }
+    if(ft_strncmp(trim,"./",2) != 0 )
+        return(free(trim),NULL);
+    trim++;
+    if(access(trim,F_OK | R_OK) == -1)
+        return(free(trim),NULL);
     else
         return(trim);
 }
