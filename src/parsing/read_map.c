@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/09 15:52:27 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:17:44 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int check_textures(t_parse *parse,char *line )
     
     char **tab;
     line = skip_spaces(line);
-    if(line[0] == '1')
-        parse->map_found = 1;
+    // if(line[0] == '1')
+    //     parse->map_found = 1;
     tab = ft_split(line,' ');
     if(!tab)
         return(free(line),ft_error("in split\n"));
@@ -147,15 +147,19 @@ int ft_parsing(t_parse *parse,int fd)
     while(1)
     {
         line = get_next_line(fd);
-        if(!line)
+        if(line == NULL )
             break;
         if(check_textures(parse,line) || parse->in > 6)
             return(free(line),ft_error("in parsing\n"));
-        if(parse->map_found == 1 && parse->in < 6)
+        if(line[0] == '1')
+            parse->map_found = 1;
+        if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
-            
+        
     }
-        printf("here\n");
+    if(parse->map_found == 0)
+        return(ft_error("map not found\n"));
+    
     return(0);
 }
 char **get_map(t_map *map,int fd)
