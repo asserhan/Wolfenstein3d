@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/07 15:13:49 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:04:57 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_map
 
 
 
-void ft_error(char *str);
+int ft_error(char *str);
 int						ft_strcmp(const char *s1, const char *s2);
 void					free_matrix(char **tab);
 void					print_matrix(char **tab);
@@ -80,7 +80,7 @@ int						check_char(t_map *map);
 char *skip_spaces(char *line);
 char **get_map(t_map *map,int fd);
 int check_borders(t_map *map);
-void ft_parsing(t_parse *parse,int fd);
+int ft_parsing(t_parse *parse,int fd);
 /**********************************************************/
 
 struct					s_img_data

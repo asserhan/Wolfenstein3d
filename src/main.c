@@ -6,17 +6,17 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/07 19:24:52 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/08 21:01:32 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_error(char *str)
+int ft_error(char *str)
 {
 	ft_printf("Error\n");
 	ft_putstr_fd(str,2);
-	exit(1);
+	return(1);
 }
 void init_file(t_parse *parse,t_map *map)
 {
