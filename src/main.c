@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/08 21:01:32 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:46:33 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void init_file(t_parse *parse,t_map *map)
 	parse->c.b = -1;
 	parse->c.g = -1;
 	parse->c.r = -1;
+	parse->in=0;
+	parse->map_found = 0;
 	
 }
 int main(int argc,char **argv)

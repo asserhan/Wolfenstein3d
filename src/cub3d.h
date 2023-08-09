@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/08 21:04:57 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:46:22 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_parse
 	char *ea;
 	t_rgb f;
 	t_rgb c;
+	int in;
+	int map_found;
 	
 }	t_parse;
 typedef struct s_map

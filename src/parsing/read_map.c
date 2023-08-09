@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/08 21:08:41 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:52:27 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int get_color(t_parse *parse,char **tab)
         return(free_matrix(rgb),ft_error("in colors\n"));
     if(tab[0][0] == 'F')
     {
+        parse->in++;
         parse->f.r = ft_atoi(rgb[0]);
         parse->f.g = ft_atoi(rgb[1]);
         parse->f.b = ft_atoi(rgb[2]);
@@ -84,11 +85,13 @@ int get_color(t_parse *parse,char **tab)
     }
     else if(tab[0][0] == 'C')
     {
+        parse->in++;
         parse->c.r = ft_atoi(rgb[0]);
         parse->c.g = ft_atoi(rgb[1]);
         parse->c.b = ft_atoi(rgb[2]);
         if(parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0 || parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
             return(free_matrix(rgb),ft_error("colors\n"));
+        
     }
     free_matrix(rgb);
     return(0);
@@ -99,29 +102,35 @@ int check_textures(t_parse *parse,char *line )
     
     char **tab;
     line = skip_spaces(line);
+    if(line[0] == '1')
+        parse->map_found = 1;
     tab = ft_split(line,' ');
     if(!tab)
-        return(free(line),ft_error("split\n"));
+        return(free(line),ft_error("in split\n"));
     if(ft_strcmp(tab[0],"NO") == 0)
     {
+        parse->in++;
         parse->no = get_path(tab[1]);
         if(!parse->no)
             return(free_matrix(tab),ft_error("in textures\n"));
     }
     else if(ft_strcmp(tab[0],"SO") == 0)
     {
+        parse->in++;
         parse->so = get_path(tab[1]);
         if(!parse->so)
             return(free_matrix(tab),ft_error("in textures\n"));
     }
     else if(ft_strcmp(tab[0],"WE") == 0)
     {
+        parse->in++;
         parse->we = get_path(tab[1]);
         if(!parse->we)
             return(free_matrix(tab),ft_error("in textures\n"));
     }
     else if(ft_strcmp(tab[0],"EA") == 0)
     {
+        parse->in++;
         parse->ea = get_path(tab[1]);
         if(!parse->ea)
             return(free_matrix(tab),ft_error("in textures\n"));
@@ -140,9 +149,13 @@ int ft_parsing(t_parse *parse,int fd)
         line = get_next_line(fd);
         if(!line)
             break;
-        if(check_textures(parse,line))
+        if(check_textures(parse,line) || parse->in > 6)
             return(free(line),ft_error("in parsing\n"));
+        if(parse->map_found == 1 && parse->in < 6)
+            return(free(line),ft_error("in parsing\n"));
+            
     }
+        printf("here\n");
     return(0);
 }
 char **get_map(t_map *map,int fd)
