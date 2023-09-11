@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/09 20:17:44 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/16 20:18:31 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,10 @@ int check_textures(t_parse *parse,char *line )
     
     char **tab;
     line = skip_spaces(line);
-    // if(line[0] == '1')
-    //     parse->map_found = 1;
+    if(line[0] == '1' )
+    {
+        parse->map_found = 1;
+    }
     tab = ft_split(line,' ');
     if(!tab)
         return(free(line),ft_error("in split\n"));
@@ -140,23 +142,65 @@ int check_textures(t_parse *parse,char *line )
     free_matrix(tab); 
     return(0);  
 }
+int find_map(t_map *map,char *line)
+{
+    int i;
+    int len;
+    len= ft_strlen(line);
+    i = 0;
+    if(len >= 1)
+    {
+        while(line[i])
+        {
+            if (line[i] == '1')
+            {
+                map->c = 1;
+                return(1);
+            }
+            else 
+                return(0);
+            i++;
+            
+        }
+    }
+    if(len == i)
+        return(0);
+    return(0);
+    
+}
+void ft_read_map(t_map *map,char *line,t_parse *parse)
+{
+    line = skip_spaces(line);
+    if(parse->in == 6 )
+    {
+        if(line[0] == '1')
+        {
+            map->map[map->rows] = ft_strdup(line);
+            map->rows++;
+        }
+    }
+    
+}
 
-int ft_parsing(t_parse *parse,int fd)
+int ft_parsing(t_parse *parse,int fd,t_map *map)
 {
     char *line;
     while(1)
     {
         line = get_next_line(fd);
+        
         if(line == NULL )
             break;
         if(check_textures(parse,line) || parse->in > 6)
             return(free(line),ft_error("in parsing\n"));
-        if(line[0] == '1')
-            parse->map_found = 1;
         if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
+        ft_read_map(map,line,parse);
+        
+       
         
     }
+        print_matrix(map->map);
     if(parse->map_found == 0)
         return(ft_error("map not found\n"));
     

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/05 17:07:12 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/12 18:15:25 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int check_borders(t_map *map)
 			return(1);
 		}
 		i++;
+		printf("%d\n",i);
 	}
 	return(0);
 

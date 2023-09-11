@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/09 15:46:22 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/13 19:41:19 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_map
 	int					cols;
 	int					player_num;
 	char				**map;
+	int  				c;
 }						t_map;
 
 
@@ -82,7 +83,7 @@ int						check_char(t_map *map);
 char *skip_spaces(char *line);
 char **get_map(t_map *map,int fd);
 int check_borders(t_map *map);
-int ft_parsing(t_parse *parse,int fd);
+int ft_parsing(t_parse *parse,int fd,t_map *map);
 /**********************************************************/
 
 struct					s_img_data

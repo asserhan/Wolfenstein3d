@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/09 15:46:33 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/08/13 20:30:50 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void init_file(t_parse *parse,t_map *map)
 	parse->so = NULL;
 	parse->we = NULL;
 	parse->ea = NULL;
-	map->map = NULL;
+	map->map = malloc(sizeof(char *) * 20000);
+	if(!map->map)
+	{
+		free_matrix(map->map);
+		free(map);
+	}
 	map->player_x = 0;
 	map->player_y = 0;
 	parse->f.b = -1;
@@ -35,6 +40,9 @@ void init_file(t_parse *parse,t_map *map)
 	parse->c.r = -1;
 	parse->in=0;
 	parse->map_found = 0;
+	map->rows = 0;
+	map->cols = 0;
+	map->c = 0;
 	
 }
 int main(int argc,char **argv)
@@ -52,7 +60,7 @@ int main(int argc,char **argv)
    		if((fd = open (argv[1],O_RDONLY)) == -1)
 			return(ft_error("file does not open\n"),1);
 		init_file(&parse,&maps);
-		ft_parsing(&parse,fd);
+		ft_parsing(&parse,fd,&maps);
 		//get_map(&maps,fd); 
 	}
 	else
