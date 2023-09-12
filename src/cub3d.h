@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 12:18:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:32:50 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	draw_line_2(t_mlx_info *mlx_info,
 					int color);
 /**********************CONSTANTS*******************************/
 
-# define SQUARE_SIZE 84
+# define SQUARE_SIZE 64
 
 # define RED 0
 # define GREEN 1

@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:04:23 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 10:43:32 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:29:09 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	move_forward(t_mlx_info *info)
 	double	delta_x;
 	double	delta_y;
 
-	delta_x = 0.1;
-	delta_y = 0.1;
+	delta_x = 1;
+	delta_y = 1;
 	while (delta_x < 50 && delta_y < 50)
 	{
 		new_x = info->player->x + cos(info->player->rotation_angle) * delta_x;
@@ -28,8 +28,8 @@ void	move_forward(t_mlx_info *info)
 		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
 					/ SQUARE_SIZE)) == 0)
 		{
-			delta_x += 0.1;
-			delta_y += 0.1;
+			delta_x += 1;
+			delta_y += 1;
 		}
 		else
 			return ;
@@ -47,8 +47,8 @@ void	move_backward(t_mlx_info *info)
 	double delta_x;
 	double delta_y;
 
-	delta_x = 0.1;
-	delta_y = 0.1;
+	delta_x = 1;
+	delta_y = 1;
 	while (delta_x < 50 && delta_y < 50)
 	{
 		new_x = info->player->x - cos(info->player->rotation_angle) * delta_x;
@@ -56,8 +56,8 @@ void	move_backward(t_mlx_info *info)
 		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
 					/ SQUARE_SIZE)) == 0)
 		{
-			delta_x += 0.1;
-			delta_y += 0.1;
+			delta_x += 1;
+			delta_y += 1;
 		}
 		else
 			return ;
