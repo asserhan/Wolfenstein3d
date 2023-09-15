@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/15 11:56:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:45:28 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int main(int argc,char **argv)
 			return(ft_error("file does not open\n"),1);
 		init_file(&parse,&maps);
 		ft_parsing(&parse,fd,&maps);
+		
 		//get_map(&maps,fd); 
 			t_mlx_info	mlx_info;
 	t_player	player;

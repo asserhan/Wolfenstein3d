@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/15 12:17:49 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:40:23 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ char *get_path(char *line)
     p--;
     if(*p != 'm' || *(p - 1) != 'p' || *(p - 2) != 'x' || *(p - 3) != '.')
         return(free(trim),NULL);
-    if(ft_strncmp(trim,"./",2) != 0 )
-        return(free(trim),NULL);
+    // if(ft_strncmp(trim,"./",2) != 0 )
+    //     return(free(trim),NULL);
     // trim++;
     if(access(trim,F_OK | R_OK) == -1)
         return(free(trim),NULL);
@@ -187,7 +187,6 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
         if(map->f_line)
             break;
     }
-    printf("%s\n",map->f_line);
     if(!map->f_line)
         return(ft_error("map not found\n"));
     
@@ -199,7 +198,6 @@ char **get_map(t_map *map,int fd)
     map->map = read_map(fd);
     if(!map->map)
         return(ft_printf("Error invalid Map\n"),free_matrix(map->map),NULL);
-    //print_matrix(map->map);
     if(check_char(map))
         return(ft_printf("Error Wrong Caracteres\n"),free_matrix(map->map),NULL);
     if(check_borders(map))
