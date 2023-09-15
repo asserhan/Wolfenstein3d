@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/15 11:45:51 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:22:10 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
+# include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
-//# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -27,7 +27,7 @@
 /**********************Parsing*******************************/
 
 /******get_next_line********/
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 50
 char					*get_next_line(int fd);
 size_t					ft_strlen(const char *s);
 size_t					ft_strlcat(char *dst, const char *src, size_t dstsize);

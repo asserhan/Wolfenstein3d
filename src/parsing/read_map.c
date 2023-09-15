@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/14 18:16:10 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:17:49 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char *get_path(char *line)
         return(free(trim),NULL);
     if(ft_strncmp(trim,"./",2) != 0 )
         return(free(trim),NULL);
-    trim++;
+    // trim++;
     if(access(trim,F_OK | R_OK) == -1)
         return(free(trim),NULL);
     else
