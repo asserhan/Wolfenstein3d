@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/15 14:46:41 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:50:57 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ int just_spaces(char *line)
 {
     while(*line)
     {
-        if(*line != ' ' && *line != '\t')    
+        if(*line != ' ' && *line != '\t' && *line != '\n')   
             return(0);
         line++;
     }
@@ -175,7 +175,7 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
 
         if(line == NULL )
             break;
-        if(just_spaces(line) || line[0] == '\n')
+        if(just_spaces(line))
         {
             free(line);
             continue;
@@ -191,25 +191,67 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
     }
     if(!map->f_line) 
         return(ft_error("map not found\n"));
-    printf("%s\n",line);
+     
     return(0);
 }
 char **get_map(t_map *map,int fd)
 {
     
-    //char *line;
-    int len;
-    len = ft_strlen(map->f_line) - 1;
-    
-    
-   
-    map->map = read_map(fd);
+    char *line;
+    int i;
+    int next_len;
+    int end = 0;
+    i = -1;
+    map->cols = ft_strlen(map->f_line) - 1;
+    map->rows = 1;
+    next_len = 0;
+    while(1)
+    {
+        line = get_next_line(fd);
+        if(line == NULL)
+            break;
+        if (just_spaces(line) )
+        {
+           end = 1;
+           continue;
+        }
+        if (!just_spaces(line)  && end == 1)
+        {
+            printf("Error\n"); 
+            return(free(line),NULL);
+        }
+        line = skip_spaces(line);   
+        next_len = ft_strlen(line) - 1;
+        if(next_len > map->cols)
+            map->cols = next_len;
+        map->rows++;
+
+    }
+    printf("rows = %d\n",map->rows);
+    printf("cols = %d\n",map->cols);
+    map->map = (char **)malloc(sizeof(char *) * (map->rows + 1));
     if(!map->map)
-        return(ft_printf("Error invalid Map\n"),free_matrix(map->map),NULL);
-    //print_matrix(map->map);
-    if(check_char(map))
-        return(ft_printf("Error Wrong Caracteres\n"),free_matrix(map->map),NULL);
-    if(check_borders(map))
-        return(ft_printf("Error Map not surounded by walls \n"),free_matrix(map->map),NULL);
-    return(map->map);
+        return(ft_printf("Error malloc\n"),NULL);
+    
+    while (++i < map->rows)
+    {
+        map->map[i] = (char *)malloc(sizeof(char) * (map->cols + 1));
+        if(!map->map[i])
+            return(ft_printf("Error malloc\n"),NULL);
+        map->map[0] = ft_strdup(map->f_line);
+        if(!map->map[0])
+            return(ft_printf("Error malloc\n"),NULL);
+        
+        
+    }
+        
+    // map->map = read_map(fd);
+    // if(!map->map)
+    //     return(ft_printf("Error invalid Map\n"),free_matrix(map->map),NULL);
+    // //print_matrix(map->map);
+    // if(check_char(map))
+    //     return(ft_printf("Error Wrong Caracteres\n"),free_matrix(map->map),NULL);
+    // if(check_borders(map))
+    //     return(ft_printf("Error Map not surounded by walls \n"),free_matrix(map->map),NULL);
+    // return(map->map);
 }
