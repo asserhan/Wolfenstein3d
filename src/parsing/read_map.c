@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/15 12:45:45 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:46:41 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,17 +142,6 @@ int check_textures(t_parse *parse,char *line )
     return(0);  
 }
 
-void get_first_line(t_map *map,char *line,t_parse *parse)
-{
-    line = skip_spaces(line);
-    if(parse->in == 6 )
-    {
-        if(line[0] == 'C' || line[0] == 'F' )
-            return;
-        map->f_line = ft_strdup(line);
-    }
-    
-}
 int just_spaces(char *line)
 {
     while(*line)
@@ -162,6 +151,19 @@ int just_spaces(char *line)
         line++;
     }
     return(1);
+}
+void get_first_line(t_map *map,char *line,t_parse *parse)
+{
+    line = skip_spaces(line);
+    if(parse->in == 6 )
+    {
+        if(line[0] == 'C' || line[0] == 'F' )
+            return;
+        if(just_spaces(line) || line[0] == '\n')
+            return;
+        map->f_line = ft_strdup(line);
+    }
+    
 }
 int ft_parsing(t_parse *parse,int fd,t_map *map)
 {
@@ -182,17 +184,24 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
             return(free(line),1);
         if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
+    
         get_first_line(map,line,parse);
         if(map->f_line)
             break;
     }
     if(!map->f_line) 
         return(ft_error("map not found\n"));
-    
+    printf("%s\n",line);
     return(0);
 }
 char **get_map(t_map *map,int fd)
 {
+    
+    //char *line;
+    int len;
+    len = ft_strlen(map->f_line) - 1;
+    
+    
    
     map->map = read_map(fd);
     if(!map->map)
