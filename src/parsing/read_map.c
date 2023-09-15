@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/08/16 20:18:31 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:16:10 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,66 +142,53 @@ int check_textures(t_parse *parse,char *line )
     free_matrix(tab); 
     return(0);  
 }
-int find_map(t_map *map,char *line)
-{
-    int i;
-    int len;
-    len= ft_strlen(line);
-    i = 0;
-    if(len >= 1)
-    {
-        while(line[i])
-        {
-            if (line[i] == '1')
-            {
-                map->c = 1;
-                return(1);
-            }
-            else 
-                return(0);
-            i++;
-            
-        }
-    }
-    if(len == i)
-        return(0);
-    return(0);
-    
-}
-void ft_read_map(t_map *map,char *line,t_parse *parse)
+
+void get_first_line(t_map *map,char *line,t_parse *parse)
 {
     line = skip_spaces(line);
     if(parse->in == 6 )
     {
-        if(line[0] == '1')
-        {
-            map->map[map->rows] = ft_strdup(line);
-            map->rows++;
-        }
+        if(line[0] == 'C' || line[0] == 'F' )
+            return;
+        map->f_line = ft_strdup(line);
     }
     
 }
-
+int just_spaces(char *line)
+{
+    while(*line)
+    {
+        if(*line != ' ' && *line != '\t')    
+            return(0);
+        line++;
+    }
+    return(1);
+}
 int ft_parsing(t_parse *parse,int fd,t_map *map)
 {
     char *line;
+
     while(1)
     {
         line = get_next_line(fd);
-        
+
         if(line == NULL )
             break;
+        if(just_spaces(line) || line[0] == '\n')
+        {
+            free(line);
+            continue;
+        }
         if(check_textures(parse,line) || parse->in > 6)
             return(free(line),ft_error("in parsing\n"));
         if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
-        ft_read_map(map,line,parse);
-        
-       
-        
+        get_first_line(map,line,parse);
+        if(map->f_line)
+            break;
     }
-        print_matrix(map->map);
-    if(parse->map_found == 0)
+    printf("%s\n",map->f_line);
+    if(!map->f_line)
         return(ft_error("map not found\n"));
     
     return(0);

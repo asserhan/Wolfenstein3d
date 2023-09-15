@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/13 19:41:19 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/14 17:49:23 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_map
 	int					player_num;
 	char				**map;
 	int  				c;
+	char 				*f_line;
 }						t_map;
 
 

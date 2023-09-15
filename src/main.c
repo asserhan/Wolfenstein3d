@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/08/13 20:30:50 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:05:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void init_file(t_parse *parse,t_map *map)
 		free_matrix(map->map);
 		free(map);
 	}
+	map->f_line = NULL;
 	map->player_x = 0;
 	map->player_y = 0;
 	parse->f.b = -1;
@@ -43,6 +44,7 @@ void init_file(t_parse *parse,t_map *map)
 	map->rows = 0;
 	map->cols = 0;
 	map->c = 0;
+	
 	
 }
 int main(int argc,char **argv)
