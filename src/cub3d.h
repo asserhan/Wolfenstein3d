@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/12 14:32:50 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:42:30 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void				draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 int					key_hook(int key, t_mlx_info *info);
 void				move_forward(t_mlx_info *info);
 void				move_backward(t_mlx_info *info);
+void move_right(t_mlx_info *info);
+void move_left(t_mlx_info *info);
 void				cast_all_rays(t_mlx_info *mlx_info);
 double				normalize_angle(double angle_radians);
 int					is_face_up(double angle);

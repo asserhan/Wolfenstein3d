@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/21 11:39:37 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:22:06 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	key_hook(int key, t_mlx_info *info)
 	t_player *player;
 
 	player = info->player;
+	ft_printf("key: %d\n", key);
 	if (key == 123)
 	{
 		info->player->rotation_angle -= info->player->rotation_speed;
@@ -25,13 +26,25 @@ int	key_hook(int key, t_mlx_info *info)
 	{
 		info->player->rotation_angle += info->player->rotation_speed;
 	}
-	else if (key == 125)
+	else if (key == 1)
 	{
 		move_backward(info);
 	}
-	else if (key == 126)
+	else if (key == 13)
 	{
 		move_forward(info);
+	}
+	else if (key == 0)
+	{
+		move_left(info);
+	}
+	else if (key == 2)
+	{
+		move_right(info);
+	}
+	else if (key == 53)
+	{
+		exit(0);
 	}
 	info->player->rotation_angle = normalize_angle(info->player->rotation_angle);
 	mlx_clear_window(info->mlx_ptr, info->win_ptr);
