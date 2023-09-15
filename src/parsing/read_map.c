@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/14 18:16:10 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:23:48 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char *get_path(char *line)
         return(free(trim),NULL);
     if(ft_strncmp(trim,"./",2) != 0 )
         return(free(trim),NULL);
-    trim++;
     if(access(trim,F_OK | R_OK) == -1)
         return(free(trim),NULL);
     else
@@ -180,14 +179,13 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
             continue;
         }
         if(check_textures(parse,line) || parse->in > 6)
-            return(free(line),ft_error("in parsing\n"));
+            return(free(line),1);
         if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
         get_first_line(map,line,parse);
         if(map->f_line)
             break;
     }
-    printf("%s\n",map->f_line);
     if(!map->f_line)
         return(ft_error("map not found\n"));
     
