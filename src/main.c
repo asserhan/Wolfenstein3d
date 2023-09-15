@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/15 12:45:28 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:06:02 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int main(int argc,char **argv)
    		if((fd = open (argv[1],O_RDONLY)) == -1)
 			return(ft_error("file does not open\n"),1);
 		init_file(&parse,&maps);
-		ft_parsing(&parse,fd,&maps);
+		if(ft_parsing(&parse,fd,&maps))
+			exit(1);
 		
 		//get_map(&maps,fd); 
 			t_mlx_info	mlx_info;
