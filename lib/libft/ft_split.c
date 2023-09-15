@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 23:39:05 by hasserao          #+#    #+#             */
-/*   Updated: 2022/10/25 16:51:36 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:23:53 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	**ft_split(char const *s, char c)
 	size_t	begin;
 	size_t	end;
 	size_t	i;
-
 	if (s == NULL)
 		return (NULL);
 	strings = (char **) malloc((nbr_words(s, c) + 1) * sizeof(char *));
@@ -81,4 +80,5 @@ char	**ft_split(char const *s, char c)
 	}
 	strings[i] = NULL;
 	return (strings);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 19:34:46 by hasserao          #+#    #+#             */
-/*   Updated: 2022/10/23 18:11:32 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:57:50 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	i;
 
 	i = 0;
+	if(!s1)
+		return(-1);
 	while ((*(unsigned char *)s1 || *(unsigned char *)s2) && i < n)
 	{
 		if (*(unsigned char *)s1 > *(unsigned char *)s2)
@@ -30,3 +32,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
+

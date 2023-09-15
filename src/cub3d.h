@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/12 14:42:30 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:45:51 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,75 @@
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+//# include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+#define white_spaces " \t\n\v\f\r"
+
+/**********************Parsing*******************************/
+
+/******get_next_line********/
+# define BUFFER_SIZE 1
+char					*get_next_line(int fd);
+size_t					ft_strlen(const char *s);
+size_t					ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t					ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char					*ft_strjoin(char const *s1, char const *s2);
+char					*ft_strchr(const char *s, int c);
+char					*ft_strdup(const char *s1);
+char					*read_and_add(int fd, char *reserve);
+char					*update_reserve(char **reserve, int i);
+char					*extract(char **reserve);
+
+/***************************/
+typedef struct t_rgb
+{
+	int r;
+	int g;
+	int b;
+}	t_rgb;
+
+typedef struct s_parse
+{
+	char **info;
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	t_rgb f;
+	t_rgb c;
+	int in;
+	int map_found;
+	
+}	t_parse;
+typedef struct s_map
+{
+	double				player_x;
+	double				player_y;
+	double				d_vue;
+	int					rows;
+	int					cols;
+	int					player_num;
+	char				**map;
+	int  				c;
+	char 				*f_line;
+}						t_map;
+
+
+
+int ft_error(char *str);
+int						ft_strcmp(const char *s1, const char *s2);
+void					free_matrix(char **tab);
+void					print_matrix(char **tab);
+int						check_file(char *file);
+int						check_char(t_map *map);
+char *skip_spaces(char *line);
+char **get_map(t_map *map,int fd);
+int check_borders(t_map *map);
+int ft_parsing(t_parse *parse,int fd,t_map *map);
+/**********************************************************/
 
 typedef struct s_img_data
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
+#    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/07/15 11:22:35 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/07/22 14:53:54 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 # Variables
 NAME = cub3d
 CC = cc
-FLAGS = -Wall -Werror -Wextra 
-MLX = -lmlx -framework OpenGl -framework Appkit
+FLAGS = -Wall -Werror -Wextra -g
+#MLX = -lmlx -framework OpenGl -framework Appkit
 RM = rm -rf
 LIBTFT = lib/libft/libft.a
 PRINTF = lib/ft_printf/libftprintf.a
