@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/15 12:40:23 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:06:33 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
             continue;
         }
         if(check_textures(parse,line) || parse->in > 6)
-            return(free(line),ft_error("in parsing\n"));
+            return(free(line),1);
         if(parse->map_found == 1 && parse->in < 6 )
             return(free(line),ft_error("in parsing\n"));
         get_first_line(map,line,parse);
