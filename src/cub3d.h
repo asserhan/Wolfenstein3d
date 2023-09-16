@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/15 11:03:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:17:56 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 #define white_spaces " \t\n\v\f\r"
+# define Wall 1
+ 
 
 /**********************Parsing*******************************/
 
@@ -82,7 +84,7 @@ void					print_matrix(char **tab);
 int						check_file(char *file);
 int						check_char(t_map *map);
 char *skip_spaces(char *line);
-char **get_map(t_map *map,int fd);
+char **get_map(t_map *map,char *file);
 int check_borders(t_map *map);
 int ft_parsing(t_parse *parse,int fd,t_map *map);
 /**********************************************************/

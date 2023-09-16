@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/15 19:50:57 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:39:24 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,40 @@ void get_first_line(t_map *map,char *line,t_parse *parse)
     }
     
 }
+int  find_size(t_map *map,int fd,char *map_line)
+{
+    char *line;
+    (void )map_line;
+    int i;
+    int next_len;
+    int end = 0;
+    i = -1;
+    map->cols = ft_strlen(map->f_line) - 1;
+    map->rows = 1;
+    next_len = 0;
+    while(1)
+    {
+        line = get_next_line(fd);
+        if(line == NULL)
+            break;
+        
+        if (just_spaces(line) )
+        {
+           end = 1;
+           continue;
+        }
+        if (!just_spaces(line)  && end == 1)
+            return(free(line),1);
+        line = skip_spaces(line);   
+        next_len = ft_strlen(line) - 1;
+        if(next_len > map->cols)
+            map->cols = next_len;
+        map->rows++;
+    }
+    free(line);
+    close(fd);
+    return(0);
+}
 int ft_parsing(t_parse *parse,int fd,t_map *map)
 {
     char *line;
@@ -191,67 +225,54 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
     }
     if(!map->f_line) 
         return(ft_error("map not found\n"));
-     
+    if(find_size(map,fd,line))
+        return(ft_error("invalid map\n"));
+    close(fd);
     return(0);
 }
-char **get_map(t_map *map,int fd)
+
+char **get_map(t_map *map,char *file)
 {
-    
+    int fd;
     char *line;
+    
     int i;
-    int next_len;
-    int end = 0;
     i = -1;
-    map->cols = ft_strlen(map->f_line) - 1;
-    map->rows = 1;
-    next_len = 0;
+    fd = open(file,O_RDONLY);
+    if(fd == -1)
+        return(ft_printf("Error file does not open\n"),NULL);
+
     while(1)
     {
         line = get_next_line(fd);
         if(line == NULL)
             break;
-        if (just_spaces(line) )
-        {
-           end = 1;
-           continue;
-        }
-        if (!just_spaces(line)  && end == 1)
-        {
-            printf("Error\n"); 
-            return(free(line),NULL);
-        }
-        line = skip_spaces(line);   
-        next_len = ft_strlen(line) - 1;
-        if(next_len > map->cols)
-            map->cols = next_len;
-        map->rows++;
-
+        line = skip_spaces(line);
+        if(ft_strcmp(line,map->f_line)== 0)
+              break;
     }
-    printf("rows = %d\n",map->rows);
-    printf("cols = %d\n",map->cols);
-    map->map = (char **)malloc(sizeof(char *) * (map->rows + 1));
+    map->map = ft_calloc(sizeof(char *),map->rows + 1);
     if(!map->map)
         return(ft_printf("Error malloc\n"),NULL);
     
-    while (++i < map->rows)
+    while(++i < map->rows)
     {
-        map->map[i] = (char *)malloc(sizeof(char) * (map->cols + 1));
-        if(!map->map[i])
-            return(ft_printf("Error malloc\n"),NULL);
-        map->map[0] = ft_strdup(map->f_line);
-        if(!map->map[0])
-            return(ft_printf("Error malloc\n"),NULL);
-        
-        
+        map->map[i] = ft_calloc(sizeof(char),map->cols + 1);
+        ft_memset(map->map[i],' ',map->cols);
+        map->map[i] = ft_strtrim(line,white_spaces);
+        line = get_next_line(fd);
+        if(line == NULL)
+            break;
     }
-        
-    // map->map = read_map(fd);
-    // if(!map->map)
-    //     return(ft_printf("Error invalid Map\n"),free_matrix(map->map),NULL);
-    // //print_matrix(map->map);
-    // if(check_char(map))
-    //     return(ft_printf("Error Wrong Caracteres\n"),free_matrix(map->map),NULL);
-    // if(check_borders(map))
-    //     return(ft_printf("Error Map not surounded by walls \n"),free_matrix(map->map),NULL);
-    // return(map->map);
+    // ft_printf("%s\n",map->map[0]);
+    // ft_printf("%s\n",map->map[map->rows -1]);
+    if(check_borders(map))
+        return(ft_printf("Invalid map\n"),NULL);
+    print_matrix(map->map);
+
+    
+    
+
+    return(NULL);
+    
 }

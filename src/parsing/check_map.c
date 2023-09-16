@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/14 15:21:29 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:58:23 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,27 @@ char *skip_spaces(char *line)
 int check_borders(t_map *map)
 {
 	int i;
-	char c;
-
-	i = 0;
-	rows_cols_num(map);
-	while(i < map->cols)
+	int j;
+	i = -1;
+	
+	while(map->map[++i])
 	{
-		c = *skip_spaces(map->map[0]);
-		if(!is_wall(c + i))
-		{	
-			return(1);
+		j = -1;
+		while(map->map[i][++j])
+		{
+			if(i == 0 || i == map->rows - 1)
+			{
+				if(map->map[i][j] != '1' && map->map[i][j] != ' ' && map->map[i][j] != '\t')
+					return(1);
+			}
+			if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
+				{
+					if(map->map[i][j - 1] != '1' && map->map[i][j - 1] != ' ' && map->map[i][j - 1] != '\t')
+						return(1);
+					if(map->map[i][j + 1] != '1' && map->map[i][j + 1] != ' ' && map->map[i][j + 1] != '\t')
+						return(1);
+				}
 		}
-		i++;
-		printf("%d\n",i);
 	}
 	return(0);
 
