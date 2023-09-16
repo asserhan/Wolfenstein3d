@@ -6,19 +6,19 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 11:15:00 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:32:07 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double	*closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
-		double y_step, double angle, int type)
+double *closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
+						double y_step, double angle, int type)
 {
-	double	*first_wall_hit;
-	int		*p_cords;
-	int		v;
-	int		h;
+	double *first_wall_hit;
+	int *p_cords;
+	int v;
+	int h;
 
 	v = 0;
 	h = 0;
@@ -38,11 +38,10 @@ double	*closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
 	first_wall_hit = (double *)malloc(sizeof(double) * 2);
 	first_wall_hit[0] = tmp[0];
 	first_wall_hit[1] = tmp[1];
-	while (tmp[0] >= 0 && tmp[0] < WINDOW_WIDTH && tmp[1] >= 0
-		&& tmp[1] < WINDOW_HEIGHT)
+	while (tmp[0] >= 0 && tmp[0] < WINDOW_WIDTH && tmp[1] >= 0 && tmp[1] < WINDOW_HEIGHT)
 	{
 		if (wall_check(mlx_info->map, floor(tmp[0] / SQUARE_SIZE) - v,
-				floor(tmp[1] / SQUARE_SIZE) - h))
+					   floor(tmp[1] / SQUARE_SIZE) - h))
 		{
 			first_wall_hit[0] = tmp[0];
 			first_wall_hit[1] = tmp[1];
@@ -57,20 +56,19 @@ double	*closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
 	return (first_wall_hit);
 }
 
-double	*cast_ray_vertically(double ray_angle, t_mlx_info *mlx_info)
+double *cast_ray_vertically(double ray_angle, t_mlx_info *mlx_info)
 {
-	double	*tmp;
-	double	x_step;
-	double	y_step;
-	double	x_intercept;
-	double	y_intercept;
+	double *tmp;
+	double x_step;
+	double y_step;
+	double x_intercept;
+	double y_intercept;
 
 	tmp = (double *)malloc(sizeof(double) * 2);
 	x_intercept = floor(mlx_info->player->x / SQUARE_SIZE) * SQUARE_SIZE;
 	if (is_face_right(ray_angle))
 		x_intercept += SQUARE_SIZE;
-	y_intercept = mlx_info->player->y + ((x_intercept - mlx_info->player->x)
-			* tan(ray_angle));
+	y_intercept = mlx_info->player->y + ((x_intercept - mlx_info->player->x) * tan(ray_angle));
 	x_step = SQUARE_SIZE;
 	if (!is_face_right(ray_angle))
 		x_step *= -1;
@@ -82,22 +80,21 @@ double	*cast_ray_vertically(double ray_angle, t_mlx_info *mlx_info)
 	tmp[0] = x_intercept;
 	tmp[1] = y_intercept;
 	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle,
-			VERTICAL));
+							VERTICAL));
 }
-double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
+double *cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 {
-	double	*tmp;
-	double	x_step;
-	double	y_step;
-	double	x_intercept;
-	double	y_intercept;
+	double *tmp;
+	double x_step;
+	double y_step;
+	double x_intercept;
+	double y_intercept;
 
 	tmp = (double *)malloc(sizeof(double) * 2);
 	y_intercept = floor(mlx_info->player->y / SQUARE_SIZE) * SQUARE_SIZE;
 	if (!is_face_up(ray_angle))
 		y_intercept += SQUARE_SIZE;
-	x_intercept = mlx_info->player->x + ((y_intercept - mlx_info->player->y)
-			/ tan(ray_angle));
+	x_intercept = mlx_info->player->x + ((y_intercept - mlx_info->player->y) / tan(ray_angle));
 	y_step = SQUARE_SIZE;
 	if (is_face_up(ray_angle))
 		y_step *= -1;
@@ -109,14 +106,14 @@ double	*cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 	tmp[0] = x_intercept;
 	tmp[1] = y_intercept;
 	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle,
-			HORIZONTAL));
+							HORIZONTAL));
 }
 
-void	cast_ray(t_ray *ray, t_mlx_info *mlx_info)
+void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 {
-	int		*p_cords;
-	double	*hor_wall_hit;
-	double	*ver_wall_hit;
+	int *p_cords;
+	double *hor_wall_hit;
+	double *ver_wall_hit;
 
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
@@ -124,23 +121,39 @@ void	cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 	hor_wall_hit = cast_ray_horizontally(ray->ray_angle, mlx_info);
 	ver_wall_hit = cast_ray_vertically(ray->ray_angle, mlx_info);
 	if (hor_wall_hit[0] == -1 && ver_wall_hit[0] != -1)
-		draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray);
+	{
+		ray->wall_hit_x = ver_wall_hit[0];
+		ray->wall_hit_y = ver_wall_hit[1];
+		draw_vertcl_texture(ray, mlx_info);
+	}
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] == -1)
-		draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray);
+	{
+		ray->wall_hit_x = hor_wall_hit[0];
+		ray->wall_hit_y = hor_wall_hit[1];
+		draw_horiz_texture(ray, mlx_info);
+	}
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
 	{
 		if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
-				hor_wall_hit[1]) < distance_between_points(p_cords[0],
-																														p_cords[1],
-																														ver_wall_hit[0],
-																														ver_wall_hit[1]))
-			draw_3d_line(mlx_info, p_cords, hor_wall_hit, ray);
+									hor_wall_hit[1]) < distance_between_points(p_cords[0],
+																			   p_cords[1],
+																			   ver_wall_hit[0],
+																			   ver_wall_hit[1]))
+		{
+			ray->wall_hit_x = hor_wall_hit[0];
+			ray->wall_hit_y = hor_wall_hit[1];
+			draw_horiz_texture(ray, mlx_info);
+		}
 		else
-			draw_3d_line(mlx_info, p_cords, ver_wall_hit, ray);
+		{
+			ray->wall_hit_x = ver_wall_hit[0];
+			ray->wall_hit_y = ver_wall_hit[1];
+			draw_vertcl_texture(ray, mlx_info);
+		}
 	}
 }
 
-void	cast_all_rays(t_mlx_info *mlx_info)
+void cast_all_rays(t_mlx_info *mlx_info)
 {
 	int i;
 	double delta_angle;

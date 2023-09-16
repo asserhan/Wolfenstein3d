@@ -6,13 +6,13 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 09:56:07 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 12:15:25 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:04:09 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_player(t_player *player)
+void init_player(t_player *player)
 {
 	player->x = WINDOW_WIDTH / 3;
 	player->y = WINDOW_HEIGHT / 2;
@@ -24,17 +24,15 @@ void	init_player(t_player *player)
 		player->facing_up = 0;
 	else
 		player->facing_up = 1;
-	if (player->rotation_angle >= M_PI_2 && player->rotation_angle <= 3
-		* M_PI_2)
+	if (player->rotation_angle >= M_PI_2 && player->rotation_angle <= 3 * M_PI_2)
 		player->facing_right = 0;
-	else if (player->rotation_angle >= 3 * M_PI_2 && player->rotation_angle <= 2
-			* M_PI)
+	else if (player->rotation_angle >= 3 * M_PI_2 && player->rotation_angle <= 2 * M_PI)
 		player->facing_right = 1;
-	player->move_speed = 20;
-	player->rotation_speed = 0.19;
+	player->move_speed = 25;
+	player->rotation_speed = 0.23;
 }
 
-void	draw_player(t_mlx_info *mlx_info, t_player *player)
+void draw_player(t_mlx_info *mlx_info, t_player *player)
 {
 	int *cords;
 	double *end_pixel_cord;
