@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/16 19:39:24 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:26:23 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,16 +259,17 @@ char **get_map(t_map *map,char *file)
     {
         map->map[i] = ft_calloc(sizeof(char),map->cols + 1);
         ft_memset(map->map[i],' ',map->cols);
-        map->map[i] = ft_strtrim(line,white_spaces);
+        //map->map[i] = ft_strtrim(line,white_spaces);
+        ft_memcpy(map->map[i],line,ft_strlen(line));
         line = get_next_line(fd);
         if(line == NULL)
             break;
     }
+    print_matrix(map->map);
     // ft_printf("%s\n",map->map[0]);
     // ft_printf("%s\n",map->map[map->rows -1]);
     if(check_borders(map))
         return(ft_printf("Invalid map\n"),NULL);
-    print_matrix(map->map);
 
     
     

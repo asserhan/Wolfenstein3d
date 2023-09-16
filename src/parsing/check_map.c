@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/16 19:58:23 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:18:11 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,24 @@ int check_borders(t_map *map)
 		{
 			if(i == 0 || i == map->rows - 1)
 			{
-				if(map->map[i][j] != '1' && map->map[i][j] != ' ' && map->map[i][j] != '\t')
+				if(map->map[i][j] == '0')
 					return(1);
 			}
 			if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
 				{
-					if(map->map[i][j - 1] != '1' && map->map[i][j - 1] != ' ' && map->map[i][j - 1] != '\t')
+					if(map->map[i][j - 1] == '0' && map->map[i][j + 1] == '0')
 						return(1);
-					if(map->map[i][j + 1] != '1' && map->map[i][j + 1] != ' ' && map->map[i][j + 1] != '\t')
+					if(i != 0 && map->map[i - 1][j] == '0')
+					{
 						return(1);
+					}
+					if(i != map->rows - 1 && map->map[i + 1][j] == '0')
+					{
+					printf("i = %d j = %d\n",i,j);
+					printf("%c\n",map->map[i + 1][j]);
+						printf("here\n");
+						return(1);
+					}
 				}
 		}
 	}
