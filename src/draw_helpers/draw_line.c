@@ -6,26 +6,26 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 11:30:24 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/26 12:16:43 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:52:49 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdlib.h>
 
-void	draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
-		double *end_pixel_cord, int color)
+void draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
+			   double *end_pixel_cord, int color)
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	delta_x;
-	int	delta_y;
-	int	step_x;
-	int	step_y;
-	int	error;
-	int	error2;
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+	int delta_x;
+	int delta_y;
+	int step_x;
+	int step_y;
+	int error;
+	int error2;
 
 	x0 = start_pixel_cord[0];
 	y0 = start_pixel_cord[1];
@@ -54,19 +54,18 @@ void	draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 	draw_pixel(mlx_info, x0, y0, color); // Draw the last pixel (end point)
 }
 
-void	draw_line_2(t_mlx_info *mlx_info, double *start_pixel_cord,
-		double *end_pixel_cord, int color)
+void draw_line_2(t_mlx_info *mlx_info, t_line *line, int color)
 {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	step_y;
+	int x0;
+	int y0;
+	int x1;
+	int y1;
+	int step_y;
 
-	x0 = (int)start_pixel_cord[0];
-	y0 = (int)start_pixel_cord[1];
-	x1 = (int)end_pixel_cord[0];
-	y1 = (int)end_pixel_cord[1];
+	x0 = (int)line->start_x;
+	y0 = (int)line->start_y;
+	x1 = (int)line->end_x;
+	y1 = (int)line->end_y;
 	step_y = 1;
 	if (y0 > y1)
 		step_y = -1;

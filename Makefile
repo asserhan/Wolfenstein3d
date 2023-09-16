@@ -6,7 +6,7 @@
 #    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/09/15 11:53:50 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/09/16 18:46:37 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # Variables
 NAME = cub3d
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -g -O3
 MLX = -lmlx -framework OpenGl -framework Appkit
 RM = rm -rf
 LIBTFT = lib/libft/libft.a

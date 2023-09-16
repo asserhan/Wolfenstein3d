@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 11:32:07 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:27:28 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,13 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 	{
 		ray->wall_hit_x = ver_wall_hit[0];
 		ray->wall_hit_y = ver_wall_hit[1];
-		draw_vertcl_texture(ray, mlx_info);
+		draw_texture(ray, mlx_info, VERTICAL);
 	}
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] == -1)
 	{
 		ray->wall_hit_x = hor_wall_hit[0];
 		ray->wall_hit_y = hor_wall_hit[1];
-		draw_horiz_texture(ray, mlx_info);
+		draw_texture(ray, mlx_info, HORIZONTAL);
 	}
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
 	{
@@ -142,13 +142,13 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 		{
 			ray->wall_hit_x = hor_wall_hit[0];
 			ray->wall_hit_y = hor_wall_hit[1];
-			draw_horiz_texture(ray, mlx_info);
+			draw_texture(ray, mlx_info, HORIZONTAL);
 		}
 		else
 		{
 			ray->wall_hit_x = ver_wall_hit[0];
 			ray->wall_hit_y = ver_wall_hit[1];
-			draw_vertcl_texture(ray, mlx_info);
+			draw_texture(ray, mlx_info, VERTICAL);
 		}
 	}
 }

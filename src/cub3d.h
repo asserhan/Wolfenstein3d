@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 15:15:48 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:04:12 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,13 @@ typedef struct s_ray
 	double wall_hit_y;
 
 } t_ray;
+typedef struct s_line
+{
+	double start_x;
+	double start_y;
+	double end_x;
+	double end_y;
+} t_line;
 
 typedef struct s_mlx_info
 {
@@ -133,6 +140,7 @@ typedef struct s_mlx_info
 	t_img_data img_data;
 	struct s_player *player;
 	char **map;
+	t_parse *parse;
 } t_mlx_info;
 
 void init_mlx(t_mlx_info *mlx_info);
@@ -162,13 +170,9 @@ int is_face_right(double angle);
 int distance_between_points(double x1, double y1, double x2,
 							double y2);
 
-void draw_horiz_texture(t_ray *ray, t_mlx_info *mlx_info);
-void draw_vertcl_texture(t_ray *ray, t_mlx_info *mlx_info);
+void draw_texture(t_ray *ray, t_mlx_info *mlx_info, int type);
 
-void draw_line_2(t_mlx_info *mlx_info,
-				 double *start_pixel_cord,
-				 double *end_pixel_cord,
-				 int color);
+void draw_line_2(t_mlx_info *mlx_info, t_line *line, int color);
 void draw_pixel_texture(t_mlx_info *info, int x, int y, char *color);
 /**********************CONSTANTS*******************************/
 
