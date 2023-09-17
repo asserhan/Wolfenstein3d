@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/17 19:12:29 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:21:20 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ int check_borders(t_map *map)
 			return(1); 
 		}
 		
-		if(ft_strchr(map->map[i],' ') || ft_strchr(map->map[i],'\t'))
-		{
+	
 			while(map->map[i][++j])
 			{
 				if(!ft_strchr("10NSEW \t",map->map[i][j]))
@@ -119,7 +118,7 @@ int check_borders(t_map *map)
 			
 		}
 			
-	}
+	
 	if(map->player_num != 1)
 	{
 		printf("here\n");
