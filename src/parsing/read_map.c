@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/17 16:36:15 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 19:11:09 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int just_spaces(char *line)
 }
 void get_first_line(t_map *map, char *line, t_parse *parse)
 {
-    line = skip_spaces(line);
+   
     if (parse->in == 6)
     {
         if (line[0] == 'C' || line[0] == 'F')
@@ -185,7 +185,6 @@ int find_size(t_map *map, int fd)
         }
         if (!just_spaces(line) && end == 1)
             return (free(line), 1);
-        line = skip_spaces(line);
         next_len = ft_strlen(line) - 1;
         if (next_len > map->cols)
             map->cols = next_len;
@@ -221,11 +220,44 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
     }
     if (!map->f_line)
         return (ft_error("map not found\n"));
-    printf("%s\n", map->f_line);
     if (find_size(map, fd))
         return (ft_error("invalid map\n"));
     close(fd);
     return (0);
+}
+int check_spaces(t_map *map)
+{
+    int i;
+    int j;
+     i = -1;
+    while(++i < map->rows )
+    {
+       if(ft_strchr(map->map[i],' ') || ft_strchr(map->map[i],'\t'))
+        {
+            j = -1;
+            while(map->map[i][++j])
+            {
+                if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
+				{
+                    // printf("%s\n",map->map[i]);
+					// 	printf("%d\n%d\n",i,j);
+					if(i != 0 && map->map[i - 1][j] == '0')
+					{
+						return(1);
+					}
+					if(i != map->rows - 1 && map->map[i + 1][j] == '0')
+					{
+						return(1);
+					}
+					if(map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
+					{
+						return(1);
+					}
+				}
+            }
+        }
+    }
+    return(0);
 }
 
 char **get_map(t_map *map, char *file)
@@ -244,7 +276,7 @@ char **get_map(t_map *map, char *file)
         line = get_next_line(fd);
         if (line == NULL)
             break;
-        line = skip_spaces(line);
+     
         if (ft_strcmp(line, map->f_line) == 0)
             break;
     }
@@ -262,25 +294,30 @@ char **get_map(t_map *map, char *file)
         if (line == NULL)
             break;
     }
-    // print_matrix(map->map);
     //  ft_printf("%s\n",map->map[0]);
     //  ft_printf("%s\n",map->map[map->rows -1]);
-    map->map[0] = ft_strtrim(map->map[0], white_spaces);
-    map->map[map->rows - 1] = ft_strtrim(map->map[map->rows - 1], white_spaces);
-    i = -1;
-    while (map->map[0][++i])
-    {
-        if (map->map[0][i] != '1')
-            return (ft_printf("Invalid map\n"), NULL);
-    }
-    i = -1;
-    while(map->map[map->rows - 1][++i])
-    {
-        if(map->map[map->rows - 1][i] != '1')
-            return(ft_printf("Invalid map\n"),NULL);
-    }
+    //print_matrix(map->map);
+   
+    if(is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
+        return(ft_printf("Invalid +++ map\n"),NULL);
+    // i = -1;
+    // while (map->map[0][++i])
+    // {
+       
+    //     if (map->map[0][i] == '0' )
+    //         return (ft_printf("Invalid  map\n"), NULL);
+    // }
+    // i = -1;
+    // while(map->map[map->rows - 1][++i])
+    // {
+    //     if(map->map[map->rows - 1][i] == '0')
+    //         return(ft_printf("Invalid  map\n"),NULL);
+    // }
+   if(check_spaces(map))
+        return(ft_printf("Invalid map\n"),NULL);
+   
     if (check_borders(map))
-        return (ft_printf("Invalid map\n"), NULL);
+        return (ft_printf("Invalid ***map\n"), NULL);
 
     return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/17 16:56:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 18:56:43 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ char *skip_spaces(char *line);
 char **get_map(t_map *map,char *file);
 int check_borders(t_map *map);
 int ft_parsing(t_parse *parse,int fd,t_map *map);
+int is_wall(char *line);
 /**********************************************************/
 
 struct					s_img_data
