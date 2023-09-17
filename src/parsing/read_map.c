@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/17 15:57:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:11:08 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,10 @@ int find_size(t_map *map, int fd)
 {
     char *line;
 
-    int i;
+    
     int next_len;
     int end = 0;
-    i = -1;
+   
     map->cols = ft_strlen(map->f_line) - 1;
     map->rows = 1;
     next_len = 0;
@@ -265,6 +265,7 @@ char **get_map(t_map *map, char *file)
     // print_matrix(map->map);
     //  ft_printf("%s\n",map->map[0]);
     //  ft_printf("%s\n",map->map[map->rows -1]);
+    
     if (check_borders(map))
         return (ft_printf("Invalid map\n"), NULL);
 

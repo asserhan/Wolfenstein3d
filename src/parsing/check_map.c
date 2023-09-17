@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/17 14:41:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:11:22 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,33 @@ int check_borders(t_map *map)
 	int j;
 	i = -1;
 	//print_matrix(map->map);
-	while (++i < map->rows - 1)
+	while (++i < map->rows )
 	{
-		
 		j = -1;
+		
 		map->map[i] = ft_strtrim(map->map[i],white_spaces);
 		if(map->map[i][0] != '1' || map->map[i][ft_strlen(map->map[i]) - 1] != '1')
 			return(1); 
-		
+		if(ft_strchr(map->map[i],' ') || ft_strchr(map->map[i],'\t'))
+		{
+			while(map->map[i][++j])
+			{
+				if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
+				{
+					if(i != 0 && map->map[i - 1][j] == '0')
+						return(1);
+					if(i != map->rows - 1 && map->map[i + 1][j] == '0')
+						return(1);
+					if(map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
+						return(1);
+				}
+			
+			}
+			
+		}
+			
 	}
+	
 	
 	
 	// while(map->map[++i])
