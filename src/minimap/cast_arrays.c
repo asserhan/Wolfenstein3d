@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 18:27:28 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:51:28 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,9 @@ void cast_all_rays(t_mlx_info *mlx_info)
 	i = 0;
 	delta_angle = FOV_ANGLE / WINDOW_WIDTH;
 	ray.ray_angle = mlx_info->player->rotation_angle - (FOV_ANGLE / 2);
-
+	t_all_tex *all_tex = (t_all_tex *)malloc(sizeof(t_all_tex));
+	init_all_tex(all_tex, mlx_info);
+	mlx_info->all_tex = all_tex;
 	while (i < WINDOW_WIDTH)
 	{
 		ray.ray_angle = normalize_angle(ray.ray_angle);

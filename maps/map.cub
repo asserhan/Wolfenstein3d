@@ -1,16 +1,16 @@
 
 
 
-       NO   ./maps/cat.xpm
+       NO   ./maps/key.xpm
 
 
 
-    SO     ./maps/cat.xpm
+    SO     ./maps/key.xpm
 
 
 WE   ./maps/key.xpm
 
-EA     ./maps/cat.xpm
+EA     ./maps/key.xpm
 
 
 F   220,100,0 

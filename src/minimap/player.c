@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 09:56:07 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 18:20:32 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/17 14:18:09 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void init_player(t_player *player)
 	player->angle = 30;
 	player->turn_direction = 0;
 	player->walk_direction = 0;
-	player->rotation_angle = M_PI_2;
+	player->rotation_angle = -M_PI_2;
 	if (player->rotation_angle >= 0 && player->rotation_angle <= M_PI)
 		player->facing_up = 0;
 	else

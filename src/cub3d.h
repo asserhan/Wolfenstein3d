@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 19:04:12 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:51:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,16 @@ typedef struct s_tex_data
 	int bits_per_pixel;
 	int size_line;
 	int endian;
+	int width;
+	int height;
 } t_tex_data;
+typedef struct s_all_tex
+{
+	t_tex_data *no;
+	t_tex_data *so;
+	t_tex_data *we;
+	t_tex_data *ea;
+} t_all_tex;
 
 typedef struct s_player
 {
@@ -141,6 +150,7 @@ typedef struct s_mlx_info
 	struct s_player *player;
 	char **map;
 	t_parse *parse;
+	t_all_tex *all_tex;
 } t_mlx_info;
 
 void init_mlx(t_mlx_info *mlx_info);
@@ -174,6 +184,7 @@ void draw_texture(t_ray *ray, t_mlx_info *mlx_info, int type);
 
 void draw_line_2(t_mlx_info *mlx_info, t_line *line, int color);
 void draw_pixel_texture(t_mlx_info *info, int x, int y, char *color);
+void init_all_tex(t_all_tex *all_tex, t_mlx_info *mlx_info);
 /**********************CONSTANTS*******************************/
 
 #define SQUARE_SIZE 64
