@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/16 21:26:23 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 13:51:51 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,10 @@ void get_first_line(t_map *map,char *line,t_parse *parse)
     }
     
 }
-int  find_size(t_map *map,int fd,char *map_line)
+int  find_size(t_map *map,int fd)
 {
     char *line;
-    (void )map_line;
+   
     int i;
     int next_len;
     int end = 0;
@@ -225,7 +225,7 @@ int ft_parsing(t_parse *parse,int fd,t_map *map)
     }
     if(!map->f_line) 
         return(ft_error("map not found\n"));
-    if(find_size(map,fd,line))
+    if(find_size(map,fd))
         return(ft_error("invalid map\n"));
     close(fd);
     return(0);
@@ -265,7 +265,7 @@ char **get_map(t_map *map,char *file)
         if(line == NULL)
             break;
     }
-    print_matrix(map->map);
+    //print_matrix(map->map);
     // ft_printf("%s\n",map->map[0]);
     // ft_printf("%s\n",map->map[map->rows -1]);
     if(check_borders(map))
