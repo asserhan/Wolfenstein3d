@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 19:17:56 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:56:42 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ typedef struct s_parse
 }	t_parse;
 typedef struct s_map
 {
-	double				player_x;
-	double				player_y;
-	double				d_vue;
+	int				player_x;
+	int				player_y;
+	char				player_vue;
 	int					rows;
 	int					cols;
 	int					player_num;
