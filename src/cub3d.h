@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 10:43:59 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:00:38 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ typedef struct s_mlx_info
 	void *win_ptr;
 	t_img_data img_data;
 	struct s_player *player;
-	char **map;
+	t_map *map_info;
 	t_parse *parse;
 	t_all_tex *all_tex;
 } t_mlx_info;

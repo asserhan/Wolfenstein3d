@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 18:48:19 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:01:38 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int key_hook(int key, t_mlx_info *info)
 	info->player->rotation_angle = normalize_angle(info->player->rotation_angle);
 	mlx_clear_window(info->mlx_ptr, info->win_ptr);
 	cast_all_rays(info);
-	draw_mini_map(info, info->map);
+	draw_mini_map(info, info->map_info->map);
 	draw_player(info, info->player);
 
 	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->img_data.img, 0,

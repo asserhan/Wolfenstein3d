@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 10:48:10 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:02:24 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ void init_file(t_parse *parse, t_map *map)
 }
 int main(int argc, char **argv)
 {
-	t_map maps;
+	t_map *map_info;
 	t_parse parse;
 	int fd;
+	t_mlx_info mlx_info;
+	t_player player;
 	// int fd;
+
 	if (argc == 2)
 	{
 		if (check_file(argv[1]))
@@ -61,35 +64,20 @@ int main(int argc, char **argv)
 			return (ft_error("Is a directory\n"), 1);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("file does not open\n"), 1);
-		init_file(&parse, &maps);
-		if (ft_parsing(&parse, fd, &maps))
+		map_info = malloc(sizeof(t_map));
+		init_file(&parse, map_info);
+		if (ft_parsing(&parse, fd, map_info))
 			exit(1);
 
-		get_map(&maps, argv[1]);
-		t_mlx_info mlx_info;
-		t_player player;
-		char **map;
+		get_map(map_info, argv[1]);
 
-		mlx_info.parse = &parse;
-		map = (char **)malloc(sizeof(char *) * 12);
-		map[0] = "111111111111111111111111111";
-		map[1] = "100001000000000000000000001";
-		map[2] = "100001000000000000000000001";
-		map[3] = "100001000000000000000000001";
-		map[4] = "100001000000000000000000001";
-		map[5] = "100001000000100000000000001";
-		map[6] = "100001000000010000000000001";
-		map[7] = "100001000000000000000000001";
-		map[8] = "100001000000000000000000001";
-		map[9] = "100001000000000000000000001";
-		map[10] = "100001000000000000000000001";
-		map[11] = "111111111111111111111111111";
 		init_mlx(&mlx_info);
 		init_player(&player);
+		mlx_info.parse = &parse;
 		mlx_info.player = &player;
-		mlx_info.map = map;
+		mlx_info.map_info = map_info;
 		cast_all_rays(&mlx_info);
-		draw_mini_map(&mlx_info, map);
+		draw_mini_map(&mlx_info, map_info->map);
 		draw_player(&mlx_info, &player);
 		mlx_hook(mlx_info.win_ptr, 2, 1L << 0, key_hook, &mlx_info);
 		mlx_put_image_to_window(mlx_info.mlx_ptr, mlx_info.win_ptr,

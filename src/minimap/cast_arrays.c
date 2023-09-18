@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/17 13:51:28 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:02:42 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double *closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
 	first_wall_hit[1] = tmp[1];
 	while (tmp[0] >= 0 && tmp[0] < WINDOW_WIDTH && tmp[1] >= 0 && tmp[1] < WINDOW_HEIGHT)
 	{
-		if (wall_check(mlx_info->map, floor(tmp[0] / SQUARE_SIZE) - v,
+		if (wall_check(mlx_info->map_info->map, floor(tmp[0] / SQUARE_SIZE) - v,
 					   floor(tmp[1] / SQUARE_SIZE) - h))
 		{
 			first_wall_hit[0] = tmp[0];

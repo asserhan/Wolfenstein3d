@@ -6,18 +6,18 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:04:23 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/12 15:21:13 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:03:10 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	move_forward(t_mlx_info *info)
+void move_forward(t_mlx_info *info)
 {
-	double	new_x;
-	double	new_y;
-	double	delta_x;
-	double	delta_y;
+	double new_x;
+	double new_y;
+	double delta_x;
+	double delta_y;
 
 	delta_x = 1;
 	delta_y = 1;
@@ -25,22 +25,19 @@ void	move_forward(t_mlx_info *info)
 	{
 		new_x = info->player->x + cos(info->player->rotation_angle) * delta_x;
 		new_y = info->player->y + sin(info->player->rotation_angle) * delta_y;
-		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
-					/ SQUARE_SIZE)) == 0)
+		if (wall_check(info->map_info->map, floor(new_x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) == 0)
 		{
 			delta_x += 1;
 			delta_y += 1;
 		}
 		else
-			return ;
+			return;
 	}
-	info->player->x = info->player->x + cos(info->player->rotation_angle)
-		* info->player->move_speed;
-	info->player->y = info->player->y + sin(info->player->rotation_angle)
-		* info->player->move_speed;
+	info->player->x = info->player->x + cos(info->player->rotation_angle) * info->player->move_speed;
+	info->player->y = info->player->y + sin(info->player->rotation_angle) * info->player->move_speed;
 }
 
-void	move_backward(t_mlx_info *info)
+void move_backward(t_mlx_info *info)
 {
 	double new_x;
 	double new_y;
@@ -53,19 +50,16 @@ void	move_backward(t_mlx_info *info)
 	{
 		new_x = info->player->x - cos(info->player->rotation_angle) * delta_x;
 		new_y = info->player->y - sin(info->player->rotation_angle) * delta_y;
-		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
-					/ SQUARE_SIZE)) == 0)
+		if (wall_check(info->map_info->map, floor(new_x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) == 0)
 		{
 			delta_x += 1;
 			delta_y += 1;
 		}
 		else
-			return ;
+			return;
 	}
-	info->player->x = info->player->x - cos(info->player->rotation_angle)
-		* info->player->move_speed;
-	info->player->y = info->player->y - sin(info->player->rotation_angle)
-		* info->player->move_speed;
+	info->player->x = info->player->x - cos(info->player->rotation_angle) * info->player->move_speed;
+	info->player->y = info->player->y - sin(info->player->rotation_angle) * info->player->move_speed;
 }
 
 void move_right(t_mlx_info *info)
@@ -81,19 +75,16 @@ void move_right(t_mlx_info *info)
 	{
 		new_x = info->player->x + cos(info->player->rotation_angle + M_PI_2) * delta_x;
 		new_y = info->player->y + sin(info->player->rotation_angle + M_PI_2) * delta_y;
-		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
-					/ SQUARE_SIZE)) == 0)
+		if (wall_check(info->map_info->map, floor(new_x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) == 0)
 		{
 			delta_x += 1;
 			delta_y += 1;
 		}
 		else
-			return ;
+			return;
 	}
-	info->player->x = info->player->x + cos(info->player->rotation_angle + M_PI_2)
-		* info->player->move_speed;
-	info->player->y = info->player->y + sin(info->player->rotation_angle + M_PI_2)
-		* info->player->move_speed;
+	info->player->x = info->player->x + cos(info->player->rotation_angle + M_PI_2) * info->player->move_speed;
+	info->player->y = info->player->y + sin(info->player->rotation_angle + M_PI_2) * info->player->move_speed;
 }
 void move_left(t_mlx_info *info)
 {
@@ -108,18 +99,14 @@ void move_left(t_mlx_info *info)
 	{
 		new_x = info->player->x + cos(info->player->rotation_angle - M_PI_2) * delta_x;
 		new_y = info->player->y + sin(info->player->rotation_angle - M_PI_2) * delta_y;
-		if (wall_check(info->map, floor(new_x / SQUARE_SIZE), floor(new_y
-					/ SQUARE_SIZE)) == 0)
+		if (wall_check(info->map_info->map, floor(new_x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) == 0)
 		{
 			delta_x += 1;
 			delta_y += 1;
 		}
 		else
-			return ;
+			return;
 	}
-	info->player->x = info->player->x + cos(info->player->rotation_angle - M_PI_2)
-		* info->player->move_speed;
-	info->player->y = info->player->y + sin(info->player->rotation_angle - M_PI_2)
-		* info->player->move_speed;
+	info->player->x = info->player->x + cos(info->player->rotation_angle - M_PI_2) * info->player->move_speed;
+	info->player->y = info->player->y + sin(info->player->rotation_angle - M_PI_2) * info->player->move_speed;
 }
-
