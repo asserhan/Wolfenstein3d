@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 12:00:38 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 12:11:29 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void draw_square(t_mlx_info *mlx_info, int *pixel_cord,
 void draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
 				 int radius, int color);
 void draw_mini_map(t_mlx_info *mlx_info, char **map);
-int wall_check(char **map, int x, int y);
+int wall_check(t_map *map_info, int x, int y);
 void draw_player(t_mlx_info *mlx_info, t_player *player);
 void draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 			   double *end_pixel_cord, int color);
@@ -189,7 +189,7 @@ void draw_pixel_texture(t_mlx_info *info, int x, int y, char *color);
 void init_all_tex(t_all_tex *all_tex, t_mlx_info *mlx_info);
 /**********************CONSTANTS*******************************/
 
-#define SQUARE_SIZE 64
+#define SQUARE_SIZE 32
 
 #define RED 0
 #define GREEN 1

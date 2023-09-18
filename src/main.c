@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 12:02:24 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:39:17 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,12 @@ int main(int argc, char **argv)
 		mlx_info.parse = &parse;
 		mlx_info.player = &player;
 		mlx_info.map_info = map_info;
+		t_all_tex *all_tex = (t_all_tex *)malloc(sizeof(t_all_tex));
+		init_all_tex(all_tex, &mlx_info);
+		mlx_info.all_tex = all_tex;
 		cast_all_rays(&mlx_info);
-		draw_mini_map(&mlx_info, map_info->map);
-		draw_player(&mlx_info, &player);
+		// draw_mini_map(&mlx_info, map_info->map);
+		// draw_player(&mlx_info, &player);
 		mlx_hook(mlx_info.win_ptr, 2, 1L << 0, key_hook, &mlx_info);
 		mlx_put_image_to_window(mlx_info.mlx_ptr, mlx_info.win_ptr,
 								mlx_info.img_data.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 12:02:42 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:48:54 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ double *closet_wall_hit(t_mlx_info *mlx_info, double *tmp, double x_step,
 	first_wall_hit = (double *)malloc(sizeof(double) * 2);
 	first_wall_hit[0] = tmp[0];
 	first_wall_hit[1] = tmp[1];
-	while (tmp[0] >= 0 && tmp[0] < WINDOW_WIDTH && tmp[1] >= 0 && tmp[1] < WINDOW_HEIGHT)
+
+	while (tmp[0] >= 0 && tmp[0] < (mlx_info->map_info->cols * SQUARE_SIZE) && tmp[1] >= 0 && tmp[1] < (mlx_info->map_info->rows * SQUARE_SIZE))
 	{
-		if (wall_check(mlx_info->map_info->map, floor(tmp[0] / SQUARE_SIZE) - v,
+		if (wall_check(mlx_info->map_info, floor(tmp[0] / SQUARE_SIZE) - v,
 					   floor(tmp[1] / SQUARE_SIZE) - h))
 		{
 			first_wall_hit[0] = tmp[0];
@@ -118,8 +119,10 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
 	p_cords[1] = mlx_info->player->y;
+
 	hor_wall_hit = cast_ray_horizontally(ray->ray_angle, mlx_info);
 	ver_wall_hit = cast_ray_vertically(ray->ray_angle, mlx_info);
+
 	if (hor_wall_hit[0] == -1 && ver_wall_hit[0] != -1)
 	{
 		ray->wall_hit_x = ver_wall_hit[0];
@@ -134,6 +137,7 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 	}
 	else if (hor_wall_hit[0] != -1 && ver_wall_hit[0] != -1)
 	{
+
 		if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
 									hor_wall_hit[1]) < distance_between_points(p_cords[0],
 																			   p_cords[1],
@@ -162,9 +166,6 @@ void cast_all_rays(t_mlx_info *mlx_info)
 	i = 0;
 	delta_angle = FOV_ANGLE / WINDOW_WIDTH;
 	ray.ray_angle = mlx_info->player->rotation_angle - (FOV_ANGLE / 2);
-	t_all_tex *all_tex = (t_all_tex *)malloc(sizeof(t_all_tex));
-	init_all_tex(all_tex, mlx_info);
-	mlx_info->all_tex = all_tex;
 	while (i < WINDOW_WIDTH)
 	{
 		ray.ray_angle = normalize_angle(ray.ray_angle);
