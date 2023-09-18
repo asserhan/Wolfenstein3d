@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/16 19:03:51 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:42:12 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void init_file(t_parse *parse, t_map *map)
 		free_matrix(map->map);
 		free(map);
 	}
-	map->f_line = NULL;
 	map->player_x = 0;
 	map->player_y = 0;
+	map->player_vue = '\0';
+	map->player_num = 0;
 	parse->f.b = -1;
 	parse->f.g = -1;
 	parse->f.r = -1;

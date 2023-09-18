@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:58:11 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/14 15:30:58 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:49:03 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 }
 int matrix_size(char **tab)
 {
-        printf("%s\n",*tab);
     int count;
     count =0;
     while(*tab)
@@ -47,7 +46,7 @@ void print_matrix(char **tab)
     i = 0;
     while(i < size)
     {
-        ft_printf("%s\n",tab[i]);
+        ft_printf("**%s**\n",tab[i]);
         i++;
     }
 }

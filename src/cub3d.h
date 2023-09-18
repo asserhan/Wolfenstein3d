@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/17 13:51:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:43:59 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #define white_spaces " \t\n\v\f\r"
+#define Wall 1
 
 /**********************Parsing*******************************/
 
@@ -62,9 +63,9 @@ typedef struct s_parse
 } t_parse;
 typedef struct s_map
 {
-	double player_x;
-	double player_y;
-	double d_vue;
+	int player_x;
+	int player_y;
+	char player_vue;
 	int rows;
 	int cols;
 	int player_num;
@@ -80,9 +81,10 @@ void print_matrix(char **tab);
 int check_file(char *file);
 int check_char(t_map *map);
 char *skip_spaces(char *line);
-char **get_map(t_map *map, int fd);
+char **get_map(t_map *map, char *file);
 int check_borders(t_map *map);
 int ft_parsing(t_parse *parse, int fd, t_map *map);
+int is_wall(char *line);
 /**********************************************************/
 
 typedef struct s_img_data
