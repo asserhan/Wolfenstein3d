@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 10:42:12 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/18 10:48:10 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 		if (ft_parsing(&parse, fd, &maps))
 			exit(1);
 
-		// get_map(&maps,fd);
+		get_map(&maps, argv[1]);
 		t_mlx_info mlx_info;
 		t_player player;
 		char **map;
