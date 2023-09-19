@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 16:13:33 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:23:13 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int main(int argc, char **argv)
 		if (ft_parsing(&parse, fd, map_info))
 			exit(1);
 
-		get_map(map_info, argv[1]);
+		if(!get_map(map_info, argv[1]))
+		{
+			free_matrix(map_info->map);
+			exit(1);
+		}
 
 		init_mlx(&mlx_info);
 		init_player(&player);
