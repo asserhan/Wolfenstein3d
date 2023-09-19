@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 15:46:52 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:16:56 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ double *cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 	double x_intercept;
 	double y_intercept;
 
-	tmp = (double *)malloc(sizeof(double) * 2);
 	y_intercept = floor(mlx_info->player->y / SQUARE_SIZE) * SQUARE_SIZE;
 	if (!is_face_up(ray_angle))
 		y_intercept += SQUARE_SIZE;
@@ -104,6 +103,7 @@ double *cast_ray_horizontally(double ray_angle, t_mlx_info *mlx_info)
 		x_step *= -1;
 	if (!is_face_right(ray_angle) && x_step > 0)
 		x_step *= -1;
+	tmp = (double *)malloc(sizeof(double) * 2);
 	tmp[0] = x_intercept;
 	tmp[1] = y_intercept;
 	return (closet_wall_hit(mlx_info, tmp, x_step, y_step, ray_angle,
