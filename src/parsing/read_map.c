@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 16:14:51 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:30:57 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int just_spaces(char *line)
 }
 void get_first_line(t_map *map, char *line, t_parse *parse)
 {
-
+   
     if (parse->in == 6)
     {
         if (line[0] == 'C' || line[0] == 'F')
@@ -165,9 +165,10 @@ int find_size(t_map *map, int fd)
 {
     char *line;
 
+    
     int next_len;
     int end = 0;
-
+   
     map->cols = ft_strlen(map->f_line) - 1;
     map->rows = 1;
     next_len = 0;
@@ -228,35 +229,35 @@ int check_spaces(t_map *map)
 {
     int i;
     int j;
-    i = -1;
-    while (++i < map->rows)
+     i = -1;
+    while(++i < map->rows )
     {
-        if (ft_strchr(map->map[i], ' ') || ft_strchr(map->map[i], '\t'))
+       if(ft_strchr(map->map[i],' ') || ft_strchr(map->map[i],'\t'))
         {
             j = -1;
-            while (map->map[i][++j])
+            while(map->map[i][++j])
             {
-                if (map->map[i][j] == ' ' || map->map[i][j] == '\t')
-                {
-                    // printf("%s\n",map->map[i]);
-                    if (i != 0 && map->map[i - 1][j] == '0')
-                    {
-                        return (1);
-                    }
-                    if (i != map->rows - 1 && map->map[i + 1][j] == '0')
-                    {
-                        printf("%d\n%d\n", i, j);
-                        return (1);
-                    }
-                    if (map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
-                    {
-                        return (1);
-                    }
-                }
+                if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
+				{
+                    //printf("%s\n",map->map[i]);
+					if(i != 0 && map->map[i - 1][j] == '0')
+					{
+						return(1);
+					}
+					if(i != map->rows - 1 && map->map[i + 1][j] == '0')
+					{
+						printf("%d\n%d\n",i,j);
+						return(1);
+					}
+					if(map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
+					{
+						return(1);
+					}
+				}
             }
         }
     }
-    return (0);
+    return(0);
 }
 
 char **get_map(t_map *map, char *file)
@@ -275,7 +276,7 @@ char **get_map(t_map *map, char *file)
         line = get_next_line(fd);
         if (line == NULL)
             break;
-
+     
         if (ft_strcmp(line, map->f_line) == 0)
             break;
     }
@@ -295,13 +296,13 @@ char **get_map(t_map *map, char *file)
     }
     //  ft_printf("%s\n",map->map[0]);
     //  ft_printf("%s\n",map->map[map->rows -1]);
-
-    if (is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
-        return (ft_printf("Invalid +++ map\n"), NULL);
+   
+    if(is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
+        return(ft_printf("Invalid +++ map\n"),NULL);
     // i = -1;
     // while (map->map[0][++i])
     // {
-
+       
     //     if (map->map[0][i] == '0' )
     //         return (ft_printf("Invalid  map\n"), NULL);
     // }
@@ -311,10 +312,10 @@ char **get_map(t_map *map, char *file)
     //     if(map->map[map->rows - 1][i] == '0')
     //         return(ft_printf("Invalid  map\n"),NULL);
     // }
-    if (check_spaces(map))
-        return (ft_printf("Invalid //map\n"), NULL);
+   if(check_spaces(map))
+        return(ft_printf("Invalid //map\n"),NULL);
     print_matrix(map->map);
-
+   
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);
     printf("ok\n");
