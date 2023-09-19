@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:04:23 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 16:07:43 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:31:06 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void move_forward(t_mlx_info *info)
 	double target_x = new_x + cos(info->player->rotation_angle) * MIN_DISTANCE_FROM_WALL;
 	double target_y = new_y + sin(info->player->rotation_angle) * MIN_DISTANCE_FROM_WALL;
 
-	if (wall_check(info->map_info, floor(target_x / SQUARE_SIZE), floor(target_y / SQUARE_SIZE)) == 0)
+	if (wall_check(info->map_info, floor(target_x / SQUARE_SIZE), floor(target_y / SQUARE_SIZE)) == 0 && !wall_check(info->map_info, floor(info->player->x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) && !wall_check(info->map_info, floor(new_x / SQUARE_SIZE), floor(info->player->y / SQUARE_SIZE)))
 	{
 		// If there is no wall at the target position, it's safe to move
 		info->player->x = new_x;
@@ -49,7 +49,7 @@ void move_backward(t_mlx_info *info)
 	double target_x = new_x - cos(info->player->rotation_angle) * MIN_DISTANCE_FROM_WALL;
 	double target_y = new_y - sin(info->player->rotation_angle) * MIN_DISTANCE_FROM_WALL;
 
-	if (wall_check(info->map_info, floor(target_x / SQUARE_SIZE), floor(target_y / SQUARE_SIZE)) == 0)
+	if (wall_check(info->map_info, floor(target_x / SQUARE_SIZE), floor(target_y / SQUARE_SIZE)) == 0 && !wall_check(info->map_info, floor(info->player->x / SQUARE_SIZE), floor(new_y / SQUARE_SIZE)) && !wall_check(info->map_info, floor(new_x / SQUARE_SIZE), floor(info->player->y / SQUARE_SIZE)))
 	{
 		// If there is no wall at the target position, it's safe to move
 		info->player->x = new_x;

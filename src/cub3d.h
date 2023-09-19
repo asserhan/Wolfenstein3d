@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 16:11:57 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:35:12 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 /**********************Parsing*******************************/
 
 /******get_next_line********/
-#define BUFFER_SIZE 50
+#define BUFFER_SIZE 1
 char *get_next_line(int fd);
 size_t ft_strlen(const char *s);
 size_t ft_strlcat(char *dst, const char *src, size_t dstsize);
