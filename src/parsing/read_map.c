@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/18 10:45:49 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:21:04 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,13 +239,13 @@ int check_spaces(t_map *map)
                 if (map->map[i][j] == ' ' || map->map[i][j] == '\t')
                 {
                     // printf("%s\n",map->map[i]);
-                    // 	printf("%d\n%d\n",i,j);
                     if (i != 0 && map->map[i - 1][j] == '0')
                     {
                         return (1);
                     }
                     if (i != map->rows - 1 && map->map[i + 1][j] == '0')
                     {
+                        printf("%d\n%d\n", i, j);
                         return (1);
                     }
                     if (map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
@@ -313,7 +313,7 @@ char **get_map(t_map *map, char *file)
     //         return(ft_printf("Invalid  map\n"),NULL);
     // }
     if (check_spaces(map))
-        return (ft_printf("Invalid map\n"), NULL);
+        return (ft_printf("Invalid //map\n"), NULL);
 
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);

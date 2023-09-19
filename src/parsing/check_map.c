@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 13:41:45 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:21:11 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,28 @@ int check_borders(t_map *map)
 			return (1);
 		}
 
-		
-			while (map->map[i][++j])
+		while (map->map[i][++j])
+		{
+			if (!ft_strchr("10NSEW \t", map->map[i][j]))
 			{
-				if (!ft_strchr("10NSEW \t", map->map[i][j]))
+				return (1);
+			}
+			if (ft_strchr("NSEW", map->map[i][j]))
+			{
+				map->player_num++;
+				printf("player num %d\n", map->player_num);
+				if (map->player_vue != '\0')
 				{
 					return (1);
 				}
-				if (ft_strchr("NSEW", map->map[i][j]))
-				{
-					map->player_num++;
-					printf("player num %d\n", map->player_num);
-					if (map->player_vue != '\0')
-					{
-						return (1);
-					}
-					map->player_vue = map->map[i][j];
-					printf("player vue %c\n", map->player_vue);
-					map->player_x = j;
-					map->player_y = i;
-					printf("player x %d\n", map->player_x);
-					printf("player y %d\n", map->player_y);
-				}
+				map->player_vue = map->map[i][j];
+				printf("player vue %c\n", map->player_vue);
+				map->player_x = j;
+				map->player_y = i;
+				printf("player x %d\n", map->player_x);
+				printf("player y %d\n", map->player_y);
 			}
-		
+		}
 	}
 
 	if (map->player_num != 1)
