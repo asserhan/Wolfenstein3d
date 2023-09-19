@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 14:34:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:52:57 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,7 +296,6 @@ char **get_map(t_map *map, char *file)
     }
     //  ft_printf("%s\n",map->map[0]);
     //  ft_printf("%s\n",map->map[map->rows -1]);
-    //print_matrix(map->map);
    
     if(is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
         return(ft_printf("Invalid +++ map\n"),NULL);
@@ -315,6 +314,7 @@ char **get_map(t_map *map, char *file)
     // }
    if(check_spaces(map))
         return(ft_printf("Invalid //map\n"),NULL);
+    print_matrix(map->map);
    
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);
