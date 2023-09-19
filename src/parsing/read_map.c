@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 13:28:56 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:34:42 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,6 @@ char **get_map(t_map *map, char *file)
    
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);
-
-    return (NULL);
+    printf("ok\n");
+    return (map->map);
 }

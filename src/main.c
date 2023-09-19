@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/17 19:03:58 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:35:46 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ int main(int argc,char **argv)
 		init_file(&parse,&maps);
 		if(ft_parsing(&parse,fd,&maps))
 			exit(1);
-		get_map(&maps,argv[1]); 
+		if(!get_map(&maps,argv[1]) )
+		{
+			free_matrix(maps.map);
+			exit(1);
+		}
 	}
 	else
 		ft_error("Invalid number of arguments\n");
