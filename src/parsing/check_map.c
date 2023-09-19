@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/17 19:21:20 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/19 13:26:27 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int check_borders(t_map *map)
 	int j;
 	i = -1;
 	//print_matrix(map->map);
-	while (++i < map->rows )
+	while (++i < map->rows  )
 	{
 		j = -1;
 		
