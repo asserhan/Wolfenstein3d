@@ -1,19 +1,20 @@
 
 
 
-       NO   ./maps/no.xpm
+      NO  ./maps/cat.xpm
 
 
 
-    SO     ./maps/ah.xpm
+    SO     ./maps/cat.xpm
 
 
-WE   ./maps/we.xpm
+WE   ./maps/cat.xpm
 
-EA     ./maps/ea.xpm
+EA     ./maps/cat.xpm
 
 
-F   220,100,0 
+F 220,100,0
+C 225,30,0
 
 
 C    225,30,0 
