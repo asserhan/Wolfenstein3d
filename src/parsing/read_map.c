@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 14:21:04 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:14:51 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,6 @@ char **get_map(t_map *map, char *file)
     }
     //  ft_printf("%s\n",map->map[0]);
     //  ft_printf("%s\n",map->map[map->rows -1]);
-    // print_matrix(map->map);
 
     if (is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
         return (ft_printf("Invalid +++ map\n"), NULL);
@@ -314,9 +313,10 @@ char **get_map(t_map *map, char *file)
     // }
     if (check_spaces(map))
         return (ft_printf("Invalid //map\n"), NULL);
+    print_matrix(map->map);
 
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);
-
-    return (NULL);
+    printf("ok\n");
+    return (map->map);
 }
