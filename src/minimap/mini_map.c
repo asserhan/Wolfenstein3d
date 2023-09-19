@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:00:08 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 18:11:42 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:50:33 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void draw_mini_map(t_mlx_info *mlx_info, char **map)
 	cords = (int *)malloc(sizeof(int) * 2);
 	square_size = SQUARE_SIZE;
 	cords[0] = 0;
-	while (cords[0] < WINDOW_WIDTH)
+	while (cords[0] < square_size * mlx_info->map_info->cols)
 	{
 		cords[1] = 0;
-		while (cords[1] < WINDOW_HEIGHT)
+		while (cords[1] < square_size * mlx_info->map_info->rows)
 		{
 			if (map[cords[1] / square_size][cords[0] / square_size] == '1')
 				draw_square(mlx_info, cords, square_size, RED);

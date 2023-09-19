@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 18:48:54 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:32:16 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,12 +148,23 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 			ray->wall_hit_y = hor_wall_hit[1];
 			draw_texture(ray, mlx_info, HORIZONTAL);
 		}
+		else if (distance_between_points(p_cords[0], p_cords[1], hor_wall_hit[0],
+										 hor_wall_hit[1]) > distance_between_points(p_cords[0],
+																					p_cords[1],
+																					ver_wall_hit[0],
+																					ver_wall_hit[1]))
+		{
+			ray->wall_hit_x = ver_wall_hit[0];
+			ray->wall_hit_y = ver_wall_hit[1];
+			draw_texture(ray, mlx_info, VERTICAL);
+		}
 		else
 		{
 			ray->wall_hit_x = ver_wall_hit[0];
 			ray->wall_hit_y = ver_wall_hit[1];
 			draw_texture(ray, mlx_info, VERTICAL);
 		}
+		// if thy are equal then draw the closest one
 	}
 }
 
