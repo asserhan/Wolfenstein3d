@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/18 12:11:29 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:50:02 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ void init_all_tex(t_all_tex *all_tex, t_mlx_info *mlx_info);
 /**********************CONSTANTS*******************************/
 
 #define SQUARE_SIZE 32
+#define MIN_DISTANCE_FROM_WALL 15.0
 
 #define RED 0
 #define GREEN 1

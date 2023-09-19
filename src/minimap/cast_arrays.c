@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 14:09:04 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:46:52 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,15 +163,15 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 		{
 			ray->wall_hit_x = hor_wall_hit[0];
 			ray->wall_hit_y = hor_wall_hit[1];
-			if (wall_check(mlx_info->map_info, floor((hor_wall_hit[0] - 10) / SQUARE_SIZE),
-						   floor(hor_wall_hit[1] / SQUARE_SIZE)))
+			if (wall_check(mlx_info->map_info, floor((hor_wall_hit[0]) / SQUARE_SIZE),
+						   floor((hor_wall_hit[1] + 10) / SQUARE_SIZE)))
 			{
 
-				draw_texture(ray, mlx_info, HORIZONTAL);
+				draw_texture(ray, mlx_info, VERTICAL);
 			}
 			else
 			{
-				draw_texture(ray, mlx_info, VERTICAL);
+				draw_texture(ray, mlx_info, HORIZONTAL);
 			}
 		}
 	}

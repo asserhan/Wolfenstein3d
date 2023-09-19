@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 11:27:13 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:01:03 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,70 @@ int key_hook(int key, t_mlx_info *info)
 
 	player = info->player;
 	if (key == 123)
-
-		info->player->rotation_angle -= info->player->rotation_speed;
+	// not turn if there is a wall within the minimum distance
+	{
+		if (info->player->rotation_angle >= 0 && info->player->rotation_angle <= M_PI_2)
+		{
+			if (wall_check(info->map_info, floor((info->player->x - 5) / SQUARE_SIZE), floor((info->player->y - 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle -= info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= M_PI_2 && info->player->rotation_angle <= M_PI)
+		{
+			if (wall_check(info->map_info, floor((info->player->x - 5) / SQUARE_SIZE), floor((info->player->y + 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle -= info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= M_PI && info->player->rotation_angle <= 3 * M_PI_2)
+		{
+			if (wall_check(info->map_info, floor((info->player->x + 5) / SQUARE_SIZE), floor((info->player->y + 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle -= info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= 3 * M_PI_2 && info->player->rotation_angle <= 2 * M_PI)
+		{
+			if (wall_check(info->map_info, floor((info->player->x + 5) / SQUARE_SIZE), floor((info->player->y - 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle -= info->player->rotation_speed;
+		}
+	}
 
 	else if (key == 124)
 
-		info->player->rotation_angle += info->player->rotation_speed;
-
+	{
+		if (info->player->rotation_angle >= 0 && info->player->rotation_angle <= M_PI_2)
+		{
+			if (wall_check(info->map_info, floor((info->player->x - 5) / SQUARE_SIZE), floor((info->player->y - 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle += info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= M_PI_2 && info->player->rotation_angle <= M_PI)
+		{
+			if (wall_check(info->map_info, floor((info->player->x - 5) / SQUARE_SIZE), floor((info->player->y + 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle += info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= M_PI && info->player->rotation_angle <= 3 * M_PI_2)
+		{
+			if (wall_check(info->map_info, floor((info->player->x + 5) / SQUARE_SIZE), floor((info->player->y + 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle += info->player->rotation_speed;
+		}
+		if (info->player->rotation_angle >= 3 * M_PI_2 && info->player->rotation_angle <= 2 * M_PI)
+		{
+			if (wall_check(info->map_info, floor((info->player->x + 5) / SQUARE_SIZE), floor((info->player->y - 5) / SQUARE_SIZE)))
+				return (0);
+			else
+				info->player->rotation_angle += info->player->rotation_speed;
+		}
+	}
 	else if (key == 1)
 
 		move_backward(info);

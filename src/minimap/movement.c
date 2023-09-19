@@ -6,13 +6,11 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:04:23 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 10:23:06 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:07:43 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-#define MIN_DISTANCE_FROM_WALL 15.0 // Adjust this value as needed
 
 void move_forward(t_mlx_info *info)
 {
