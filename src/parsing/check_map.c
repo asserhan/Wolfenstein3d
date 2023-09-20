@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/20 13:31:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:14:24 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char *skip_spaces(char *line)
 }
 int check_borders(t_map *map)
 {
-	
+	char *line;	
 	int i;
 	int j;
 	i = -1;
@@ -67,22 +67,13 @@ int check_borders(t_map *map)
 	{
 		j = -1;
 		
-		
-		
-		if(map->map[i][0] == '0' || map->map[i][ft_strlen(map->map[i]) - 1] == '0')
-		{
+		line = ft_strtrim(map->map[i],white_spaces);
+		if(line[0] != '1' || line[ft_strlen(line )- 1] != '1')
 			return(1); 
-		}
-		
-	
 			while(map->map[i][++j])
 			{
 				if(check_char(map->map[i][j]))
-				{
-					printf("%d\n%d\n",i,j);
-					printf("*%d*\n",map->map[i][j]);
 					return(1);
-				}
 				if(ft_strchr("NSEW",map->map[i][j]))
 				{
 					map->player_num++;
