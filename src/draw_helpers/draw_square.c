@@ -5,36 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 11:53:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/16 09:14:35 by otait-ta         ###   ########.fr       */
+/*   Created: 2023/09/21 18:04:50 by otait-ta          #+#    #+#             */
+/*   Updated: 2023/09/21 19:22:53 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	draw_square(t_mlx_info *mlx_info, int *pixel_cord, int square_size,
-		int color)
+void mlx_draw_square(mlx_image_t *img, int x, int y, int size, uint32_t color)
 {
-	int i;
-	int j;
+    (void)color;
+    int i;
+    int j;
 
-	i = 0;
+    i = 0;
 
-	while (i < square_size)
-	{
-		j = 0;
-		while (j < square_size)
-		{
-			// draw border with black
-			if (i == 0 || j == 0 || i == square_size - 1 || j == square_size
-				- 1)
-				draw_pixel(mlx_info, pixel_cord[0] + i, pixel_cord[1] + j,
-						BLUE);
-			else
-				draw_pixel(mlx_info, pixel_cord[0] + i, pixel_cord[1] + j,
-						color);
-			j++;
-		}
-		i++;
-	}
+    // make border black and fill inside with color
+    while (i < size)
+    {
+        j = 0;
+        while (j < size)
+        {
+            if (i == 0 || i == size - 1 || j == 0 || j == size - 1)
+                mlx_put_pixel(img, x + i, y + j, 0x000000FF);
+            else
+                mlx_put_pixel(img, x + i, y + j, color);
+            j++;
+        }
+        i++;
+    }
 }

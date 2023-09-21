@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 15:28:46 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:16:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,6 @@
 #define white_spaces " \t\n\v\f\r"
 #define Wall 1
 
-/**********************Parsing*******************************/
-
-/******get_next_line********/
-#define BUFFER_SIZE 1
-char *get_next_line(int fd);
-size_t ft_strlen(const char *s);
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char *ft_strjoin(char const *s1, char const *s2);
-char *ft_strchr(const char *s, int c);
-char *ft_strdup(const char *s1);
-char *read_and_add(int fd, char *reserve);
-char *update_reserve(char **reserve, int i);
-char *extract(char **reserve);
-
-/***************************/
 typedef struct t_rgb
 {
 	int r;
@@ -72,7 +56,47 @@ typedef struct s_map
 	char **map;
 	int c;
 	char *f_line;
+	t_parse *parse;
 } t_map;
+
+/**********************************/
+
+typedef struct s_player
+{
+	// to change names
+	double x;
+	double y;
+	double turn_direction;
+	double walk_direction;
+	double player_vue;
+	double move_speed;
+	double rotation_speed;
+} t_player;
+
+typedef struct s_game_data
+{
+
+	mlx_image_t *img;
+	t_player *player;
+	t_map *map;
+} t_game_data;
+
+/**********************Parsing*******************************/
+
+/******get_next_line********/
+#define BUFFER_SIZE 1
+char *get_next_line(int fd);
+size_t ft_strlen(const char *s);
+size_t ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char *ft_strjoin(char const *s1, char const *s2);
+char *ft_strchr(const char *s, int c);
+char *ft_strdup(const char *s1);
+char *read_and_add(int fd, char *reserve);
+char *update_reserve(char **reserve, int i);
+char *extract(char **reserve);
+
+/************************/
 
 int ft_error(char *str);
 int ft_strcmp(const char *s1, const char *s2);
@@ -85,47 +109,16 @@ char **get_map(t_map *map, char *file);
 int check_borders(t_map *map);
 int ft_parsing(t_parse *parse, int fd, t_map *map);
 int is_wall(char *line);
-/**********************************************************/
+/***************************/
 
-struct s_img_data
-{
-	void *img;
-	char *addr;
-	int bpp;
-	int size_line;
-	int endian;
-};
+/***REY CASTING*/
+void draw_mini_map(t_game_data *game);
 
-typedef struct s_player
-{
-	// to change names
-	double x;
-	double y;
-	double angle;
-	double turn_direction;
-	double walk_direction;
-	double rotation_angle;
-	double move_speed;
-	double rotation_speed;
-} t_player;
+int init_game(mlx_t *mlx, t_game_data *game, t_map *map);
 
-typedef struct s_mlx_info
-{
-	void *mlx_ptr;
-	void *win_ptr;
-	struct s_img_data img_data;
-	struct s_player *player;
-	char **map;
-} t_mlx_info;
+void mlx_draw_square(mlx_image_t *img, int x, int y, int size, uint32_t color);
 
-void draw_pixel(t_mlx_info *info, int x, int y, int color);
-void draw_square(t_mlx_info *mlx_info, int *pixel_cord,
-				 int square_size, int color);
-void draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
-				 int radius, int color);
-void draw_player(t_mlx_info *mlx_info, t_player *player);
-void draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
-			   double *end_pixel_cord, int color);
+void keyhook(mlx_key_data_t keydata, void *param);
 /**********************CONSTANTS*******************************/
 
 #define SQUARE_SIZE 32
@@ -140,4 +133,8 @@ void draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
 #define GRID_COLS 13
 #define GRID_ROWS 5
 
+#define FORWARD 1
+#define BACKWARD -1
+#define RIGHT 2
+#define LEFT -2
 #endif

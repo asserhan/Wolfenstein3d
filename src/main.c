@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 15:31:18 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:31:20 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int ft_error(char *str)
 {
-	ft_printf("Error\n");
+	ft_printf("Error : ");
 	ft_putstr_fd(str, 2);
 	return (1);
 }
@@ -48,24 +48,42 @@ void init_file(t_parse *parse, t_map *map)
 }
 int main(int argc, char **argv)
 {
-	t_map maps;
-	t_parse parse;
+	t_map *map;
+	t_parse *parse;
+	t_game_data *game;
 	int fd;
+	mlx_t *mlx;
 	// int fd;
 	if (argc == 2)
 	{
-		if (check_file(argv[1]))
-			return (ft_error("Invalid file\n"), 1);
+
 		if ((fd = open(argv[1], O_DIRECTORY) != -1))
 			return (ft_error("Is a directory\n"), 1);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("file does not open\n"), 1);
-		init_file(&parse, &maps);
-		if (ft_parsing(&parse, fd, &maps))
+		// TODO: free parse and map
+		parse = malloc(sizeof(t_parse));
+		map = malloc(sizeof(t_map));
+		init_file(parse, map);
+		if (ft_parsing(parse, fd, map))
 			exit(1);
-		get_map(&maps, argv[1]);
+		get_map(map, argv[1]);
+		map->parse = parse;
+		printf("map->player_x: %d, map->player_y: %d\n", map->player_x, map->player_y);
+		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
+		if (!mlx)
+			ft_error("Failed to create mlx\n");
+		game = malloc(sizeof(t_game_data));
+		if (init_game(mlx, game, map))
+			return (1);
+		mlx_key_hook(mlx, &keyhook, game);
+		draw_mini_map(game);
+
+		mlx_loop(mlx);
+		// mlx_terminate(mlx);
 	}
 	else
 		ft_error("Invalid number of arguments\n");
-	return (0);
+
+	return (EXIT_SUCCESS);
 }
