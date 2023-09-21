@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 12:40:50 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:40:50 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ char *get_path(char *line)
     p--;
     if (*p != 'm' || *(p - 1) != 'p' || *(p - 2) != 'x' || *(p - 3) != '.')
         return (free(trim), NULL);
-    // if(ft_strncmp(trim,"./",2) != 0 )
-    //     return(free(trim),NULL);
     if (access(trim, F_OK | R_OK) == -1)
         return (free(trim), NULL);
     else
@@ -209,8 +207,10 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
             free(line);
             continue;
         }
-        if (check_textures(parse, line) || parse->in > 6)
+        if (check_textures(parse, line))
             return (free(line), 1);
+        if(parse->in > 6)
+            return (free(line), ft_error("in parsing\n"));
         if (parse->map_found == 1 && parse->in < 6)
             return (free(line), ft_error("in parsing\n"));
 
@@ -239,14 +239,13 @@ int check_spaces(t_map *map)
             {
                 if(map->map[i][j] == ' ' || map->map[i][j] == '\t')
 				{
-                    //printf("%s\n",map->map[i]);
+
 					if(i != 0 && map->map[i - 1][j] == '0')
 					{
 						return(1);
 					}
 					if(i != map->rows - 1 && map->map[i + 1][j] == '0')
 					{
-						printf("%d\n%d\n",i,j);
 						return(1);
 					}
 					if(map->map[i][j - 1] == '0' || map->map[i][j + 1] == '0')
@@ -300,7 +299,7 @@ char **get_map(t_map *map, char *file)
 
    if(check_spaces(map))
         return(ft_printf("Invalid //map\n"),NULL);
-    print_matrix(map->map);
+    //print_matrix(map->map);
    
     if (check_borders(map))
         return (ft_printf("Invalid ***map\n"), NULL);

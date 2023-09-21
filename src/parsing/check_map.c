@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 18:43:03 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:38:56 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,24 @@ int	check_borders(t_map *map)
 {
 	int	i;
 	int	j;
+	char *line;
 
 	i = -1;
 	while (++i < map->rows)
 	{
 		j = -1;
-		if (map->map[i][0] == '0' || map->map[i][ft_strlen(map->map[i])
-			- 1] == '0')
+		line =ft_strtrim(map->map[i], white_spaces);
+		if (line[0] != '1' || line[ft_strlen(line)
+			- 1] != '1')
 		{
+		
 			return (1);
 		}
 		while (map->map[i][++j])
 		{
 			if (check_char(map->map[i][j]))
 			{
-				printf("%d\n%d\n", i, j);
-				printf("*%d*\n", map->map[i][j]);
+			
 				return (1);
 			}
 			if (ft_strchr("NSEW", map->map[i][j]))

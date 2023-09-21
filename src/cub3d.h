@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 16:09:35 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 23:27:03 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
+//# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # define white_spaces " \t\n\v\f\r"
@@ -89,14 +89,14 @@ int			is_wall(char *line);
 
 /*************************Minilibx*********************************/
 
-typedef struct s_mlx
-{
-	void *window;
-	void *mlx;
-	mlx_image_t *img;
-}    t_mlx;
+// typedef struct s_mlx
+// {
+// 	void *window;
+// 	void *mlx;
+// 	mlx_image_t *img;
+// }    t_mlx;
 
-void ft_inti_mlx(t_mlx *mlx);
+//void ft_inti_mlx(t_mlx *mlx);
 
 /*************************Reycasting*********************************/
 
