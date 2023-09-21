@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 20:32:55 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:37:22 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,14 @@
 
 int check_file(char *file)
 {
-	if (ft_strcmp(ft_strchr(file, '.'), ".cub"))
+
+	if (ft_strchr(file, '.') == NULL || ft_strcmp(ft_strchr(file, '.'), ".cub"))
 		return (1);
 	return (0);
 }
-int check_char(t_map *map)
+int check_char(char c)
 {
-	int i;
-	int j;
-	i = -1;
-	map->player_num = 0;
-	while (map->map[++i])
-	{
-		j = -1;
-		while (map->map[i][++j])
-		{
-			if (map->map[i][j] != '1' && map->map[i][j] != '0' && map->map[i][j] != 'N' && map->map[i][j] != 'W' && map->map[i][j] != 'S' && map->map[i][j] != 'E' && map->map[i][j] != ' ')
-				return (1);
-
-			if (map->map[i][j] == 'N' || map->map[i][j] == 'S' || map->map[i][j] == 'W' || map->map[i][j] == 'E')
-				map->player_num++;
-		}
-	}
-	if (map->player_num != 1)
+	if (c != '1' && c != '0' && c != '\t' && c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != '\n')
 		return (1);
 	return (0);
 }
@@ -71,7 +56,7 @@ char *skip_spaces(char *line)
 }
 int check_borders(t_map *map)
 {
-
+	char *line;
 	int i;
 	int j;
 	i = -1;
@@ -80,46 +65,26 @@ int check_borders(t_map *map)
 	{
 		j = -1;
 
-		map->map[i] = ft_strtrim(map->map[i], white_spaces);
-		map->map[i + 1] = ft_strtrim(map->map[i + 1], white_spaces);
-
-		if (map->map[i][0] != '1' || map->map[i][ft_strlen(map->map[i]) - 1] != '1')
-		{
+		line = ft_strtrim(map->map[i], white_spaces);
+		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 			return (1);
-		}
-
 		while (map->map[i][++j])
 		{
-			if (!ft_strchr("10NSEW \t", map->map[i][j]))
-			{
+			if (check_char(map->map[i][j]))
 				return (1);
-			}
 			if (ft_strchr("NSEW", map->map[i][j]))
 			{
 				map->player_num++;
-				printf("player num %d\n", map->player_num);
 				if (map->player_vue != '\0')
-				{
 					return (1);
-				}
 				map->player_vue = map->map[i][j];
 				map->map[i][j] = '0';
-				printf("player vue %c\n", map->player_vue);
 				map->player_x = j;
 				map->player_y = i;
-				printf(
-					"player x %d\n", map->player_x);
-				printf("player x %d\n", map->player_x);
-				printf("player y %d\n", map->player_y);
 			}
 		}
 	}
-
 	if (map->player_num != 1)
-	{
-		printf("here\n");
 		return (1);
-	}
-
 	return (0);
 }
