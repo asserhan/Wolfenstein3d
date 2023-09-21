@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 14:09:38 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:30:08 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
-# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # define white_spaces " \t\n\v\f\r"
-# define Wall 1
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
@@ -91,30 +88,24 @@ int			is_wall(char *line);
 
 /*************************Minilibx*********************************/
 
-typedef struct s_mlx
-{
-	void *mlx_ptr;
-	void *mlx_win;
-	
-}		t_mlx;
 
-void ft_inti_mlx(t_mlx *mlx);
+
 /*************************Reycasting*********************************/
 
 
-typedef struct s_player
-{
-	// to change names
-	t_map	*map;
-	double	x_player;
-	double	y_player;
-	double	angle;
-	double	left_right;
-	double	up_down;
-	double	turn_angle;
-	double	speed;
-	double	turn_speed;
-}			t_player;
+// typedef struct s_player
+// {
+// 	// to change names
+// 	t_map	*map;
+// 	double	x_player;
+// 	double	y_player;
+// 	double	angle;
+// 	double	left_right;
+// 	double	up_down;
+// 	double	turn_angle;
+// 	double	speed;
+// 	double	turn_speed;
+// }			t_player;
 
 
 

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 13:57:32 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 14:28:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	check_borders(t_map *map)
 	int	j;
 
 	i = -1;
-	//print_matrix(map->map);
 	while (++i < map->rows)
 	{
 		j = -1;
@@ -78,24 +77,18 @@ int	check_borders(t_map *map)
 			if (ft_strchr("NSEW", map->map[i][j]))
 			{
 				map->player_num++;
-				printf("player num %d\n", map->player_num);
 				if (map->player_vue != '\0')
 				{
 					return (1);
 				}
 				map->player_vue = map->map[i][j];
-				printf("player vue %c\n", map->player_vue);
 				map->player_x = j;
 				map->player_y = i;
-				printf("player x %d\n", map->player_x);
-				printf("player y %d\n", map->player_y);
+				
 			}
 		}
 	}
 	if (map->player_num != 1)
-	{
-		printf("here\n");
 		return (1);
-	}
 	return (0);
 }
