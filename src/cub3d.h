@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:16:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:47:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int ft_strcmp(const char *s1, const char *s2);
 void free_matrix(char **tab);
 void print_matrix(char **tab);
 int check_file(char *file);
-int check_char(t_map *map);
+int check_char(char c);
 char *skip_spaces(char *line);
 char **get_map(t_map *map, char *file);
 int check_borders(t_map *map);

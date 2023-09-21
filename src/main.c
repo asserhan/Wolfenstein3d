@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:31:20 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:51:19 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int main(int argc, char **argv)
 			exit(1);
 		get_map(map, argv[1]);
 		map->parse = parse;
-		printf("map->player_x: %d, map->player_y: %d\n", map->player_x, map->player_y);
 		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
 		if (!mlx)
 			ft_error("Failed to create mlx\n");

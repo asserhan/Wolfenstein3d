@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:03:20 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:28:26 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:51:53 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void draw_player(t_game_data *game)
 
     x = game->player->x;
     y = game->player->y;
-    printf("x: %d, y: %d\n", x, y);
     mlx_draw_square(game->img, x, y, SQUARE_SIZE, 0xFF0000FF);
 }
 void draw_mini_map(t_game_data *game)
