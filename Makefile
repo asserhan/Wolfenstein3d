@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
+#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/07/22 14:53:54 by hasserao         ###   ########.fr        #
+#    Updated: 2023/09/21 15:24:15 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 NAME = cub3d
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g
-#MLX = -lmlx -framework OpenGl -framework Appkit
+MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
+
 RM = rm -rf
 LIBTFT = lib/libft/libft.a
 PRINTF = lib/ft_printf/libftprintf.a
