@@ -6,40 +6,12 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/19 16:30:57 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 11:06:10 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char **read_map(int fd)
-{
-    char *line;
-    char *string;
-    char *tmp;
-    char **tab;
-
-    string = ft_strdup("");
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (ft_strcmp(line, "\n") == 0)
-            return (free(line), free(string), NULL);
-        if (line == NULL)
-            break;
-        tmp = string;
-        string = ft_strjoin(tmp, line);
-
-        free(tmp);
-        free(line);
-    }
-    if (ft_strcmp(string, "") == 0)
-    {
-        return (free(string), NULL);
-    }
-    tab = ft_split(string, '\n');
-    return (free(string), tab);
-}
 char *get_path(char *line)
 {
     char *trim;
@@ -89,6 +61,7 @@ int get_color(t_parse *parse, char **tab)
         if (parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0 || parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
             return (free_matrix(rgb), ft_error("colors\n"));
     }
+       
     free_matrix(rgb);
     return (0);
 }
@@ -135,6 +108,7 @@ int check_textures(t_parse *parse, char *line)
     }
     else if (tab[0][0] == 'F' || tab[0][0] == 'C')
         get_color(parse, tab);
+     
     free_matrix(tab);
     return (0);
 }
@@ -209,11 +183,13 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
             free(line);
             continue;
         }
-        if (check_textures(parse, line) || parse->in > 6)
+        //printf("%s\n",line);
+        if (check_textures(parse, line) )
             return (free(line), 1);
+        if(parse->in > 6)
+            return (free(line), ft_error("in parsing\n")); 
         if (parse->map_found == 1 && parse->in < 6)
             return (free(line), ft_error("in parsing\n"));
-
         get_first_line(map, line, parse);
         if (map->f_line)
             break;
