@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/16 09:56:07 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 13:47:40 by hasserao         ###   ########.fr       */
+/*   Created: 2023/09/21 13:50:58 by hasserao          #+#    #+#             */
+/*   Updated: 2023/09/21 14:09:01 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_player(t_player *player,t_map *map)
+void ft_inti_mlx(t_mlx *mlx)
 {
-	player->x_player = (double)map->player_x;
-	player->y_player = (double)map->player_y;
-	player->angle = 3;
-	player->left_right = 0;
-	player->up_down = 0;
-	player->turn_angle= M_PI / 2;
-	player->speed = 2.0;
-	player->turn_speed = 2*(M_PI / 180);
-}
+    mlx->mlx_ptr = mlx_init();
+    mlx->mlx_win = mlx_new_window(mlx->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d");
 
+}
