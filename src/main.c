@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 14:28:34 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:27:11 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int main(int argc,char **argv)
 {
 	t_map maps;
 	t_parse parse;
+	t_mlx mlx;
     int fd;
 	if(argc == 2)
 	{
@@ -69,6 +70,8 @@ int main(int argc,char **argv)
 			free_matrix(maps.map);
 			exit(1);
 		}
+		ft_inti_mlx(&mlx);
+		mlx_loop(mlx.mlx);
 	}
 	else
 		ft_error("Invalid number of arguments\n");
