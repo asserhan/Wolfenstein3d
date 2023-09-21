@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 14:28:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:43:03 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	check_file(char *file)
 {
-	if (ft_strchr(file, '.') == NULL || ft_strcmp(ft_strchr(file, '.'), ".cub"))
+	while(*file)
+		file++;
+	file--;
+	if (*file != 'b' || *(file - 1) != 'u' || *(file - 2) != 'c' || *(file - 3) != '.')
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 16:27:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:38:49 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int ft_error(char *str)
 {
-	ft_printf("Error\n");
+	ft_printf("Error :");
 	ft_putstr_fd(str,2);
 	return(1);
 }
