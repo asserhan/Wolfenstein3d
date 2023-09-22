@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:53:34 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 12:01:27 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:36:54 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ void cast_horizontally(t_ray *ray, t_game_data *game)
     int y_to_check;
 
     y_intercept = floor(game->player->y / SQUARE_SIZE) * SQUARE_SIZE;
-    y_step = SQUARE_SIZE * -1;
+    y_step = SQUARE_SIZE;
     if (ray->is_facing_down)
-    {
         y_intercept += SQUARE_SIZE;
+    if (ray->is_facing_up)
         y_step *= -1;
-    }
     x_intercept = game->player->x + (y_intercept - game->player->y) / tan(ray->ray_angle);
     x_step = SQUARE_SIZE / tan(ray->ray_angle);
     if (ray->is_facing_left && x_step > 0)
@@ -51,6 +50,8 @@ void cast_horizontally(t_ray *ray, t_game_data *game)
         {
             ray->wall_hit_x = x_intercept;
             ray->wall_hit_y = y_intercept;
+            if (ray->was_hit_vertical && ray->distance <= distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept))
+                return;
             ray->distance = distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept);
             ray->was_hit_horizontal = 1;
             return;

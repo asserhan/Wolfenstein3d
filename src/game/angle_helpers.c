@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 10:04:42 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 11:45:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:24:12 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ double distance_between_points(double x1, double y1, double x2, double y2)
     double distance;
 
     distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
     return (distance);
 }

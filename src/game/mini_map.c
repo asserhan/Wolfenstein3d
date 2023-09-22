@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:03:20 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 14:00:50 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:17:20 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int check_wall(int x, int y, t_map *map)
 {
-    if (x >= 0 && x <= map->cols && y >= 0 && y <= map->rows)
+
+    if (x >= 0 && x < map->cols && y >= 0 && y < map->rows)
     {
         if (map->map[y][x] == '1')
             return (1);

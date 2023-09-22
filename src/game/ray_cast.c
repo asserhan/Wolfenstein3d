@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:59:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 14:14:14 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:16:15 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 void cast_one_ray(t_ray *ray, t_game_data *game)
 {
     cast_vertically(ray, game);
-    // cast_horizontally(ray, game);
-    printf("ray id: %d\n", ray->id);
-    printf("ray dist: %f\n", ray->distance);
-    printf("ray angle %f\n", ray->ray_angle);
-
+    cast_horizontally(ray, game);
     draw_3d_line(game, ray);
 }
 
