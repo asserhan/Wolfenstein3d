@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 23:27:03 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:27:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-//# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # define white_spaces " \t\n\v\f\r"
@@ -89,31 +89,25 @@ int			is_wall(char *line);
 
 /*************************Minilibx*********************************/
 
-// typedef struct s_mlx
-// {
-// 	void *window;
-// 	void *mlx;
-// 	mlx_image_t *img;
-// }    t_mlx;
 
-//void ft_inti_mlx(t_mlx *mlx);
+void ft_erno(void);
 
 /*************************Reycasting*********************************/
 
 
-// typedef struct s_player
-// {
-// 	// to change names
-// 	t_map	*map;
-// 	double	x_player;
-// 	double	y_player;
-// 	double	angle;
-// 	double	left_right;
-// 	double	up_down;
-// 	double	turn_angle;
-// 	double	speed;
-// 	double	turn_speed;
-// }			t_player;
+typedef struct s_player
+{
+	// to change names
+	t_map	*map;
+	double	x_player;
+	double	y_player;
+	double	angle;
+	double	left_right;
+	double	up_down;
+	double	turn_angle;
+	double	speed;
+	double	turn_speed;
+}			t_player;
 
 
 
