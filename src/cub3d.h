@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:47:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:28:57 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,23 @@ typedef struct s_game_data
 	mlx_image_t *img;
 	t_player *player;
 	t_map *map;
+	mlx_t *mlx;
 } t_game_data;
 
+typedef struct s_ray
+{
+	int id;
+	double ray_angle;
+	double wall_hit_x;
+	double wall_hit_y;
+	double distance;
+	int is_facing_up;
+	int is_facing_down;
+	int is_facing_right;
+	int is_facing_left;
+	int was_hit_vertical;
+	int was_hit_horizontal;
+} t_ray;
 /**********************Parsing*******************************/
 
 /******get_next_line********/
@@ -116,13 +131,33 @@ void draw_mini_map(t_game_data *game);
 
 int init_game(mlx_t *mlx, t_game_data *game, t_map *map);
 
-void mlx_draw_square(mlx_image_t *img, int x, int y, int size, uint32_t color);
+void mlx_draw_square(mlx_image_t *img, int x, int y, uint32_t size, uint32_t color);
 
-void keyhook(mlx_key_data_t keydata, void *param);
+void keyhook(void *param);
+
+void move_forward(t_game_data *game);
+void move_backward(t_game_data *game);
+void move_left(t_game_data *game);
+void move_right(t_game_data *game);
+void rotate_left(t_game_data *game);
+void rotate_right(t_game_data *game);
+
+double normalize_angle(double angle);
+int is_face_up(double angle);
+int is_face_right(double angle);
+double distance_between_points(double x1, double y1, double x2, double y2);
+
+int check_wall(int x, int y, t_map *map);
+
+void cast_all_rays(t_game_data *game);
+void cast_vertically(t_ray *ray, t_game_data *game);
+void cast_horizontally(t_ray *ray, t_game_data *game);
+void draw_3d_line(t_game_data *game, t_ray *ray);
+
 /**********************CONSTANTS*******************************/
 
 #define SQUARE_SIZE 32
-
+#define FOV_ANGLE (60 * M_PI / 180)
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 360
 
@@ -137,4 +172,9 @@ void keyhook(mlx_key_data_t keydata, void *param);
 #define BACKWARD -1
 #define RIGHT 2
 #define LEFT -2
+
+#define NORTH 0
+#define SOUTH 1
+#define EAST 2
+#define WEST 3
 #endif

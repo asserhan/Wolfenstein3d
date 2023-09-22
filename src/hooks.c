@@ -6,34 +6,29 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:59:40 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:50:53 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-void keyhook(mlx_key_data_t keydata, void *param)
+void keyhook(void *param)
 {
 
     // cast param to game_data
     t_game_data *game = (t_game_data *)param;
-    if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-        game->player->walk_direction = 1;
-    if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
-        game->player->walk_direction = 0;
-
-    if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-        game->player->walk_direction = -1;
-    if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
-        game->player->walk_direction = 0;
-
-    if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-        game->player->walk_direction = 2;
-    if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
-        game->player->walk_direction = 0;
-
-    if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-        game->player->walk_direction = -2;
-    if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
-        game->player->walk_direction = 0;
+    if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+        mlx_close_window(game->mlx);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+        move_forward(game);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+        move_backward(game);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+        move_left(game);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+        move_right(game);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+        rotate_left(game);
+    if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+        rotate_right(game);
     draw_mini_map(game);
 }

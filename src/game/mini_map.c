@@ -6,11 +6,21 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:03:20 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/21 20:51:53 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:00:50 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int check_wall(int x, int y, t_map *map)
+{
+    if (x >= 0 && x <= map->cols && y >= 0 && y <= map->rows)
+    {
+        if (map->map[y][x] == '1')
+            return (1);
+    }
+    return (0);
+}
 
 void draw_player(t_game_data *game)
 {
@@ -19,7 +29,7 @@ void draw_player(t_game_data *game)
 
     x = game->player->x;
     y = game->player->y;
-    mlx_draw_square(game->img, x, y, SQUARE_SIZE, 0xFF0000FF);
+    mlx_draw_square(game->img, x, y, SQUARE_SIZE / 4, 0xFF0000FF);
 }
 void draw_mini_map(t_game_data *game)
 {
@@ -29,28 +39,6 @@ void draw_mini_map(t_game_data *game)
     int y;
 
     i = 0;
-    if (game->player->walk_direction == FORWARD)
-    {
-
-        game->player->x += cos(game->player->player_vue) * 5;
-        game->player->y += sin(game->player->player_vue) * 5;
-    }
-    else if (game->player->walk_direction == BACKWARD)
-    {
-
-        game->player->x -= cos(game->player->player_vue) * 5;
-        game->player->y -= sin(game->player->player_vue) * 5;
-    }
-    else if (game->player->walk_direction == LEFT)
-    {
-        game->player->x += cos(game->player->player_vue + M_PI_2) * 5;
-        game->player->y += sin(game->player->player_vue + M_PI_2) * 5;
-    }
-    else if (game->player->walk_direction == RIGHT)
-    {
-        game->player->x += cos(game->player->player_vue - M_PI_2) * 5;
-        game->player->y += sin(game->player->player_vue - M_PI_2) * 5;
-    }
     while (i < game->map->rows)
     {
         j = 0;
@@ -66,5 +54,6 @@ void draw_mini_map(t_game_data *game)
         }
         i++;
     }
+    cast_all_rays(game);
     draw_player(game);
 }
