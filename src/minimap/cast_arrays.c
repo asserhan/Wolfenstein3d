@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_arrays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 16:44:39 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/19 17:16:56 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 01:52:09 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void cast_ray(t_ray *ray, t_mlx_info *mlx_info)
 	int *p_cords;
 	double *hor_wall_hit;
 	double *ver_wall_hit;
-
+	// printf("ray id : %f , %f\n", (ray->ray_angle * (180 / M_PI) - 30) , (ray->ray_angle - (30 * (M_PI / 180))));
 	p_cords = (int *)malloc(sizeof(int) * 2);
 	p_cords[0] = mlx_info->player->x;
 	p_cords[1] = mlx_info->player->y;

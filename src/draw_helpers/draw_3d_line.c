@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 19:11:36 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/17 14:22:47 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/22 01:56:13 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,17 @@ void draw_texture(t_ray *ray, t_mlx_info *mlx_info, int type)
 
 	ray_dist = distance_between_points(mlx_info->player->x, mlx_info->player->y, ray->wall_hit_x, ray->wall_hit_y);
 	// to fix fisheye effect
+	// if ((int)(ray->ray_angle * (180 / M_PI)) == 90)
+	// 	ray->ray_angle += 0.055000;
 	ray_dist *= cos(ray->ray_angle - mlx_info->player->rotation_angle);
+
+	
 	dist_to_plane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
 	wall_height = (SQUARE_SIZE / ray_dist) * dist_to_plane;
 	line->start_x = ray->ray_id;
 	line->start_y = (WINDOW_HEIGHT / 2) - (wall_height / 2);
 	line->end_x = ray->ray_id;
 	line->end_y = (WINDOW_HEIGHT / 2) + (wall_height / 2);
-
 	// draw cieling
 	cl_fr_line->start_x = line->start_x;
 	cl_fr_line->start_y = 0;
