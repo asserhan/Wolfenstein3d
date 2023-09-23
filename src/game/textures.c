@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 09:22:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 13:51:34 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,51 +24,91 @@ double get_line_height(t_game_data *game, t_ray *ray)
     return (line_height);
 }
 
-void draw_texture(mlx_image_t *img, int x, int height, int texture)
+int get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
+int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
+{
+    int pixel_color;
+
+    if (x >= 0 && x < tex_data->width && y >= 0 && y < tex_data->height)
+    {
+        // Calculate the index of the pixel in the pixel array
+        int index = (y * tex_data->width + x) * tex_data->bytes_per_pixel;
+
+        // Extract color components (RGBA) and create the color integer
+        int r = tex_data->pixels[index];
+        int g = tex_data->pixels[index + 1];
+        int b = tex_data->pixels[index + 2];
+        int a = tex_data->pixels[index + 3];
+
+        pixel_color = get_rgba(r, g, b, a);
+    }
+    else
+    {
+        // Handle the case when (x, y) is outside the texture boundaries
+        // You can set pixel_color to a default value or handle the error as needed
+        pixel_color = get_rgba(0, 0, 0, 255); // Default: Black, fully opaque
+    }
+
+    return pixel_color;
+}
+void draw_line_texture(t_game_data *game, double x_start, int height, int texture)
+{
+
+    // Endianness
+
+    // get the color of the pixel at the x,y coordinates
+    int tile_x;
+
+    int tex_x;
+    int y_start = (WINDOW_HEIGHT / 2) - (height / 2);
+
+    tile_x = fmod(x_start, SQUARE_SIZE);
+    tex_x = tile_x * (game->map->textures[texture]->width / SQUARE_SIZE);
+    int tex_y;
+    int y = y_start;
+    // printf("%f\n", y_start);
+    while (y < (WINDOW_HEIGHT / 2) + (height / 2))
+    {
+        if (x_start >= 0 && x_start < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+        {
+            tex_y = (y - y_start) * (game->map->textures[texture]->height / ((y_start + height) - y_start));
+            int color = get_pixel_color(game->map->textures[texture], tex_x, tex_y);
+            mlx_put_pixel(game->img, x_start, y, color);
+        }
+        y++;
+    }
+}
+
+void draw_texture(t_game_data *game, int x, int height, int texture)
 {
     int y;
-    int color;
-
-    if (texture == NORTH)
-        color = 0xFF0000FF;
-    else if (texture == SOUTH)
-        color = 0x00FF00FF;
-    else if (texture == EAST)
-        color = 0x0000FFFF;
-    else if (texture == WEST)
-        color = 0x000000FF;
     y = 0;
     while (y < (WINDOW_HEIGHT / 2) - (height / 2))
     {
-        mlx_put_pixel(img, x, y, 0x14D3F7FF);
-        y++;
-    }
-    while (y < (WINDOW_HEIGHT / 2) + (height / 2))
-    {
-        mlx_put_pixel(img, x, y, color);
-        y++;
-    }
-    while (y < WINDOW_HEIGHT)
-    {
-        mlx_put_pixel(img, x, y, 0x473931FF);
+        mlx_put_pixel(game->img, x, y, 0x14D3F7FF);
         y++;
     }
 
-    // draw_pixel_no_scale(img, x, y, color);
+    draw_line_texture(game, x, height, texture);
+
+    y = (WINDOW_HEIGHT / 2) + (height / 2);
+    while (y < WINDOW_HEIGHT)
+    {
+        mlx_put_pixel(game->img, x, y, 0x473931FF);
+        y++;
+    }
 }
 
 void draw_line(t_game_data *game, t_ray *ray, int texture)
 {
     double line_height;
     line_height = get_line_height(game, ray);
-    if (texture == NORTH)
-        draw_texture(game->img, ray->id, line_height, NORTH);
-    else if (texture == SOUTH)
-        draw_texture(game->img, ray->id, line_height, SOUTH);
-    else if (texture == EAST)
-        draw_texture(game->img, ray->id, line_height, EAST);
-    else if (texture == WEST)
-        draw_texture(game->img, ray->id, line_height, WEST);
+
+    draw_texture(game, ray->id, line_height, texture);
 }
 void draw_3d_line(t_game_data *game, t_ray *ray)
 {
