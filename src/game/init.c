@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 11:49:24 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:06:22 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
     game->map->textures[SOUTH] = mlx_load_png(parse->so);
     game->map->textures[EAST] = mlx_load_png(parse->ea);
     game->map->textures[WEST] = mlx_load_png(parse->we);
+
+    game->map->floor = parse->f;
+    game->map->ceiling = parse->c;
 
     init_player(game);
 

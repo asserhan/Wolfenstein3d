@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 17:12:32 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:06:14 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ typedef struct s_map
 	int c;
 	char *f_line;
 	mlx_texture_t **textures;
+	t_rgb floor;
+	t_rgb ceiling;
+
 } t_map;
 
 /**********************************/
@@ -75,7 +78,6 @@ typedef struct s_player
 
 typedef struct s_game_data
 {
-
 	mlx_image_t *img;
 	t_player *player;
 	t_map *map;

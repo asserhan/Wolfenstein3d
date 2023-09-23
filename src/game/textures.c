@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 17:11:37 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:07:13 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void draw_texture(t_game_data *game, t_ray *ray, int height, int texture)
     y = 0;
     while (y < (WINDOW_HEIGHT / 2) - (height / 2))
     {
-        mlx_put_pixel(game->img, ray->id, y, 0x14D3F7FF);
+        mlx_put_pixel(game->img, ray->id, y, get_rgba(game->map->ceiling.r, game->map->ceiling.g, game->map->ceiling.b, 255));
         y++;
     }
 
@@ -94,7 +94,7 @@ void draw_texture(t_game_data *game, t_ray *ray, int height, int texture)
     y = (WINDOW_HEIGHT / 2) + (height / 2);
     while (y < WINDOW_HEIGHT)
     {
-        mlx_put_pixel(game->img, ray->id, y, 0x473931FF);
+        mlx_put_pixel(game->img, ray->id, y, get_rgba(game->map->floor.r, game->map->floor.g, game->map->floor.b, 255));
         y++;
     }
 }

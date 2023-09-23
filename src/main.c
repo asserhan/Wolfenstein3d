@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 17:08:29 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 19:29:01 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int main(int argc, char **argv)
 	// int fd;
 	if (argc == 2)
 	{
-
 		if ((fd = open(argv[1], O_DIRECTORY) != -1))
 			return (ft_error("Is a directory\n"), 1);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
