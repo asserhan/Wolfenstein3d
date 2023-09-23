@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 15:36:13 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 10:38:12 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void init_player(t_game_data *game)
     else if (game->map->player_vue == 'W')
         game->player->player_vue = M_PI;
 }
-int init_game(mlx_t *mlx, t_game_data *game, t_map *map)
+
+int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
 {
     mlx_image_t *img;
 
@@ -38,6 +39,16 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map)
         ft_error("Failed to create image\n");
         return (1);
     }
+    game->map->textures = malloc(sizeof(mlx_image_t *) * 4);
+    if (!game->map->textures)
+    {
+        ft_error("Failed to allocate memory for textures\n");
+        return (1);
+    }
+    game->map->textures[NORTH] = mlx_load_png(parse->no);
+    game->map->textures[SOUTH] = mlx_load_png(parse->so);
+    game->map->textures[EAST] = mlx_load_png(parse->ea);
+    game->map->textures[WEST] = mlx_load_png(parse->we);
     game->img = img;
     game->map = map;
     game->mlx = mlx;

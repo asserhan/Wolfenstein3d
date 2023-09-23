@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 18:38:27 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:22:39 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ void draw_texture(mlx_image_t *img, int x, int height, int texture)
     int color;
 
     if (texture == NORTH)
-        color = 0x00045781;
-    else if (texture == SOUTH)
-        color = 0x00F15F41;
-    else if (texture == EAST)
         color = 0xFF0000FF;
+    else if (texture == SOUTH)
+        color = 0x00FF00FF;
+    else if (texture == EAST)
+        color = 0x0000FFFF;
     else if (texture == WEST)
-        color = 0x000047E6;
+        color = 0x000000FF;
     y = 0;
     while (y < (WINDOW_HEIGHT / 2) - (height / 2))
     {
-        mlx_put_pixel(img, x, y, 0x000000FF);
+        mlx_put_pixel(img, x, y, 0x14D3F7FF);
         y++;
     }
     while (y < (WINDOW_HEIGHT / 2) + (height / 2))
@@ -50,7 +50,7 @@ void draw_texture(mlx_image_t *img, int x, int height, int texture)
     }
     while (y < WINDOW_HEIGHT)
     {
-        mlx_put_pixel(img, x, y, 0x001000FF);
+        mlx_put_pixel(img, x, y, 0x473931FF);
         y++;
     }
 

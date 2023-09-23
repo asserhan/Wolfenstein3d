@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:59:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 19:16:15 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 09:33:23 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void cast_all_rays(t_game_data *game)
         ray->is_facing_left = !ray->is_facing_right;
         ray->was_hit_horizontal = 0;
         ray->was_hit_vertical = 0;
+        ray->distance = 0;
         ray->id = i;
         cast_one_ray(ray, game);
         ray->ray_angle += delta_angle;

@@ -31,7 +31,7 @@ void cast_vertically(t_ray *ray, t_game_data *game)
     y_step = SQUARE_SIZE * tan(ray->ray_angle);
     if (ray->is_facing_up && y_step > 0)
         y_step *= -1;
-    if (ray->is_facing_down && x_step < 0)
+    if (ray->is_facing_down && y_step < 0)
         y_step *= -1;
 
     while (x_intercept >= 0 && x_intercept < game->map->cols * SQUARE_SIZE && y_intercept >= 0 && y_intercept < game->map->rows * SQUARE_SIZE)

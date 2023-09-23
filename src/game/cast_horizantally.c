@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:53:34 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 18:36:54 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 10:24:58 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void cast_horizontally(t_ray *ray, t_game_data *game)
 
         if (check_wall(x_to_check, y_to_check, game->map))
         {
+            if (ray->was_hit_vertical && distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept) >= ray->distance)
+                return;
+            ray->was_hit_vertical = 0;
             ray->wall_hit_x = x_intercept;
             ray->wall_hit_y = y_intercept;
-            if (ray->was_hit_vertical && ray->distance <= distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept))
-                return;
             ray->distance = distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept);
             ray->was_hit_horizontal = 1;
             return;

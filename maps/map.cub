@@ -1,16 +1,16 @@
 
 
 
-       NO /Users/otait-ta/Desktop/Cub3D/maps/cat.xpm
+       NO /Users/otait-ta/Desktop/Cub3D/maps/no.png
 
 
 
-    SO    /Users/otait-ta/Desktop/Cub3D/maps/cat.xpm
+    SO    /Users/otait-ta/Desktop/Cub3D/maps/no.png
 
 
-WE  /Users/otait-ta/Desktop/Cub3D/maps/cat.xpm
+WE  /Users/otait-ta/Desktop/Cub3D/maps/no.png
 
-EA    /Users/otait-ta/Desktop/Cub3D/maps/cat.xpm
+EA    /Users/otait-ta/Desktop/Cub3D/maps/no.png
 
 
 F   220,100,0 
@@ -21,8 +21,9 @@ C    225,30,0
 
 11111111
 10000001
-100N0001
+100S0001
 10000001
+10010001
 10000001
 11111111
 
