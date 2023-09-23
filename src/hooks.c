@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 18:24:14 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:13:37 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,25 @@ void keyhook(void *param)
     if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
         rotate_right(game);
     draw_mini_map(game);
+}
+
+void mousehook(double x, double y, void *param)
+{
+
+    t_game_data *game = (t_game_data *)param;
+    int x_diff;
+    double sensitivity;
+    if (x > 0 && x < WINDOW_WIDTH && y > 0 && y < WINDOW_HEIGHT)
+    {
+        if (game->prev_x != -1)
+        {
+            x_diff = x - game->prev_x;
+            sensitivity = 0.006;
+            game->player->player_vue += x_diff * sensitivity;
+        }
+        game->prev_x = x;
+    }
+    else
+
+        game->prev_x = -1;
 }

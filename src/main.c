@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 10:35:31 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:08:29 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int main(int argc, char **argv)
 		game = malloc(sizeof(t_game_data));
 		if (init_game(mlx, game, map, parse))
 			return (1);
+		game->prev_x = -1;
+		mlx_cursor_hook(mlx, &mousehook, game);
 		mlx_loop_hook(mlx, &keyhook, game);
 		// draw_mini_map(game);
 		mlx_loop(mlx);

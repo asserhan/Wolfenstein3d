@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 15:35:45 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:11:37 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int get_rgba(int r, int g, int b, int a)
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
-int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
+int get_pixel_color(mlx_texture_t *tex_data, uint32_t x, uint32_t y)
 {
     int pixel_color;
 
@@ -63,7 +63,7 @@ void draw_line_texture(t_game_data *game, t_ray *ray, int height, int texture)
     double y;
     if (texture == NORTH || texture == SOUTH)
         tile_x = fmod(ray->wall_hit_x, SQUARE_SIZE);
-    else if (texture == EAST || texture == WEST)
+    else
         tile_x = fmod(ray->wall_hit_y, SQUARE_SIZE);
     tex_x = tile_x * (game->map->textures[texture]->width / SQUARE_SIZE);
     y = y_start;

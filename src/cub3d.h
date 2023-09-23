@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 10:37:25 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:12:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_game_data
 	t_player *player;
 	t_map *map;
 	mlx_t *mlx;
+	int prev_x;
 } t_game_data;
 
 typedef struct s_ray
@@ -134,7 +135,7 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse);
 void mlx_draw_square(mlx_image_t *img, int x, int y, uint32_t size, uint32_t color);
 
 void keyhook(void *param);
-
+void mousehook(double a, double b, void *param);
 void move_forward(t_game_data *game);
 void move_backward(t_game_data *game);
 void move_left(t_game_data *game);
