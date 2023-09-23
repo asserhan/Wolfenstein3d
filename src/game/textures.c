@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 15:17:32 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:35:45 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,21 @@ int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
 
     return pixel_color;
 }
-void draw_line_texture(t_game_data *game, double x_start, int height, int texture)
+void draw_line_texture(t_game_data *game, t_ray *ray, int height, int texture)
 {
 
     double tile_x;
-
     double tex_x;
     double y_start = (WINDOW_HEIGHT / 2) - (height / 2);
-
-    tile_x = fmod(x_start, SQUARE_SIZE);
-    tex_x = tile_x * (game->map->textures[texture]->width / SQUARE_SIZE);
-    printf("%f\n", tex_x);
+    double x_start = ray->id;
     double tex_y;
-    double y = y_start;
-    // printf("%f\n", y_start);
+    double y;
+    if (texture == NORTH || texture == SOUTH)
+        tile_x = fmod(ray->wall_hit_x, SQUARE_SIZE);
+    else if (texture == EAST || texture == WEST)
+        tile_x = fmod(ray->wall_hit_y, SQUARE_SIZE);
+    tex_x = tile_x * (game->map->textures[texture]->width / SQUARE_SIZE);
+    y = y_start;
     while (y < (WINDOW_HEIGHT / 2) + (height / 2))
     {
         if (x_start >= 0 && x_start < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
@@ -78,20 +79,22 @@ void draw_line_texture(t_game_data *game, double x_start, int height, int textur
     }
 }
 
-void draw_texture(t_game_data *game, int x, int height, int texture)
+void draw_texture(t_game_data *game, t_ray *ray, int height, int texture)
 {
     int y;
     y = 0;
     while (y < (WINDOW_HEIGHT / 2) - (height / 2))
     {
-        mlx_put_pixel(game->img, x, y, 0x14D3F7FF);
+        mlx_put_pixel(game->img, ray->id, y, 0x14D3F7FF);
         y++;
     }
-    draw_line_texture(game, x, height, texture);
+
+    draw_line_texture(game, ray, height, texture);
+
     y = (WINDOW_HEIGHT / 2) + (height / 2);
     while (y < WINDOW_HEIGHT)
     {
-        mlx_put_pixel(game->img, x, y, 0x473931FF);
+        mlx_put_pixel(game->img, ray->id, y, 0x473931FF);
         y++;
     }
 }
@@ -100,7 +103,7 @@ void draw_line(t_game_data *game, t_ray *ray, int texture)
 {
     double line_height;
     line_height = get_line_height(game, ray);
-    draw_texture(game, ray->id, line_height, texture);
+    draw_texture(game, ray, line_height, texture);
 }
 void draw_3d_line(t_game_data *game, t_ray *ray)
 {

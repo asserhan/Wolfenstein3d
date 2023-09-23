@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:03:20 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 09:18:11 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:43:06 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ void draw_mini_map(t_game_data *game)
     //     i++;
     // }
     cast_all_rays(game);
-    draw_player(game);
+    // draw_player(game);
 }
