@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 13:51:34 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:17:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
 
     if (x >= 0 && x < tex_data->width && y >= 0 && y < tex_data->height)
     {
-        // Calculate the index of the pixel in the pixel array
         int index = (y * tex_data->width + x) * tex_data->bytes_per_pixel;
 
-        // Extract color components (RGBA) and create the color integer
         int r = tex_data->pixels[index];
         int g = tex_data->pixels[index + 1];
         int b = tex_data->pixels[index + 2];
@@ -48,9 +46,8 @@ int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
     }
     else
     {
-        // Handle the case when (x, y) is outside the texture boundaries
-        // You can set pixel_color to a default value or handle the error as needed
-        pixel_color = get_rgba(0, 0, 0, 255); // Default: Black, fully opaque
+
+        pixel_color = get_rgba(0, 0, 0, 255);
     }
 
     return pixel_color;
@@ -58,18 +55,16 @@ int get_pixel_color(mlx_texture_t *tex_data, int x, int y)
 void draw_line_texture(t_game_data *game, double x_start, int height, int texture)
 {
 
-    // Endianness
+    double tile_x;
 
-    // get the color of the pixel at the x,y coordinates
-    int tile_x;
-
-    int tex_x;
-    int y_start = (WINDOW_HEIGHT / 2) - (height / 2);
+    double tex_x;
+    double y_start = (WINDOW_HEIGHT / 2) - (height / 2);
 
     tile_x = fmod(x_start, SQUARE_SIZE);
     tex_x = tile_x * (game->map->textures[texture]->width / SQUARE_SIZE);
-    int tex_y;
-    int y = y_start;
+    printf("%f\n", tex_x);
+    double tex_y;
+    double y = y_start;
     // printf("%f\n", y_start);
     while (y < (WINDOW_HEIGHT / 2) + (height / 2))
     {
@@ -92,9 +87,7 @@ void draw_texture(t_game_data *game, int x, int height, int texture)
         mlx_put_pixel(game->img, x, y, 0x14D3F7FF);
         y++;
     }
-
     draw_line_texture(game, x, height, texture);
-
     y = (WINDOW_HEIGHT / 2) + (height / 2);
     while (y < WINDOW_HEIGHT)
     {
@@ -107,7 +100,6 @@ void draw_line(t_game_data *game, t_ray *ray, int texture)
 {
     double line_height;
     line_height = get_line_height(game, ray);
-
     draw_texture(game, ray->id, line_height, texture);
 }
 void draw_3d_line(t_game_data *game, t_ray *ray)
