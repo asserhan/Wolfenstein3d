@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/21 23:40:50 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/24 15:25:19 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,25 +283,24 @@ char **get_map(t_map *map, char *file)
     if (!map->map)
         return (ft_printf("Error malloc\n"), NULL);
 
-    while (++i < map->rows)
+    while (++i < map->rows )
     {
         map->map[i] = ft_calloc(sizeof(char), map->cols + 1);
         ft_memset(map->map[i], ' ', map->cols);
-        // map->map[i] = ft_strtrim(line,white_spaces);
-        ft_memcpy(map->map[i], line, ft_strlen(line));
+        ft_memcpy(map->map[i], line, ft_strlen(line) - 1);
         line = get_next_line(fd);
         if (line == NULL)
             break;
     }
    
+    //print_matrix(map->map);
     if(is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
-        return(ft_printf("Invalid +++ map\n"),NULL);
+        return(ft_printf("Invalid  map\n"),NULL);
 
    if(check_spaces(map))
-        return(ft_printf("Invalid //map\n"),NULL);
-    //print_matrix(map->map);
+        return(ft_printf("Invalid map\n"),NULL);
    
     if (check_borders(map))
-        return (ft_printf("Invalid ***map\n"), NULL);
+        return (ft_printf("Invalid map\n"), NULL);
     return (map->map);
 }

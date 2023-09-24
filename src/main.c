@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 15:27:52 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:59:09 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int main(int argc,char **argv)
 {
 	t_map maps;
 	t_parse parse;
-	mlx_t *mlx;
+	// mlx_t *mlx;
+	// mlx_image_t *img;
     int fd;
 	if(argc == 2)
 	{
@@ -70,10 +71,13 @@ int main(int argc,char **argv)
 			free_matrix(maps.map);
 			exit(1);
 		}
-		mlx = mlx_init(WINDOW_WIDTH,WINDOW_HEIGHT,"Cub3D",true);
-		if(!mlx)
-			ft_erno();
-		mlx_loop(mlx);
+	// 	mlx = mlx_init(WINDOW_WIDTH,WINDOW_HEIGHT,"Cub3D",true);
+	// 	if(!mlx)
+	// 		ft_erno();
+	// 	img = mlx_new_image(mlx,150,200);
+	// 	if(!img || mlx_image_to_window(mlx,img,0,0) < 0)
+	// 		ft_erno();
+	// 	mlx_loop(mlx);
 	}
 	else
 		ft_error("Invalid number of arguments\n");

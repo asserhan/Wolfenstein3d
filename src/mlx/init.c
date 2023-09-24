@@ -6,14 +6,14 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 13:50:58 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/22 15:26:09 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:59:21 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+// #include "../cub3d.h"
 
-void ft_erno(void)
-{
-    printf("%s\n",mlx_strerror(mlx_errno));
-    exit(1);
-}
+// void ft_erno(void)
+// {
+//     printf("%s\n",mlx_strerror(mlx_errno));
+//     exit(1);
+// }

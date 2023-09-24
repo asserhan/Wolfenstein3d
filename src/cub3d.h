@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/22 15:27:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:58:28 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
+//# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
 # include <stdlib.h>
 # include <unistd.h>
 # define white_spaces " \t\n\v\f\r"
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
+# define SQUARE_SIZE 64
 
 /****************************Parsing*******************************/
 
@@ -98,7 +99,6 @@ void ft_erno(void);
 typedef struct s_player
 {
 	// to change names
-	t_map	*map;
 	double	x_player;
 	double	y_player;
 	double	angle;
@@ -109,6 +109,10 @@ typedef struct s_player
 	double	turn_speed;
 }			t_player;
 
-
+typedef struct s_cub
+{
+	t_player	*player;
+	t_map		*map;
+}     t_cub;
 
 #endif
