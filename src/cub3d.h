@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 21:06:14 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 10:54:06 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,8 @@ void draw_3d_line(t_game_data *game, t_ray *ray);
 
 #define SQUARE_SIZE 32
 #define FOV_ANGLE (60 * M_PI / 180)
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 360
+#define WINDOW_WIDTH 1440
+#define WINDOW_HEIGHT 960
 
 #define RED 0
 #define GREEN 1

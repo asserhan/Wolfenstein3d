@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:59:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 13:34:51 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:31:18 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void cast_all_rays(t_game_data *game)
     delta_angle = FOV_ANGLE / WINDOW_WIDTH;
     // TODO: free ray
     ray = malloc(sizeof(t_ray));
+    if (!ray)
+    {
+        ft_error("Failed to allocate memory for ray\n");
+        return;
+    }
     ray->ray_angle = game->player->player_vue - (FOV_ANGLE / 2);
-
     while (i < WINDOW_WIDTH)
     {
         ray->ray_angle = normalize_angle(ray->ray_angle);

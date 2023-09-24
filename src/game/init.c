@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 21:06:22 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:28:20 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void init_player(t_game_data *game)
 {
     // TODO: free player
     game->player = malloc(sizeof(t_player));
+    if (!game->player)
+    {
+        ft_error("Failed to allocate memory for player\n");
+        return;
+    }
     game->player->x = game->map->player_x * SQUARE_SIZE + SQUARE_SIZE / 2;
     game->player->y = game->map->player_y * SQUARE_SIZE + SQUARE_SIZE / 2;
     game->player->walk_direction = 0;
@@ -39,6 +44,7 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
         ft_error("Failed to create image\n");
         return (1);
     }
+    game->prev_x = -1;
     game->img = img;
     game->map = map;
     game->mlx = mlx;
@@ -57,6 +63,8 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
     game->map->ceiling = parse->c;
 
     init_player(game);
+    if (!game->player)
+        return (1);
 
     return (0);
 }

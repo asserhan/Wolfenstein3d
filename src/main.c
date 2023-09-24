@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 19:29:01 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:27:05 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int main(int argc, char **argv)
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("file does not open\n"), 1);
 		// TODO: free parse and map
-		parse = malloc(sizeof(t_parse));
-		map = malloc(sizeof(t_map));
+		parse = ft_calloc(1, sizeof(t_parse));
+		map = ft_calloc(1, sizeof(t_map));
+		if (!parse || !map)
+			return (ft_error("Failed to allocate memory\n"), 1);
 		init_file(parse, map);
 		if (ft_parsing(parse, fd, map))
 			exit(1);
@@ -70,15 +72,15 @@ int main(int argc, char **argv)
 		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
 		if (!mlx)
 			ft_error("Failed to create mlx\n");
-		game = malloc(sizeof(t_game_data));
+		game = ft_calloc(1, sizeof(t_game_data));
+		if (!game)
+			ft_error("Failed to allocate memory for game\n");
 		if (init_game(mlx, game, map, parse))
 			return (1);
-		game->prev_x = -1;
 		mlx_cursor_hook(mlx, &mousehook, game);
 		mlx_loop_hook(mlx, &keyhook, game);
-		// draw_mini_map(game);
 		mlx_loop(mlx);
-		// mlx_terminate(mlx);
+		mlx_terminate(mlx);
 	}
 	else
 		ft_error("Invalid number of arguments\n");
