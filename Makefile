@@ -6,7 +6,7 @@
 #    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/09/22 15:29:30 by hasserao         ###   ########.fr        #
+#    Updated: 2023/09/24 14:59:35 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = cub3d
 CC = cc
 FLAGS = -Wall -Werror -Wextra -g
-MLX = /Users/hasserao/Desktop/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/goinfre/hasserao/homebrew/opt/glfw/lib"
+#MLX = /Users/hasserao/Desktop/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/goinfre/hasserao/homebrew/opt/glfw/lib"
 RM = rm -rf
 LIBTFT = lib/libft/libft.a
 PRINTF = lib/ft_printf/libftprintf.a
