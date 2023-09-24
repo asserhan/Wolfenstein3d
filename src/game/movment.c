@@ -6,43 +6,38 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:49:56 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 16:19:18 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:10:00 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <math.h>
 
-// Define a function to check for obstacles in the path of movement
 int check_obstacles(t_game_data *game, double new_x, double new_y)
 {
-    // Calculate the bounding box of the square around the player's new position
-    double left = new_x - 5;
-    double right = new_x + 5;
-    double top = new_y - 5;
-    double bottom = new_y + 5;
+    double left;
+    double right;
+    double top;
+    double bottom;
+    double x;
 
-    // Initialize collision flag to false
-    int collision = 0;
-
-    // Iterate through the pixels in the bounding box using a while loop
-    double x = left;
-    while (x <= right && !collision)
+    left = new_x - 5;
+    right = new_x + 5;
+    top = new_y - 5;
+    bottom = new_y + 5;
+    x = left;
+    while (x <= right)
     {
         double y = top;
-        while (y <= bottom && !collision)
+        while (y <= bottom)
         {
-            // Check if there is an obstacle at the current pixel
             if (check_wall((int)floor(x / SQUARE_SIZE), (int)floor(y / SQUARE_SIZE), game->map))
-            {
-                collision = 1; // Collision detected, exit the loop
-            }
-            y += 1.0; // Move to the next pixel in the vertical direction
+                return (1);
+            y += 1.0;
         }
-        x += 1.0; // Move to the next pixel in the horizontal direction
+        x += 1.0;
     }
-
-    return collision; // Return true if a collision was detected, false otherwise
+    return (0);
 }
 
 void move_forward(t_game_data *game)
@@ -54,7 +49,6 @@ void move_forward(t_game_data *game)
 
     if (!check_obstacles(game, new_x, new_y))
     {
-        // No obstacles, move the player
         game->player->x = new_x;
         game->player->y = new_y;
     }
@@ -68,7 +62,6 @@ void move_backward(t_game_data *game)
     new_y = game->player->y - sin(game->player->player_vue) * 2.5;
     if (!check_obstacles(game, new_x, new_y))
     {
-        // No obstacles, move the player
         game->player->x = new_x;
         game->player->y = new_y;
     }
@@ -82,7 +75,6 @@ void move_right(t_game_data *game)
     new_y = game->player->y + sin(game->player->player_vue + M_PI_2) * 2.5;
     if (!check_obstacles(game, new_x, new_y))
     {
-        // No obstacles, move the player
         game->player->x = new_x;
         game->player->y = new_y;
     }
@@ -95,7 +87,6 @@ void move_left(t_game_data *game)
     new_y = game->player->y + sin(game->player->player_vue - M_PI_2) * 2.5;
     if (!check_obstacles(game, new_x, new_y))
     {
-        // No obstacles, move the player
         game->player->x = new_x;
         game->player->y = new_y;
     }

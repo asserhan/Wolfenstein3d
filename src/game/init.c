@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 14:28:20 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:14:52 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,22 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
 
     img = mlx_new_image(mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
     if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-    {
-        ft_error("Failed to create image\n");
-        return (1);
-    }
+        return (ft_error("Failed to create image\n"), 1);
     game->prev_x = -1;
     game->img = img;
     game->map = map;
     game->mlx = mlx;
     game->map->textures = malloc(sizeof(mlx_image_t *) * 4);
     if (!game->map->textures)
-    {
-        ft_error("Failed to allocate memory for textures\n");
-        return (1);
-    }
+        return (ft_error("Failed to allocate memory for textures\n"), 1);
     game->map->textures[NORTH] = mlx_load_png(parse->no);
     game->map->textures[SOUTH] = mlx_load_png(parse->so);
     game->map->textures[EAST] = mlx_load_png(parse->ea);
     game->map->textures[WEST] = mlx_load_png(parse->we);
-
     game->map->floor = parse->f;
     game->map->ceiling = parse->c;
-
     init_player(game);
     if (!game->player)
         return (1);
-
     return (0);
 }

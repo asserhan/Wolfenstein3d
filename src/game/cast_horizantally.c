@@ -6,11 +6,40 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:53:34 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/23 22:45:17 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:47:34 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int check_hor_interceptions(double x_intercept, double y_intercept, t_ray *ray, t_game_data *game)
+{
+    int x_to_check;
+    int y_to_check;
+
+    if (ray->is_facing_up)
+    {
+        x_to_check = floor(x_intercept / SQUARE_SIZE);
+        y_to_check = floor((y_intercept - 1) / SQUARE_SIZE);
+    }
+    else
+    {
+        x_to_check = floor(x_intercept / SQUARE_SIZE);
+        y_to_check = floor((y_intercept + 1) / SQUARE_SIZE);
+    }
+    if (check_wall(x_to_check, y_to_check, game->map))
+    {
+        if (ray->was_hit_vertical && distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept) >= ray->distance)
+            return (0);
+        ray->was_hit_vertical = 0;
+        ray->wall_hit_x = x_intercept;
+        ray->wall_hit_y = y_intercept;
+        ray->distance = distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept);
+        ray->was_hit_horizontal = 1;
+        return (1);
+    }
+    return (0);
+}
 
 void cast_horizontally(t_ray *ray, t_game_data *game)
 {
@@ -18,8 +47,6 @@ void cast_horizontally(t_ray *ray, t_game_data *game)
     double y_intercept;
     double x_step;
     double y_step;
-    int x_to_check;
-    int y_to_check;
 
     y_intercept = floor(game->player->y / SQUARE_SIZE) * SQUARE_SIZE;
     y_step = SQUARE_SIZE;
@@ -35,33 +62,10 @@ void cast_horizontally(t_ray *ray, t_game_data *game)
         x_step *= -1;
     while (x_intercept >= 0 && x_intercept <= game->map->cols * SQUARE_SIZE && y_intercept >= 0 && y_intercept <= game->map->rows * SQUARE_SIZE)
     {
-        if (ray->is_facing_up)
-        {
-            x_to_check = floor(x_intercept / SQUARE_SIZE);
-            y_to_check = floor((y_intercept - 1) / SQUARE_SIZE);
-        }
-        else
-        {
-            x_to_check = floor(x_intercept / SQUARE_SIZE);
-            y_to_check = floor((y_intercept + 1) / SQUARE_SIZE);
-        }
-
-        if (check_wall(x_to_check, y_to_check, game->map))
-        {
-            if (ray->was_hit_vertical && distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept) >= ray->distance)
-                return;
-            ray->was_hit_vertical = 0;
-            ray->wall_hit_x = x_intercept;
-            ray->wall_hit_y = y_intercept;
-            ray->distance = distance_between_points(game->player->x, game->player->y, x_intercept, y_intercept);
-            ray->was_hit_horizontal = 1;
+        if (check_hor_interceptions(x_intercept, y_intercept, ray, game))
             return;
-        }
-        else
-        {
-            x_intercept += x_step;
-            y_intercept += y_step;
-        }
+        x_intercept += x_step;
+        y_intercept += y_step;
     }
     ray->was_hit_horizontal = 0;
 }

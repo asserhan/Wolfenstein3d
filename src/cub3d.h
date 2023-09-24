@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 10:54:06 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:24:34 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ double distance_between_points(double x1, double y1, double x2, double y2);
 
 int check_wall(int x, int y, t_map *map);
 
-void cast_all_rays(t_game_data *game);
+int cast_all_rays(t_game_data *game);
 void cast_vertically(t_ray *ray, t_game_data *game);
 void cast_horizontally(t_ray *ray, t_game_data *game);
 void draw_3d_line(t_game_data *game, t_ray *ray);

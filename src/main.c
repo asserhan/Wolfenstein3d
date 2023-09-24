@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 14:27:05 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:18:47 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,29 @@ void init_file(t_parse *parse, t_map *map)
 	map->cols = 0;
 	map->c = 0;
 }
+void f()
+{
+	system("leaks cub3d");
+}
+
+void free_resources(t_game_data *game, t_map *map, t_parse *parse)
+{
+	free_matrix(map->map);
+	free(parse->no);
+	free(parse->so);
+	free(parse->we);
+	free(parse->ea);
+	free(parse);
+	free(map);
+	free(game->player);
+	free(game->map->textures[NORTH]);
+	free(game->map->textures[SOUTH]);
+	free(game->map->textures[EAST]);
+	free(game->map->textures[WEST]);
+	free(game->map->textures);
+	// free(game->map);
+	// free(game);
+}
 int main(int argc, char **argv)
 {
 	t_map *map;
@@ -54,6 +77,7 @@ int main(int argc, char **argv)
 	int fd;
 	mlx_t *mlx;
 	// int fd;
+	atexit(f);
 	if (argc == 2)
 	{
 		if ((fd = open(argv[1], O_DIRECTORY) != -1))
@@ -80,6 +104,7 @@ int main(int argc, char **argv)
 		mlx_cursor_hook(mlx, &mousehook, game);
 		mlx_loop_hook(mlx, &keyhook, game);
 		mlx_loop(mlx);
+		free_resources(game, map, parse);
 		mlx_terminate(mlx);
 	}
 	else
