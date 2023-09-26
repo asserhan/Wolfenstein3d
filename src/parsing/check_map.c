@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/24 15:25:02 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 22:02:17 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,7 @@ int	check_char(char c)
 		return (1);
 	return (0);
 }
-void	rows_cols_num(t_map *map)
-{
-	map->rows = 0;
-	map->cols = 0;
-	while (map->map[map->rows])
-	{
-		while (map->map[map->rows][map->cols])
-			map->cols++;
-		map->rows++;
-	}
-}
+
 int	is_wall(char *line)
 {
 	while (*line)
@@ -64,18 +54,19 @@ int	check_borders(t_map *map)
 	i = -1;
 	while (++i < map->rows)
 	{
-		j = -1;
+			//printf("*%s*\n",map->map[i]);
 		line =ft_strtrim(map->map[i], white_spaces);
 		if (line[0] != '1' || line[ft_strlen(line)
 			- 1] != '1')
 		{
+				printf("%d %d\n",i,j);
 			return (1);
 		}
+		j = -1;
 		while (map->map[i][++j])
 		{
 			if (check_char(map->map[i][j]))
 			{
-			
 				return (1);
 			}
 			if (ft_strchr("NSEW", map->map[i][j]))
