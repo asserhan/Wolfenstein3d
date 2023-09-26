@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 09:49:56 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 20:10:00 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:05:46 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 
 int check_obstacles(t_game_data *game, double new_x, double new_y)
 {
-    double left;
-    double right;
-    double top;
-    double bottom;
-    double x;
 
-    left = new_x - 5;
-    right = new_x + 5;
-    top = new_y - 5;
-    bottom = new_y + 5;
-    x = left;
-    while (x <= right)
+    double x;
+    double y;
+
+    x = new_x - 5;
+    while (x <= new_x + 5)
     {
-        double y = top;
-        while (y <= bottom)
+        y = new_y - 5;
+        while (y <= new_y + 5)
         {
             if (check_wall((int)floor(x / SQUARE_SIZE), (int)floor(y / SQUARE_SIZE), game->map))
                 return (1);

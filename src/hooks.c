@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 19:19:04 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:07:50 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void mousehook(double x, double y, void *param)
         if (game->prev_x != -1)
         {
             x_diff = x - game->prev_x;
-            sensitivity = 0.006;
+            sensitivity = 0.008;
             game->player->player_vue += x_diff * sensitivity;
         }
         game->prev_x = x;
