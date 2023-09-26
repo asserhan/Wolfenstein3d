@@ -6,40 +6,12 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/26 20:06:33 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:27:01 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char **read_map(int fd)
-{
-    char *line;
-    char *string;
-    char *tmp;
-    char **tab;
-
-    string = ft_strdup("");
-    while (1)
-    {
-        line = get_next_line(fd);
-        if (ft_strcmp(line, "\n") == 0)
-            return (free(line), free(string), NULL);
-        if (line == NULL)
-            break;
-        tmp = string;
-        string = ft_strjoin(tmp, line);
-
-        free(tmp);
-        free(line);
-    }
-    if (ft_strcmp(string, "") == 0)
-    {
-        return (free(string), NULL);
-    }
-    tab = ft_split(string, '\n');
-    return (free(string), tab);
-}
 char *get_path(char *line)
 {
     char *trim;
@@ -66,7 +38,7 @@ int get_color(t_parse *parse, char **tab)
 
     rgb = ft_split(tab[1], ',');
     if (!rgb)
-        return (ft_error("split\n"));
+        return (free_matrix(rgb),ft_error("split\n"));
     if (!rgb[0] || !rgb[1] || !rgb[2])
         return (free_matrix(rgb), ft_error("in colors\n"));
     if (tab[0][0] == 'F')
@@ -85,7 +57,7 @@ int get_color(t_parse *parse, char **tab)
         parse->c.g = ft_atoi(rgb[1]);
         parse->c.b = ft_atoi(rgb[2]);
         if (parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0 || parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
-            return (free_matrix(rgb), ft_error("colors\n"));
+            return (free_matrix(rgb), ft_error("in colors\n"));
     }
     free_matrix(rgb);
     return (0);
@@ -130,7 +102,10 @@ int check_textures(t_parse *parse, char *line)
             return (free_matrix(tab), ft_error("in textures\n"));
     }
     else if (tab[0][0] == 'F' || tab[0][0] == 'C')
-        get_color(parse, tab);
+    {
+        if(get_color(parse, tab))
+            return(free_matrix(tab),1);
+    }
     free_matrix(tab);
     return (0);
 }
@@ -185,8 +160,8 @@ int find_size(t_map *map, int fd)
         if (next_len > map->cols)
             map->cols = next_len;
         map->rows++;
+        free(line);
     }
-    free(line);
     close(fd);
     return (0);
 }
@@ -211,11 +186,12 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
         if (parse->map_found == 1 && parse->in < 6)
             return (free(line), ft_error("in parsing\n"));
         get_first_line(map, line, parse);
-        if (map->f_line ) 
+        if (map->f_line) 
         {
             free(line);
             break;
         }
+        free(line);
     }
     if (!map->f_line)
         return (ft_error("map not found\n"));
