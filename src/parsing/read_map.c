@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/26 16:40:52 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:34:36 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,11 @@ char **get_map(t_map *map, char *file)
             break;
      
         if (ft_strcmp(line, map->f_line) == 0)
+        {
+            free(map->f_line);
             break;
+        }
+    
     }
     map->map = ft_calloc(sizeof(char *), map->rows + 1);
     if (!map->map)
@@ -291,6 +295,7 @@ char **get_map(t_map *map, char *file)
         if (line == NULL)
             break;
     }
+    close(fd);
    
     //print_matrix(map->map);
     if(is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
