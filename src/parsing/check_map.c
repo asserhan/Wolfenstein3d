@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/26 22:02:17 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 00:35:30 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ int	check_borders(t_map *map)
 		if (line[0] != '1' || line[ft_strlen(line)
 			- 1] != '1')
 		{
-				printf("%d %d\n",i,j);
+			free(line);
 			return (1);
 		}
+		free(line);
 		j = -1;
 		while (map->map[i][++j])
 		{

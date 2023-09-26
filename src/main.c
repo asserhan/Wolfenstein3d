@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/26 23:57:33 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 00:41:21 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ void ff(void)
 }
 int main(int argc,char **argv)
 {
-	atexit(ff);
+	//atexit(ff);
 	t_map maps;
 	t_parse parse;
-	// mlx_t *mlx;
-	// mlx_image_t *img;
     int fd;
 	if(argc == 2)
 	{
@@ -75,6 +73,8 @@ int main(int argc,char **argv)
 		free(parse.so);
 		free(parse.we);
 		free(parse.ea);
+		// while(1)
+		// ;
 		
 	}
 	else
