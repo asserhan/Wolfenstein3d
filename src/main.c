@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 14:59:09 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:39:40 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void init_file(t_parse *parse,t_map *map)
 	map->rows = 0;
 	map->cols = 0;
 	map->c = 0;
+	map->f_line = NULL;
 	
 	
 }

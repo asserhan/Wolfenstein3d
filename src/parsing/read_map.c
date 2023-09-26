@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/24 15:25:19 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:40:52 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,9 +213,8 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
             return (free(line), ft_error("in parsing\n"));
         if (parse->map_found == 1 && parse->in < 6)
             return (free(line), ft_error("in parsing\n"));
-
         get_first_line(map, line, parse);
-        if (map->f_line)
+        if (map->f_line ) 
             break;
     }
     if (!map->f_line)
