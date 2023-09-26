@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/26 17:34:36 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:06:33 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,10 @@ int check_textures(t_parse *parse, char *line)
     char **tab;
     line = skip_spaces(line);
     if (line[0] == '1')
-    {
         parse->map_found = 1;
-    }
     tab = ft_split(line, ' ');
     if (!tab)
-        return (free(line), ft_error("in split\n"));
+        return (free_matrix(tab), ft_error("in split\n"));
     if (ft_strcmp(tab[0], "NO") == 0)
     {
         parse->in++;
@@ -199,7 +197,6 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
     while (1)
     {
         line = get_next_line(fd);
-
         if (line == NULL)
             break;
         if (just_spaces(line))
@@ -215,7 +212,10 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
             return (free(line), ft_error("in parsing\n"));
         get_first_line(map, line, parse);
         if (map->f_line ) 
+        {
+            free(line);
             break;
+        }
     }
     if (!map->f_line)
         return (ft_error("map not found\n"));
