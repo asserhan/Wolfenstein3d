@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 04:55:34 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 22:46:58 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,14 @@ void free_resources(t_game_data *game, t_map *map, t_parse *parse)
 	free(parse->we);
 	free(parse->ea);
 	free(parse);
-	free(game->player);
-	free(game->map->textures[NORTH]);
-	free(game->map->textures[SOUTH]);
-	free(game->map->textures[EAST]);
-	free(game->map->textures[WEST]);
-	free(game->map->textures);
+	// free(game->player);
+	// free(game->map->textures[NORTH]);
+	// free(game->map->textures[SOUTH]);
+	// free(game->map->textures[EAST]);
+	// free(game->map->textures[WEST]);
+	// free(game->map->textures);
 	free(map);
-	// free(game->map);
-	free(game);
+	// free(game);
 }
 int main(int argc, char **argv)
 {
@@ -70,18 +69,17 @@ int main(int argc, char **argv)
 	t_parse *parse;
 	t_game_data *game;
 	int fd;
-	mlx_t *mlx;
+	// mlx_t *mlx;
 	// int fd;
-	//atexit(f);
+	atexit(f);
 	if (argc == 2)
 	{
-		if(check_file(argv[1]))
-        	return(ft_error("Invalid file\n"),1);
+		if (check_file(argv[1]))
+			return (ft_error("Invalid file\n"), 1);
 		if ((fd = open(argv[1], O_DIRECTORY) != -1))
 			return (ft_error("Is a directory\n"), 1);
 		if ((fd = open(argv[1], O_RDONLY)) == -1)
 			return (ft_error("file does not open\n"), 1);
-		// TODO: free parse and map
 		parse = ft_calloc(1, sizeof(t_parse));
 		map = ft_calloc(1, sizeof(t_map));
 		if (!parse || !map)
@@ -89,21 +87,21 @@ int main(int argc, char **argv)
 		init_file(parse, map);
 		if (ft_parsing(parse, fd, map))
 			exit(1);
-		if(!get_map(map,argv[1]) )
+		if (!get_map(map, argv[1]))
 			exit(1);
-		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
-		if (!mlx)
-			ft_error("Failed to create mlx\n");
-		game = ft_calloc(1, sizeof(t_game_data));
-		if (!game)
-			ft_error("Failed to allocate memory for game\n");
-		if (init_game(mlx, game, map, parse))
-			return (1);
-		mlx_cursor_hook(mlx, &mousehook, game);
-		mlx_loop_hook(mlx, &keyhook, game);
-		mlx_loop(mlx);
+		// mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
+		// if (!mlx)
+		// 	ft_error("Failed to create mlx\n");
+		// game = ft_calloc(1, sizeof(t_game_data));
+		// if (!game)
+		// 	ft_error("Failed to allocate memory for game\n");
+		// if (init_game(mlx, game, map, parse))
+		// 	return (1);
+		// mlx_cursor_hook(mlx, &mousehook, game);
+		// mlx_loop_hook(mlx, &keyhook, game);
+		// mlx_loop(mlx);
 		free_resources(game, map, parse);
-		mlx_terminate(mlx);
+		// mlx_terminate(mlx);
 	}
 	else
 		ft_error("Invalid number of arguments\n");

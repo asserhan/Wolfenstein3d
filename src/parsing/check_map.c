@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/27 02:42:58 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:01:19 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	check_file(char *file)
+int check_file(char *file)
 {
-	while(*file)
+	while (*file)
 		file++;
 	file--;
 	if (*file != 'b' || *(file - 1) != 'u' || *(file - 2) != 'c' || *(file - 3) != '.')
 		return (1);
 	return (0);
 }
-int	check_char(char c)
+int check_char(char c)
 {
-	if (c != '1' && c != '0' && c != '\t' && c != 'N' && c != 'S' && c != 'E'
-		&& c != 'W' && c != ' ' && c != '\n')
+	if (c != '1' && c != '0' && c != '\t' && c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != ' ' && c != '\n')
 		return (1);
 	return (0);
 }
 
-int	is_wall(char *line)
+int is_wall(char *line)
 {
 	while (*line)
 	{
@@ -39,25 +38,24 @@ int	is_wall(char *line)
 	}
 	return (0);
 }
-char	*skip_spaces(char *line)
+char *skip_spaces(char *line)
 {
 	while (*line == ' ')
 		line++;
 	return (line);
 }
-int	check_borders(t_map *map)
+int check_borders(t_map *map)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 	char *line;
 
 	i = -1;
 	while (++i < map->rows)
 	{
-			//printf("*%s*\n",map->map[i]);
-		line =ft_strtrim(map->map[i], white_spaces);
-		if (line[0] != '1' || line[ft_strlen(line)
-			- 1] != '1')
+		// printf("*%s*\n",map->map[i]);
+		line = ft_strtrim(map->map[i], white_spaces);
+		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 		{
 			free(line);
 			return (1);
@@ -81,7 +79,6 @@ int	check_borders(t_map *map)
 				map->map[i][j] = '0';
 				map->player_x = j;
 				map->player_y = i;
-				
 			}
 		}
 	}
@@ -89,4 +86,3 @@ int	check_borders(t_map *map)
 		return (1);
 	return (0);
 }
-
