@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 04:33:07 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 04:55:34 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ void init_file(t_parse *parse, t_map *map)
 	parse->so = NULL;
 	parse->we = NULL;
 	parse->ea = NULL;
-	map->map = malloc(sizeof(char *) * 20000);
-	if (!map->map)
-	{
-		free_matrix(map->map);
-		free(map);
-	}
 	map->player_x = 0;
 	map->player_y = 0;
 	map->player_vue = '\0';
@@ -44,7 +38,8 @@ void init_file(t_parse *parse, t_map *map)
 	parse->map_found = 0;
 	map->rows = 0;
 	map->cols = 0;
-	map->c = 0;
+	map->map = NULL;
+	map->f_line = NULL;
 }
 void f()
 {
