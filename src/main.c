@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 22:46:58 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 00:54:14 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,21 @@ void f()
 	system("leaks cub3d");
 }
 
-void free_resources(t_game_data *game, t_map *map, t_parse *parse)
+void free_resources(t_game_data *game)
 {
-	free_matrix(map->map);
-	free(parse->no);
-	free(parse->so);
-	free(parse->we);
-	free(parse->ea);
-	free(parse);
-	// free(game->player);
-	// free(game->map->textures[NORTH]);
-	// free(game->map->textures[SOUTH]);
-	// free(game->map->textures[EAST]);
-	// free(game->map->textures[WEST]);
-	// free(game->map->textures);
-	free(map);
-	// free(game);
+	free_matrix(game->map->map);
+	free(game->map);
+	free(game->player);
+	free(game->map->textures[NORTH]->pixels);
+	free(game->map->textures[NORTH]);
+	free(game->map->textures[SOUTH]->pixels);
+	free(game->map->textures[SOUTH]);
+	free(game->map->textures[EAST]->pixels);
+	free(game->map->textures[EAST]);
+	free(game->map->textures[WEST]->pixels);
+	free(game->map->textures[WEST]);
+	free(game->map->textures);
+	free(game);
 }
 int main(int argc, char **argv)
 {
@@ -69,8 +68,8 @@ int main(int argc, char **argv)
 	t_parse *parse;
 	t_game_data *game;
 	int fd;
-	// mlx_t *mlx;
-	// int fd;
+	mlx_t *mlx;
+
 	atexit(f);
 	if (argc == 2)
 	{
@@ -89,19 +88,19 @@ int main(int argc, char **argv)
 			exit(1);
 		if (!get_map(map, argv[1]))
 			exit(1);
-		// mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
-		// if (!mlx)
-		// 	ft_error("Failed to create mlx\n");
-		// game = ft_calloc(1, sizeof(t_game_data));
-		// if (!game)
-		// 	ft_error("Failed to allocate memory for game\n");
-		// if (init_game(mlx, game, map, parse))
-		// 	return (1);
-		// mlx_cursor_hook(mlx, &mousehook, game);
-		// mlx_loop_hook(mlx, &keyhook, game);
-		// mlx_loop(mlx);
-		free_resources(game, map, parse);
-		// mlx_terminate(mlx);
+		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
+		if (!mlx)
+			ft_error("Failed to create mlx\n");
+		game = ft_calloc(1, sizeof(t_game_data));
+		if (!game)
+			ft_error("Failed to allocate memory for game\n");
+		if (init_game(mlx, game, map, parse))
+			return (1);
+		mlx_cursor_hook(mlx, &mousehook, game);
+		mlx_loop_hook(mlx, &keyhook, game);
+		mlx_loop(mlx);
+		mlx_terminate(mlx);
+		free_resources(game);
 	}
 	else
 		ft_error("Invalid number of arguments\n");

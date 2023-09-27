@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 20:01:54 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/27 23:59:22 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ int cast_all_rays(t_game_data *game);
 void cast_vertically(t_ray *ray, t_game_data *game);
 void cast_horizontally(t_ray *ray, t_game_data *game);
 void draw_3d_line(t_game_data *game, t_ray *ray);
+void free_resources(t_game_data *game);
 
 /**********************CONSTANTS*******************************/
 

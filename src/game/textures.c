@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 20:03:20 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/27 23:51:30 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void draw_texture(t_game_data *game, t_ray *ray, int height, int texture)
 void draw_line(t_game_data *game, t_ray *ray, int texture)
 {
     double line_height;
+
     line_height = get_line_height(game, ray);
     draw_texture(game, ray, line_height, texture);
 }

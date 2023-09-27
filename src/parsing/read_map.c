@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/27 22:14:05 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/27 23:42:03 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int find_size(t_map *map, int fd)
         if (just_spaces(line))
         {
             end = 1;
+            free(line);
             continue;
         }
         if (!just_spaces(line) && end == 1)
@@ -163,6 +164,7 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
     while (1)
     {
         line = get_next_line(fd);
+
         if (line == NULL)
             break;
         if (just_spaces(line))
@@ -176,12 +178,15 @@ int ft_parsing(t_parse *parse, int fd, t_map *map)
             return (free(line), ft_error("in parsing\n"));
         if (parse->map_found == 1 && parse->in < 6)
             return (free(line), ft_error("in parsing\n"));
+
         get_first_line(map, line, parse);
         if (map->f_line)
         {
             free(line);
+            line = NULL;
             break;
         }
+
         free(line);
     }
     if (!map->f_line)
@@ -245,9 +250,10 @@ char **get_map(t_map *map, char *file)
         line = get_next_line(fd);
         if (line == NULL)
             break;
-
         if (ft_strcmp(line, map->f_line) == 0)
+
             break;
+
         free(line);
     }
     // printf("this is the @ of no : %p *** \n  ", map->f_line);
@@ -266,6 +272,7 @@ char **get_map(t_map *map, char *file)
         if (line == NULL)
             break;
     }
+    free(line);
     close(fd);
     if (is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
         return (ft_printf("Invalid // map\n"), NULL);

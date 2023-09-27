@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/24 19:14:52 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 00:56:48 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void init_player(t_game_data *game)
 {
-    // TODO: free player
     game->player = malloc(sizeof(t_player));
     if (!game->player)
     {
@@ -57,5 +56,5 @@ int init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
     init_player(game);
     if (!game->player)
         return (1);
-    return (0);
+    return (free(parse->no), free(parse->so), free(parse->we), free(parse->ea), free(parse), 0);
 }
