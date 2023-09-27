@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/27 02:36:05 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 03:01:55 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,9 @@
 char *get_path(char *line)
 {
     char *trim;
-    char *p;
     trim = ft_strtrim(line, white_spaces);
     if (!trim)
         return (NULL);
-    p = trim;
-    while (*p)
-        p++;
-    p--;
-    if (*p != 'm' || *(p - 1) != 'p' || *(p - 2) != 'x' || *(p - 3) != '.')
-        return (free(trim), NULL);
     if (access(trim, F_OK | R_OK) == -1)
         return (free(trim), NULL);
     else
@@ -257,13 +250,11 @@ char **get_map(t_map *map, char *file)
             break;
      
         if (ft_strcmp(line, map->f_line) == 0)
-        {
-            free(map->f_line);
             break;
-        }
         free(line);
     
     }
+    free(map->f_line);
     map->map = ft_calloc(sizeof(char *), map->rows + 1);
     if (!map->map)
         return (ft_printf("Error malloc\n"), NULL);

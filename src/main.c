@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 02:40:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/27 04:33:07 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ void free_resources(t_game_data *game, t_map *map, t_parse *parse)
 	free(parse->we);
 	free(parse->ea);
 	free(parse);
-	free(map);
 	free(game->player);
 	free(game->map->textures[NORTH]);
 	free(game->map->textures[SOUTH]);
 	free(game->map->textures[EAST]);
 	free(game->map->textures[WEST]);
 	free(game->map->textures);
+	free(map);
 	// free(game->map);
-	// free(game);
+	free(game);
 }
 int main(int argc, char **argv)
 {
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 	int fd;
 	mlx_t *mlx;
 	// int fd;
-	atexit(f);
+	//atexit(f);
 	if (argc == 2)
 	{
 		if(check_file(argv[1]))
@@ -95,10 +95,7 @@ int main(int argc, char **argv)
 		if (ft_parsing(parse, fd, map))
 			exit(1);
 		if(!get_map(map,argv[1]) )
-		{
-			free_matrix(map->map);
 			exit(1);
-		}
 		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
 		if (!mlx)
 			ft_error("Failed to create mlx\n");
