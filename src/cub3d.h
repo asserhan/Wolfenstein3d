@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/25 14:07:15 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/27 02:27:20 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "../lib/libft/libft.h"
 #include <fcntl.h>
 #include <math.h>
-#include "/Users/otait-ta/Desktop/MLX42/include/MLX42/MLX42.h"
+#include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
