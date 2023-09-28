@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
+#    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/09/27 22:43:12 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/09/28 18:36:34 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # Variables
 NAME = cub3d
 CC = cc
-FLAGS = #-Wall -Werror -Wextra  -g
+FLAGS = -Wall -Werror -Wextra  -g
 MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
 
 RM = rm -rf

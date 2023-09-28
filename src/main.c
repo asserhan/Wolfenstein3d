@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/28 01:02:33 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 18:38:50 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,16 @@ int main(int argc, char **argv)
 			return (ft_error("Failed to allocate memory\n"), 1);
 		init_file(parse, map);
 		if (ft_parsing(parse, fd, map))
+		{
+			close(fd);
 			exit(1);
-		if (!get_map(map, argv[1]))
+		}
+		if (get_map(map, argv[1]))
+		{
+			close(fd);
 			exit(1);
+		}
+		close(fd);
 		mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
 		if (!mlx)
 			ft_error("Failed to create mlx\n");
