@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 10:40:52 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/27 23:05:55 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:32:17 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char *p;
-	size_t size;
-	size_t i;
+	char	*p;
+	size_t	size;
+	size_t	i;
 
 	if (!s1)
 		return (NULL);
@@ -36,11 +36,11 @@ char *ft_strdup(const char *s1)
 	return (p);
 }
 
-char *read_and_add(int fd, char *reserve)
+char	*read_and_add(int fd, char *reserve)
 {
-	char *buff;
-	char *tmp;
-	ssize_t read_line;
+	char	*buff;
+	char	*tmp;
+	ssize_t	read_line;
 
 	read_line = 1;
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
@@ -58,16 +58,16 @@ char *read_and_add(int fd, char *reserve)
 		reserve = ft_strjoin(tmp, buff);
 		free(tmp);
 		if (ft_strchr(reserve, '\n'))
-			break;
+			break ;
 	}
 	free(buff);
 	return (reserve);
 }
 
-char *update_reserve(char **reserve, int i)
+char	*update_reserve(char **reserve, int i)
 {
-	char *tmp;
-	int j;
+	char	*tmp;
+	int		j;
 
 	tmp = (char *)malloc(sizeof(char) * (ft_strlen(*reserve) - i + 1));
 	if (!tmp)
@@ -85,11 +85,11 @@ char *update_reserve(char **reserve, int i)
 	return (tmp);
 }
 
-char *extract(char **reserve)
+char	*extract(char **reserve)
 {
-	char *line;
-	int i;
-	int j;
+	char	*line;
+	int		i;
+	int		j;
 
 	i = 0;
 	if (*reserve == NULL)
@@ -112,10 +112,10 @@ char *extract(char **reserve)
 	return (line);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char *reserve;
-	char *line;
+	static char	*reserve;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

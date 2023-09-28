@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/28 18:44:15 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/28 21:38:44 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_borders(t_map *map)
 	i = -1;
 	while (++i < map->rows)
 	{
-		line = ft_strtrim(map->map[i], white_spaces);
+		line = ft_strtrim(map->map[i], WHITE_SPACES);
 		if (line[0] != '1' || line[ft_strlen(line) - 1] != '1')
 		{
 			free(line);

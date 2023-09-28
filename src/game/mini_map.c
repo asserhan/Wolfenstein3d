@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:03:20 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/25 14:04:00 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:41:39 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int check_wall(int x, int y, t_map *map)
+int	check_wall(int x, int y, t_map *map)
 {
-
-    if (x >= 0 && x < map->cols && y >= 0 && y < map->rows)
-    {
-        if (map->map[y][x] == '1')
-            return (1);
-    }
-    return (0);
+	if (x >= 0 && x < map->cols && y >= 0 && y < map->rows)
+	{
+		if (map->map[y][x] == '1')
+			return (1);
+	}
+	return (0);
 }

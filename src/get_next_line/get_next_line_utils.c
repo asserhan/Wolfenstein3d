@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 15:49:26 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/27 23:06:04 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 19:11:48 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*s)
@@ -25,10 +25,10 @@ size_t ft_strlen(const char *s)
 	return (i);
 }
 
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t src_len;
+	size_t	i;
+	size_t	src_len;
 
 	i = 0;
 	src_len = ft_strlen(src);
@@ -44,11 +44,11 @@ size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (src_len);
 }
 
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
-	size_t l_dst;
-	size_t l_src;
+	size_t	i;
+	size_t	l_dst;
+	size_t	l_src;
 
 	l_src = ft_strlen(src);
 	i = 0;
@@ -66,11 +66,11 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (l_dst + l_src);
 }
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *p;
-	size_t len;
-	size_t i;
+	char	*p;
+	size_t	len;
+	size_t	i;
 
 	i = 0;
 	if (!s1 || !s2)
@@ -87,7 +87,7 @@ char *ft_strjoin(char const *s1, char const *s2)
 	return (p);
 }
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{
