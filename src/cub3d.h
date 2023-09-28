@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 23:59:22 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 03:55:01 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	// to change names
 	double x;
 	double y;
-	double turn_direction;
-	double walk_direction;
 	double player_vue;
 	double move_speed;
 	double rotation_speed;

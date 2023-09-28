@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 12:58:06 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/27 23:51:30 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 04:01:00 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ double get_line_height(t_game_data *game, t_ray *ray)
     double distance_to_plane;
 
     distance_to_plane = (WINDOW_WIDTH / 2) / tan(FOV_ANGLE / 2);
-    ray->distance = ray->distance * cos(ray->ray_angle - game->player->player_vue);
+    ray->distance = ray->distance * cos(game->player->player_vue - ray->ray_angle);
     line_height = (SQUARE_SIZE / ray->distance) * distance_to_plane;
     return (line_height);
 }
@@ -42,7 +42,7 @@ int get_pixel_color(mlx_texture_t *tex_data, uint32_t x, uint32_t y)
         pixel_color = get_rgba(0, 0, 0, 255);
     return pixel_color;
 }
-void draw_line_texture(t_game_data *game, t_ray *ray, int height, int texture)
+void draw_line_texture(t_game_data *game, t_ray *ray, double height, int texture)
 {
 
     double tile_x;
@@ -62,7 +62,7 @@ void draw_line_texture(t_game_data *game, t_ray *ray, int height, int texture)
     {
         if (ray->id >= 0 && ray->id < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
         {
-            tex_y = (y - y_start) * (game->map->textures[texture]->height / ((y_start + height) - y_start));
+            tex_y = (y - y_start) * (game->map->textures[texture]->height / height);
             int color = get_pixel_color(game->map->textures[texture], tex_x, tex_y);
             mlx_put_pixel(game->img, ray->id, y, color);
         }

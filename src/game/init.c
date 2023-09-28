@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/28 00:56:48 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 03:54:20 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void init_player(t_game_data *game)
     }
     game->player->x = game->map->player_x * SQUARE_SIZE + SQUARE_SIZE / 2;
     game->player->y = game->map->player_y * SQUARE_SIZE + SQUARE_SIZE / 2;
-    game->player->walk_direction = 0;
     if (game->map->player_vue == 'N')
         game->player->player_vue = 3 * M_PI_2;
     else if (game->map->player_vue == 'S')

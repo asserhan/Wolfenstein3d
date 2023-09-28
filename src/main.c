@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/28 00:54:14 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 01:02:33 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int main(int argc, char **argv)
 			return (1);
 		mlx_cursor_hook(mlx, &mousehook, game);
 		mlx_loop_hook(mlx, &keyhook, game);
+		mlx_set_cursor_mode(mlx, MLX_MOUSE_HIDDEN);
 		mlx_loop(mlx);
 		mlx_terminate(mlx);
 		free_resources(game);
