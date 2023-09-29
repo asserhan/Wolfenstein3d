@@ -6,11 +6,11 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:41:29 by hasserao          #+#    #+#             */
-/*   Updated: 2022/10/25 13:54:30 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:39:34 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {

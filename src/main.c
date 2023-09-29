@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/28 23:50:11 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:54:31 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(char *str)
 {
-	ft_printf("Error : ");
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	return (1);
 }
@@ -82,10 +82,7 @@ int	ft_init_pars(t_map *map, t_parse *parse, char **argv)
 	close(fd);
 	return (0);
 }
-void ff(void)
-{
-	system("leaks cub3d");
-}
+
 int	main(int argc, char **argv)
 {
 	t_map	*map;
@@ -93,7 +90,6 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		atexit(ff);
 		if (check_file(argv[1]))
 			return (ft_error("Invalid file\n"), 1);
 		parse = ft_calloc(1, sizeof(t_parse));

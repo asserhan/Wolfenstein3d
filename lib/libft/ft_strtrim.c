@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:11:11 by hasserao          #+#    #+#             */
-/*   Updated: 2022/10/25 14:18:22 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:38:47 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i = 0;
 		j = ft_strlen (s1) - 1;
 		while (s1[i] && find_set(set, s1[i]))
-				i++;
+			i++;
 		while (s1[j] && find_set(set, s1[j]))
-				j--;
+			j--;
 		p = ft_substr(s1, i, (j - i) + 1);
 	}
 	return (p);

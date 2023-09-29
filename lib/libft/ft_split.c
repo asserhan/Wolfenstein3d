@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 23:39:05 by hasserao          #+#    #+#             */
-/*   Updated: 2023/07/20 15:23:53 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:39:45 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static size_t	nbr_words(char const *s, char c)
 static void	next_word(const char *s, size_t *begin, size_t *end, char c)
 {
 	while (s[*begin] == c)
-			(*begin)++;
-		*end = *begin;
+		(*begin)++;
+	*end = *begin;
 	while (s[*end] && s[*end] != c)
-			(*end)++;
+		(*end)++;
 }
 
 static char	**free_strings(char **str)
@@ -49,9 +49,9 @@ static char	**free_strings(char **str)
 	i = 0;
 	while (str[i])
 	{
-		free (str[i++]);
+		free(str[i++]);
 	}
-	free (str);
+	free(str);
 	return (NULL);
 }
 
@@ -61,9 +61,10 @@ char	**ft_split(char const *s, char c)
 	size_t	begin;
 	size_t	end;
 	size_t	i;
+
 	if (s == NULL)
 		return (NULL);
-	strings = (char **) malloc((nbr_words(s, c) + 1) * sizeof(char *));
+	strings = (char **)malloc((nbr_words(s, c) + 1) * sizeof(char *));
 	if (!strings)
 		return (NULL);
 	begin = 0;
@@ -80,5 +81,4 @@ char	**ft_split(char const *s, char c)
 	}
 	strings[i] = NULL;
 	return (strings);
-	
 }

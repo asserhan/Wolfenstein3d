@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:58:11 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/28 23:37:57 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:54:55 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 int	matrix_size(char **tab)
 {
 	int	count;
-	int i;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -71,23 +71,23 @@ char	*check_path(char *line)
 		return (trim);
 }
 
-int  check_digit(char **str)
+int	check_digit(char **str)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
-	while(i < matrix_size(str))
+	while (i < matrix_size(str))
 	{
 		j = 0;
-		while(str[i][j])
+		while (str[i][j])
 		{
-			if (!ft_isdigit(str[i][j]) && str[i][j] != ' ' && str[i][j] != '\t' && str[i][j] != '\n')
+			if (!ft_isdigit(str[i][j]) && str[i][j] != ' ' && str[i][j] != '\t'
+				&& str[i][j] != '\n')
 				return (1);
 			j++;
 		}
 		i++;
 	}
 	return (0);
-
 }

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/28 22:26:01 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 16:56:46 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ char				*extract(char **reserve);
 
 int					ft_error(char *str);
 int					check_digit(char **str);
+int					valid_comma(char *str);
+char				**matrix_push_back(char **matrix, char *back);
 int					matrix_size(char **tab);
 int					ft_strcmp(const char *s1, const char *s2);
 void				free_matrix(char **tab);

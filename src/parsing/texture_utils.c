@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:03:51 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/28 18:47:35 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:38:18 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,23 @@ int	east_path(t_parse *parse, char **tab)
 	parse->ea = check_path(tab[1]);
 	if (!parse->ea)
 		return (free_matrix(tab), ft_error("in textures\n"));
+	return (0);
+}
+
+int	valid_comma(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	if (count != 2)
+		return (1);
 	return (0);
 }

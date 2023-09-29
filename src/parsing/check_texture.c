@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/28 23:46:50 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:50:42 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,90 +37,47 @@ int	floor_ceiling(t_parse *parse, char c, char **rgb)
 	free_matrix(rgb);
 	return (0);
 }
-void print_matrix(char **tab)
+
+int	join_rgb(char **tab, char ***join, int i)
 {
-	int i = 0;
-	while (tab[i])
+	char	**rgb;
+	char	**tmp;
+	int		j;
+
+	rgb = ft_split(tab[i], ',');
+	if (!rgb)
+		return (free_matrix(rgb), free_matrix(*join), ft_error("split\n"));
+	if (check_digit(rgb))
+		return (free_matrix(rgb), free_matrix(*join), ft_error("in b colors\n"));
+	j = 0;
+	while (rgb[j])
 	{
-		ft_printf("**%s*\n", tab[i]);
-		i++;
+		tmp = *join;
+		*join = matrix_push_back(tmp, rgb[j]);
+		free(tmp);
+		j++;
 	}
-}
-
-
-char	*ft_strcpy(char *dest, const char *src)
-{
-	char	*p;
-
-	p = dest;
-	while (*src)
-	{
-		*p++ = *src++;
-	}
-	*p = '\0';
-	return (dest);
-}
-
-char	**matrix_push_back(char **matrix, char *back)
-{
-	char	**new_matrix;
-	char	*new_row;
-	int		count;
-	int		i;
-
-	count = matrix_size(matrix);
-	new_matrix = (char **)ft_calloc((count + 1) + 1, sizeof(char *));
-	if (!new_matrix)
-		return (NULL);
-	i = 0;
-	while (matrix && matrix[i] != NULL)
-	{
-		new_matrix[i] = ft_strdup(matrix[i]);
-		free(matrix[i]);
-		i++;
-	}
-	new_row = (char *)malloc(sizeof(char) * (ft_strlen(back) + 1));
-	if (!new_row)
-		return (NULL);
-	ft_strcpy(new_row, back);
-	new_matrix[count] = new_row;
-	new_matrix[count + 1] = NULL;
-	return (new_matrix);
+	free_matrix(rgb);
+	return (0);
 }
 
 int	get_color(t_parse *parse, char **tab)
 {
-	(void)parse;
-	char	**rgb;
-	char **join = ft_calloc(1, sizeof(char *));
-	char **tmp;
-	
-	int i = 1;
-	int j = 0;
+	char	**join;
+	int		i;
+
+	join = ft_calloc(1, sizeof(char *));
+	i = 1;
 	while (tab[i])
 	{
-		rgb = ft_split(tab[i], ',');
+		if (join_rgb(tab, &join, i))
+			return (1);
 		i++;
-		if (!rgb)
-			return (free_matrix(rgb), ft_error("split\n"));
-		
-		if(check_digit(rgb))
-			return (free_matrix(rgb), ft_error("in b colors\n"));
-		j = 0;
-		while (rgb[j])
-		{
-			tmp = join;
-			join = matrix_push_back(tmp, rgb[j]);
-			free(tmp);
-			j++;
-		}
-	
-		free_matrix(rgb);
 	}
 	if (matrix_size(join) != 3)
-			return (free_matrix(join), ft_error("in a1 colors\n"));
+		return (free_matrix(join), ft_error("in a1 colors\n"));
 	if (floor_ceiling(parse, tab[0][0], join))
-			return (1);
+		return (1);
 	return (0);
 }
 
@@ -156,14 +113,18 @@ int	check_textures(t_parse *parse, char *line)
 	line = skip_spaces(line);
 	if (line[0] == '1')
 		parse->map_found = 1;
+	if (line[0] == 'C' || line[0] == 'F')
+	{
+		if (valid_comma(line))
+			return (ft_error("in colors\n"));
+	}
 	tab = ft_split(line, ' ');
 	if (!tab)
 		return (free_matrix(tab), ft_error("in split\n"));
 	if (ft_textures(parse, tab))
 		return (1);
-	else if (tab[0][0] == 'F' || tab[0][0] == 'C')
+	else if (ft_strcmp(tab[0], "F") == 0 || ft_strcmp(tab[0], "C") == 0)
 	{
-		
 		if (get_color(parse, tab))
 			return (free_matrix(tab), 1);
 	}
