@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:53:49 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 18:30:30 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:49:17 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_player(t_game_data *game)
 		game->player->player_vue = M_PI;
 }
 
-int	init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
+int	init_game(mlx_t *mlx, t_game_data *game, t_parse *parse)
 {
 	mlx_image_t	*img;
 
@@ -41,8 +41,8 @@ int	init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
 		return (ft_error("Failed to create image\n"), 1);
 	game->prev_x = -1;
 	game->img = img;
-	game->map = map;
 	game->mlx = mlx;
+	game->parse = parse;
 	game->map->textures = malloc(sizeof(mlx_image_t *) * 4);
 	if (!game->map->textures)
 		return (ft_error("Failed to allocate memory for textures\n"), 1);
@@ -50,13 +50,15 @@ int	init_game(mlx_t *mlx, t_game_data *game, t_map *map, t_parse *parse)
 	game->map->textures[SOUTH] = mlx_load_png(parse->so);
 	game->map->textures[EAST] = mlx_load_png(parse->ea);
 	game->map->textures[WEST] = mlx_load_png(parse->we);
+	if (!game->map->textures[NORTH] || !game->map->textures[SOUTH]
+		|| !game->map->textures[EAST] || !game->map->textures[WEST])
+		return (ft_error("Failed to load textures\n"), 1);
 	game->map->floor = parse->f;
 	game->map->ceiling = parse->c;
 	init_player(game);
 	if (!game->player)
 		return (1);
-	return (free(parse->no), free(parse->so), free(parse->we), free(parse->ea),
-		free(parse), 0);
+	return (0);
 }
 
 void	init_file(t_parse *parse, t_map *map)

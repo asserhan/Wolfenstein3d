@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 18:15:10 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:46:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_game_data
 	t_map			*map;
 	mlx_t			*mlx;
 	int				prev_x;
+	t_parse			*parse;
 }					t_game_data;
 
 typedef struct s_ray
@@ -166,8 +167,7 @@ void				init_file(t_parse *parse, t_map *map);
 
 /***REY CASTING*/
 
-int					init_game(mlx_t *mlx, t_game_data *game, t_map *map,
-						t_parse *parse);
+int					init_game(mlx_t *mlx, t_game_data *game, t_parse *parse);
 int					check_obstacles(t_game_data *game, double new_x,
 						double new_y);
 void				keyhook(void *param);

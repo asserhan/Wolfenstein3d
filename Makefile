@@ -6,7 +6,7 @@
 #    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/09/29 18:47:32 by hasserao         ###   ########.fr        #
+#    Updated: 2023/09/29 20:52:16 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,11 @@ LIBTFT = lib/libft/libft.a
 PRINTF = lib/ft_printf/libftprintf.a
 OBJ_DIR = obj
 BNS_OBJ_DIR = obj_bonus
-SRC := $(notdir $(shell find src -name '*.c'))
-BONUS_SRC := $(notdir $(shell find bonus -name '*.c'))
+SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment.c free_ressource.c \
+ ray_cast.c textures.c get_next_line.c get_next_line_utils.c hooks.c main.c check_map.c check_texture.c dimensions.c map_utils.c read_map.c texture_utils.c utils.c
+BONUS_SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment_bonus.c ray_cast.c textures.c get_next_line.c get_next_line_utils.c\
+ hooks_bonus.c main.c check_map.c check_texture.c dimensions.c map_utils.c read_map.c texture_utils.c utils.c free_ressource.c
+
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 BONUS_OBJ := $(addprefix $(BNS_OBJ_DIR)/, $(BONUS_SRC:.c=.o))
 LEAKS =  -g

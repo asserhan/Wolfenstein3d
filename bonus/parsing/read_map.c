@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/29 18:30:30 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:49:48 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**check_map(t_map *map, char *line, int fd)
 	i = -1;
 	map->map = ft_calloc(sizeof(char *), map->rows + 1);
 	if (!map->map)
-		return (ft_printf("Error malloc\n"), NULL);
+		return (ft_error("Error malloc\n"), NULL);
 	while (++i < map->rows)
 	{
 		map->map[i] = ft_calloc(sizeof(char), map->cols + 1);
@@ -77,11 +77,11 @@ char	**check_map(t_map *map, char *line, int fd)
 	free(line);
 	close(fd);
 	if (is_wall(map->map[0]) || is_wall(map->map[map->rows - 1]))
-		return (ft_printf("Invalid // map\n"), NULL);
+		return (ft_error("Invalid map\n"), NULL);
 	if (check_spaces(map))
-		return (ft_printf("Invalid ++map\n"), NULL);
+		return (ft_error("Invalid map\n"), NULL);
 	if (check_borders(map))
-		return (ft_printf("Invalid **map\n"), NULL);
+		return (ft_error("Invalid map\n"), NULL);
 	return (map->map);
 }
 

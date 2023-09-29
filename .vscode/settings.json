@@ -13,6 +13,7 @@
 		"vector": "c",
 		"stdio.h": "c",
 		"chrono": "c",
-		"cub3d_bonus.h": "c"
+		"cub3d_bonus.h": "c",
+		"cub3d.h": "c"
 	}
 }

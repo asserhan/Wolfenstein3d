@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/29 17:50:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:59:13 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	join_rgb(char **tab, char ***join, int i)
 	if (!rgb)
 		return (free_matrix(rgb), free_matrix(*join), ft_error("split\n"));
 	if (check_digit(rgb))
-		return (free_matrix(rgb), free_matrix(*join), ft_error("in b colors\n"));
+		return (free_matrix(rgb), free_matrix(*join), ft_error("in colors\n"));
 	j = 0;
 	while (rgb[j])
 	{
@@ -75,7 +75,7 @@ int	get_color(t_parse *parse, char **tab)
 		i++;
 	}
 	if (matrix_size(join) != 3)
-		return (free_matrix(join), ft_error("in a1 colors\n"));
+		return (free_matrix(join), ft_error("in colors\n"));
 	if (floor_ceiling(parse, tab[0][0], join))
 		return (1);
 	return (0);

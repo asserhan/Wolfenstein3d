@@ -1,22 +1,22 @@
 
- F    0,220,215
+ F    10,220,215
 
-       NO /Users/hasserao/Desktop/Cub3D/maps/NO.png
+       NO /Users/hasserao/Desktop/Cub3D/maps/no.png
 
 
 
     
 
-SO    /Users/hasserao/Desktop/Cub3D/maps/SO.png
-WE /Users/hasserao/Desktop/Cub3D/maps/WE.png 
+SO    /Users/hasserao/Desktop/Cub3D/maps/so.png
+WE /Users/hasserao/Desktop/Cub3D/maps/we.png 
 
-EA    /Users/hasserao/Desktop/Cub3D/maps/EA.png
-
-
+EA    /Users/hasserao/Desktop/Cub3D/maps/ea.png
 
 
 
-C  0,60,45
+
+
+C  0,50,120
 
 
 11111111111111

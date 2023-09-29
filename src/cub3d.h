@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 16:56:46 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 20:53:14 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_game_data
 	t_player		*player;
 	t_map			*map;
 	mlx_t			*mlx;
+	t_parse			*parse;
 	int				prev_x;
 }					t_game_data;
 
@@ -135,6 +136,8 @@ char				*extract(char **reserve);
 /************************/
 
 int					ft_error(char *str);
+void				free_resources(t_game_data *game);
+void				free_textures(t_game_data *game);
 int					check_digit(char **str);
 int					valid_comma(char *str);
 char				**matrix_push_back(char **matrix, char *back);
@@ -166,7 +169,7 @@ void				init_file(t_parse *parse, t_map *map);
 
 /***REY CASTING*/
 
-int					init_game(mlx_t *mlx, t_game_data *game, t_map *map,
+int					init_game(mlx_t *mlx, t_game_data *game, 
 						t_parse *parse);
 int					check_obstacles(t_game_data *game, double new_x,
 						double new_y);
