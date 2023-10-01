@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 20:53:14 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/01 22:06:22 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -64,6 +64,7 @@ typedef struct s_parse
 	t_rgb			c;
 	int				in;
 	int				map_found;
+	int 			valid;
 
 }					t_parse;
 typedef struct s_map

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 20:46:04 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/01 20:59:06 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "/Users/hasserao/Desktop/MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>

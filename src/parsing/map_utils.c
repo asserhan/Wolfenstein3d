@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:19:52 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/28 18:46:48 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:28:04 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_wall(char *line)
 {
 	while (*line)
 	{
-		if (*line == '0')
+		if (*line != '1' && *line != ' ' && *line != '\n' && *line != '\t') 
 			return (1);
 		line++;
 	}

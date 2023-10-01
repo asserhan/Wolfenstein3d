@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/29 20:39:29 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/01 22:08:06 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	read_map(t_parse *parse, int fd, t_map *map, char *line)
 			free(line);
 			continue ;
 		}
+		parse->valid = 0;
 		if (check_textures(parse, line))
 			return (free(line), 1);
 		if (parse->in > 6)
