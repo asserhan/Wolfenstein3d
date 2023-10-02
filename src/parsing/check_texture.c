@@ -6,23 +6,12 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 19:17:54 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:44:57 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	print_matrix(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("tab[%d] = *%s*\n", i, tab[i]);
-		i++;
-	}
-}
 int	floor_ceiling(t_parse *parse, char c, char **rgb)
 {
 	if (c == 'F')
@@ -71,11 +60,13 @@ int	join_rgb(char **tab, char ***join, int i)
 	free_matrix(rgb);
 	return (0);
 }
+
 int	get_color(t_parse *parse, char **tab)
 {
 	char	**join;
 	int		i;
 
+	parse->valid = 1;
 	tab[matrix_size(tab) - 1][ft_strlen(tab[matrix_size(tab) - 1]) - 1] = '\0';
 	join = ft_calloc(1, sizeof(char *));
 	i = 1;
@@ -133,11 +124,8 @@ int	check_textures(t_parse *parse, char *line)
 		parse->valid = 1;
 		parse->map_found = 1;
 	}
-	if (line[0] == 'C' || line[0] == 'F')
-	{
-		if (valid_comma(line))
-			return (ft_error("in colors\n"));
-	}
+	if ((line[0] == 'C' || line[0] == 'F') && valid_comma(line))
+		return (ft_error("in colors\n"));
 	tab = ft_split(line, ' ');
 	if (!tab)
 		return (free_matrix(tab), ft_error("in split\n"));
@@ -145,7 +133,6 @@ int	check_textures(t_parse *parse, char *line)
 		return (1);
 	else if (ft_strcmp(tab[0], "F") == 0 || ft_strcmp(tab[0], "C") == 0)
 	{
-		parse->valid = 1;
 		if (get_color(parse, tab))
 			return (free_matrix(tab), 1);
 	}

@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:03:51 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 19:32:17 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:41:06 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	north_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
-	if(parse->no)
+	if (parse->no)
 		free(parse->no);
 	parse->no = check_path(line);
 	if (!parse->no)
@@ -26,7 +26,7 @@ int	north_path(t_parse *parse, char **tab, char *line)
 int	south_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
-	if(parse->so)
+	if (parse->so)
 		free(parse->so);
 	parse->so = check_path(line);
 	if (!parse->so)
@@ -37,7 +37,7 @@ int	south_path(t_parse *parse, char **tab, char *line)
 int	west_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
-	if(parse->we)
+	if (parse->we)
 		free(parse->we);
 	parse->we = check_path(line);
 	if (!parse->we)
@@ -48,7 +48,7 @@ int	west_path(t_parse *parse, char **tab, char *line)
 int	east_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
-	if(parse->ea)
+	if (parse->ea)
 		free(parse->ea);
 	parse->ea = check_path(line);
 	if (!parse->ea)

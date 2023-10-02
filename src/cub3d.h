@@ -6,16 +6,16 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/02 15:57:45 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:48:42 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -64,7 +64,7 @@ typedef struct s_parse
 	t_rgb			c;
 	int				in;
 	int				map_found;
-	int 			valid;
+	int				valid;
 
 }					t_parse;
 typedef struct s_map
@@ -151,11 +151,11 @@ char				*skip_spaces(char *line);
 int					just_spaces(char *line);
 char				*check_path(char *line);
 int					check_spaces(t_map *map);
-int					north_path(t_parse *parse, char **tab,char *line);
-int					west_path(t_parse *parse, char **tab,char *line);
-int					south_path(t_parse *parse, char **tab,char *line);
-int					east_path(t_parse *parse, char **tab,char *line);
-int					ft_textures(t_parse *parse, char **tab,char *line);
+int					north_path(t_parse *parse, char **tab, char *line);
+int					west_path(t_parse *parse, char **tab, char *line);
+int					south_path(t_parse *parse, char **tab, char *line);
+int					east_path(t_parse *parse, char **tab, char *line);
+int					ft_textures(t_parse *parse, char **tab, char *line);
 void				get_first_line(t_map *map, char *line, t_parse *parse);
 int					read_for_dimensions(t_map *map, char *line, int fd);
 int					find_size(t_map *map, int fd);
@@ -170,8 +170,7 @@ void				init_file(t_parse *parse, t_map *map);
 
 /***REY CASTING*/
 
-int					init_game(mlx_t *mlx, t_game_data *game, 
-						t_parse *parse);
+int					init_game(mlx_t *mlx, t_game_data *game, t_parse *parse);
 int					check_obstacles(t_game_data *game, double new_x,
 						double new_y);
 void				keyhook(void *param);

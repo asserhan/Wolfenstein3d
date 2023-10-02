@@ -6,11 +6,20 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 19:29:17 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:40:51 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	check_duplicate(t_parse *parse)
+{
+	if (parse->in > 6)
+		return (ft_error("in parsing\n"));
+	if (parse->map_found == 1 && parse->in < 6)
+		return (ft_error("in parsing\n"));
+	return (0);
+}
 
 int	read_map(t_parse *parse, int fd, t_map *map, char *line)
 {
@@ -27,10 +36,8 @@ int	read_map(t_parse *parse, int fd, t_map *map, char *line)
 		parse->valid = 0;
 		if (check_textures(parse, line))
 			return (free(line), 1);
-		if (parse->in > 6)
-			return (free(line),ft_error("in parsing\n"));
-		if (parse->map_found == 1 && parse->in < 6)
-			return (free(line), ft_error("in parsing\n"));
+		if (check_duplicate(parse))
+			return (free(line), 1);
 		get_first_line(map, line, parse);
 		if (map->f_line)
 		{
