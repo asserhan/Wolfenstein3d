@@ -6,16 +6,16 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:03:51 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 00:07:23 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:30:21 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	north_path(t_parse *parse, char **tab)
+int	north_path(t_parse *parse, char **tab,char *line)
 {
 	parse->in++;
-	parse->no = check_path(tab[1]);
+	parse->no = check_path(line);
 	if (!parse->no)
 		return (free_matrix(tab), ft_error("in textures\n"));
 	return (0);

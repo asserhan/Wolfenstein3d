@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/01 23:51:13 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:30:40 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,11 @@ char				*skip_spaces(char *line);
 int					just_spaces(char *line);
 char				*check_path(char *line);
 int					check_spaces(t_map *map);
-int					north_path(t_parse *parse, char **tab);
+int					north_path(t_parse *parse, char **tab,char *line);
 int					west_path(t_parse *parse, char **tab);
 int					south_path(t_parse *parse, char **tab);
 int					east_path(t_parse *parse, char **tab);
-int					ft_textures(t_parse *parse, char **tab);
+int					ft_textures(t_parse *parse, char **tab,char *line);
 void				get_first_line(t_map *map, char *line, t_parse *parse);
 int					read_for_dimensions(t_map *map, char *line, int fd);
 int					find_size(t_map *map, int fd);

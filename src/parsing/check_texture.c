@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 01:17:33 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:29:59 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,22 @@ int	get_color(t_parse *parse, char **tab)
 	return (0);
 }
 
-int	ft_textures(t_parse *parse, char **tab)
+int	ft_textures(t_parse *parse, char **tab,char *line)
 {
-
+	char *tmp;
+	tmp = ft_strdup(line);
+	int i = -1;
+	while(tmp[++i])
+	{
+		if(tmp[i] == ' ')
+			break;
+	}
+	tmp = ft_substr(tmp, i, ft_strlen(tmp) - i);
+	printf("tmp = *%s*\n", tmp);
 	if (ft_strcmp(tab[0], "NO") == 0)
 	{
 		parse->valid = 1;
-		if (north_path(parse, tab))
+		if (north_path(parse, tab, tmp))
 			return (1);
 	}
 	else if (ft_strcmp(tab[0], "SO") == 0)
@@ -126,7 +135,7 @@ int	check_textures(t_parse *parse, char *line)
 {
 	char	**tab;
 
-	line = ft_strtrim(line, " ");
+	line = skip_spaces(line);
 	if (line[0] == '1')
 	{
 		parse->valid = 1;
@@ -140,11 +149,8 @@ int	check_textures(t_parse *parse, char *line)
 		if (valid_comma(line))
 			return (ft_error("in colors\n"));
 	}
-	if (ft_textures(parse, tab))
-	{
-			printf("%s\n",line);
+	if (ft_textures(parse, tab,line))
 		return (1);
-	}
 	else if (ft_strcmp(tab[0], "F") == 0 || ft_strcmp(tab[0], "C") == 0)
 	{
 		parse->valid = 1;
