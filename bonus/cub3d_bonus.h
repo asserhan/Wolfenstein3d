@@ -6,16 +6,16 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/01 20:59:06 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:52:20 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
@@ -64,6 +64,7 @@ typedef struct s_parse
 	t_rgb			c;
 	int				in;
 	int				map_found;
+	int				valid;
 
 }					t_parse;
 typedef struct s_map
@@ -100,8 +101,8 @@ typedef struct s_game_data
 	t_player		*player;
 	t_map			*map;
 	mlx_t			*mlx;
-	int				prev_x;
 	t_parse			*parse;
+	int				prev_x;
 }					t_game_data;
 
 typedef struct s_ray
@@ -136,6 +137,8 @@ char				*extract(char **reserve);
 /************************/
 
 int					ft_error(char *str);
+void				free_resources(t_game_data *game);
+void				free_textures(t_game_data *game);
 int					check_digit(char **str);
 int					valid_comma(char *str);
 char				**matrix_push_back(char **matrix, char *back);
@@ -148,11 +151,11 @@ char				*skip_spaces(char *line);
 int					just_spaces(char *line);
 char				*check_path(char *line);
 int					check_spaces(t_map *map);
-int					north_path(t_parse *parse, char **tab);
-int					west_path(t_parse *parse, char **tab);
-int					south_path(t_parse *parse, char **tab);
-int					east_path(t_parse *parse, char **tab);
-int					ft_textures(t_parse *parse, char **tab);
+int					north_path(t_parse *parse, char **tab, char *line);
+int					west_path(t_parse *parse, char **tab, char *line);
+int					south_path(t_parse *parse, char **tab, char *line);
+int					east_path(t_parse *parse, char **tab, char *line);
+int					ft_textures(t_parse *parse, char **tab, char *line);
 void				get_first_line(t_map *map, char *line, t_parse *parse);
 int					read_for_dimensions(t_map *map, char *line, int fd);
 int					find_size(t_map *map, int fd);

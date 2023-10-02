@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:23:15 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/29 18:30:30 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:58:09 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ int	invalid_spaces(t_map *map, int i, int j)
 {
 	if (map->map[i][j] == ' ' || map->map[i][j] == '\t')
 	{
-		if (i != 0 && map->map[i - 1][j] == '0')
+		if (i != 0 && map->map[i - 1][j] != '1' && map->map[i - 1][j] != ' '
+			&& map->map[i - 1][j] != '\n')
 			return (1);
-		if (i != map->rows - 1 && map->map[i + 1][j] == '0')
+		if (i != map->rows - 1 && map->map[i + 1][j] != '1' && map->map[i
+			+ 1][j] != ' ' && map->map[i + 1][j] != '\n')
 			return (1);
-		if (j != 0 && map->map[i][j - 1] == '0')
+		if (j != 0 && map->map[i][j - 1] != '1' && map->map[i][j - 1] != ' '
+			&& map->map[i][j - 1] != '\n')
 			return (1);
-		if (j != map->cols - 1 && map->map[i][j + 1] == '0')
+		if (j != map->cols - 1 && map->map[i][j + 1] != '1' && map->map[i][j
+			+ 1] != ' ' && map->map[i][j + 1] != '\n')
 			return (1);
 	}
 	return (0);
