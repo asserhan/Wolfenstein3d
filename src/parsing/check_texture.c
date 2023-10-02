@@ -6,15 +6,17 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 01:29:59 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:17:54 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void print_matrix(char **tab)
+void	print_matrix(char **tab)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (tab[i])
 	{
 		printf("tab[%d] = *%s*\n", i, tab[i]);
@@ -52,7 +54,7 @@ int	join_rgb(char **tab, char ***join, int i)
 	char	**rgb;
 	char	**tmp;
 	int		j;
-	
+
 	rgb = ft_split(tab[i], ',');
 	if (!rgb)
 		return (free_matrix(rgb), free_matrix(*join), ft_error("split\n"));
@@ -73,7 +75,7 @@ int	get_color(t_parse *parse, char **tab)
 {
 	char	**join;
 	int		i;
-	
+
 	tab[matrix_size(tab) - 1][ft_strlen(tab[matrix_size(tab) - 1]) - 1] = '\0';
 	join = ft_calloc(1, sizeof(char *));
 	i = 1;
@@ -92,40 +94,30 @@ int	get_color(t_parse *parse, char **tab)
 	return (0);
 }
 
-int	ft_textures(t_parse *parse, char **tab,char *line)
+int	ft_textures(t_parse *parse, char **tab, char *line)
 {
-	char *tmp;
-	tmp = ft_strdup(line);
-	int i = -1;
-	while(tmp[++i])
-	{
-		if(tmp[i] == ' ')
-			break;
-	}
-	tmp = ft_substr(tmp, i, ft_strlen(tmp) - i);
-	printf("tmp = *%s*\n", tmp);
 	if (ft_strcmp(tab[0], "NO") == 0)
 	{
 		parse->valid = 1;
-		if (north_path(parse, tab, tmp))
+		if (north_path(parse, tab, line))
 			return (1);
 	}
 	else if (ft_strcmp(tab[0], "SO") == 0)
 	{
 		parse->valid = 1;
-		if (south_path(parse, tab))
+		if (south_path(parse, tab, line))
 			return (1);
 	}
 	else if (ft_strcmp(tab[0], "WE") == 0)
 	{
 		parse->valid = 1;
-		if (west_path(parse, tab))
+		if (west_path(parse, tab, line))
 			return (1);
 	}
 	else if (ft_strcmp(tab[0], "EA") == 0)
 	{
 		parse->valid = 1;
-		if (east_path(parse, tab))
+		if (east_path(parse, tab, line))
 			return (1);
 	}
 	return (0);
@@ -141,15 +133,15 @@ int	check_textures(t_parse *parse, char *line)
 		parse->valid = 1;
 		parse->map_found = 1;
 	}
-	tab = ft_split(line, ' ');
-	if (!tab)
-		return (free_matrix(tab), ft_error("in split\n"));
 	if (line[0] == 'C' || line[0] == 'F')
 	{
 		if (valid_comma(line))
 			return (ft_error("in colors\n"));
 	}
-	if (ft_textures(parse, tab,line))
+	tab = ft_split(line, ' ');
+	if (!tab)
+		return (free_matrix(tab), ft_error("in split\n"));
+	if (ft_textures(parse, tab, line))
 		return (1);
 	else if (ft_strcmp(tab[0], "F") == 0 || ft_strcmp(tab[0], "C") == 0)
 	{
@@ -157,7 +149,7 @@ int	check_textures(t_parse *parse, char *line)
 		if (get_color(parse, tab))
 			return (free_matrix(tab), 1);
 	}
-	else if(parse->valid == 0)
+	else if (parse->valid == 0)
 		return (free_matrix(tab), ft_error("in parsing\n"));
 	free_matrix(tab);
 	return (0);

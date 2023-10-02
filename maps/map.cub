@@ -1,7 +1,10 @@
+
 F  10,  220,21      
 
+       NO    /Users/hasserao/Desktop/cub3d/maps/   n   o   .png
 
-       NO /Users/hasserao/Desktop/Cub3D/maps/n  o.png             
+
+
 
 
 
@@ -14,19 +17,20 @@ SO    /Users/hasserao/Desktop/Cub3D/maps/so.png
 
 WE /Users/hasserao/Desktop/Cub3D/maps/we.png 
 
-EA    /Users/hasserao/Desktop/Cub3D/maps/ea.png
 
+EA    /Users/hasserao/Desktop/Cub3D/maps/ea.png
 
 
 
 C  0,50,120
 
 
-1111111111        
+111111111        
 110101111
 111111     111
-1N111  11111
-11111111111111111
+11N111  1111
+111111111111111
+
 
 
 

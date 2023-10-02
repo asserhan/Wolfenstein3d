@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:36:06 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/01 22:08:06 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:29:17 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	read_map(t_parse *parse, int fd, t_map *map, char *line)
 		if (check_textures(parse, line))
 			return (free(line), 1);
 		if (parse->in > 6)
-			return (free(line), ft_error("in parsing\n"));
+			return (free(line),ft_error("in parsing\n"));
 		if (parse->map_found == 1 && parse->in < 6)
 			return (free(line), ft_error("in parsing\n"));
 		get_first_line(map, line, parse);

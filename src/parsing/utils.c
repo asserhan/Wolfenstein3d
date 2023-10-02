@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:58:11 by hasserao          #+#    #+#             */
-/*   Updated: 2023/09/29 16:54:55 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:02:26 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,21 @@ void	free_matrix(char **tab)
 
 char	*check_path(char *line)
 {
+	char *tmp;
+	char *path;
 	char	*trim;
-
-	trim = ft_strtrim(line, WHITE_SPACES);
+	
+	tmp = ft_strdup(line);
+	int i = -1;
+	while(tmp[++i])
+	{
+		if(tmp[i] == ' ')
+			break;
+	}
+	path = ft_substr(tmp, i, ft_strlen(tmp) - i);
+	free(tmp);
+	trim = ft_strtrim(path, WHITE_SPACES);
+	free(path);
 	if (!trim)
 		return (NULL);
 	if (access(trim, F_OK | R_OK) == -1)
