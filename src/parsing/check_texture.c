@@ -6,12 +6,21 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/01 22:12:42 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:17:33 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+void print_matrix(char **tab)
+{
+	int i = 0;
+	while (tab[i])
+	{
+		printf("tab[%d] = *%s*\n", i, tab[i]);
+		i++;
+	}
+}
 int	floor_ceiling(t_parse *parse, char c, char **rgb)
 {
 	if (c == 'F')
@@ -43,7 +52,7 @@ int	join_rgb(char **tab, char ***join, int i)
 	char	**rgb;
 	char	**tmp;
 	int		j;
-
+	
 	rgb = ft_split(tab[i], ',');
 	if (!rgb)
 		return (free_matrix(rgb), free_matrix(*join), ft_error("split\n"));
@@ -60,12 +69,12 @@ int	join_rgb(char **tab, char ***join, int i)
 	free_matrix(rgb);
 	return (0);
 }
-
 int	get_color(t_parse *parse, char **tab)
 {
 	char	**join;
 	int		i;
-
+	
+	tab[matrix_size(tab) - 1][ft_strlen(tab[matrix_size(tab) - 1]) - 1] = '\0';
 	join = ft_calloc(1, sizeof(char *));
 	i = 1;
 	while (tab[i])
@@ -75,7 +84,9 @@ int	get_color(t_parse *parse, char **tab)
 		i++;
 	}
 	if (matrix_size(join) != 3)
+	{
 		return (free_matrix(join), ft_error("in colors\n"));
+	}
 	if (floor_ceiling(parse, tab[0][0], join))
 		return (1);
 	return (0);
@@ -83,6 +94,7 @@ int	get_color(t_parse *parse, char **tab)
 
 int	ft_textures(t_parse *parse, char **tab)
 {
+
 	if (ft_strcmp(tab[0], "NO") == 0)
 	{
 		parse->valid = 1;
@@ -114,7 +126,7 @@ int	check_textures(t_parse *parse, char *line)
 {
 	char	**tab;
 
-	line = skip_spaces(line);
+	line = ft_strtrim(line, " ");
 	if (line[0] == '1')
 	{
 		parse->valid = 1;
@@ -129,7 +141,10 @@ int	check_textures(t_parse *parse, char *line)
 			return (ft_error("in colors\n"));
 	}
 	if (ft_textures(parse, tab))
+	{
+			printf("%s\n",line);
 		return (1);
+	}
 	else if (ft_strcmp(tab[0], "F") == 0 || ft_strcmp(tab[0], "C") == 0)
 	{
 		parse->valid = 1;
