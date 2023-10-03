@@ -1,5 +1,6 @@
 *.o
 libft.a
+*.o.d
 libftprintf.a
 *.a
 cub3d
