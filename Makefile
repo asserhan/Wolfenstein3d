@@ -6,7 +6,7 @@
 #    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/10/03 17:37:42 by hasserao         ###   ########.fr        #
+#    Updated: 2023/10/03 18:36:03 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
 CC = cc
-FLAGS = -Wall -Werror -Wextra  -g
+FLAGS = -Wall -Werror -Wextra  
 MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
 
 RM = rm -rf
@@ -30,7 +30,6 @@ BONUS_SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_
 
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 BONUS_OBJ := $(addprefix $(BNS_OBJ_DIR)/, $(BONUS_SRC:.c=.o))
-LEAKS =  -g
 HEADER = src/cub3d.h
 BONUS_HEADER = bonus/cub3d_bonus.h
 # Targets
