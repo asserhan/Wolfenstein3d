@@ -1,0 +1,3 @@
+/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir
+/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/edit_cache.dir
+/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/rebuild_cache.dir

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
+#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/09/29 20:52:16 by hasserao         ###   ########.fr        #
+#    Updated: 2023/10/03 15:53:34 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # Variables
-NAME = cub3d
+NAME = cub3D
 CC = cc
 FLAGS = -Wall -Werror -Wextra  -g
 MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
@@ -36,6 +36,7 @@ BONUS_HEADER = bonus/cub3d_bonus.h
 all: $(NAME)
 
 $(NAME): $(OBJ) obj_libft obj_printf $(HEADER)
+	$(MAKE) -C lib/MLX42/build
 	@$(CC)  $(FLAGS) $(MLX) $(OBJ) $(LIBTFT) $(PRINTF)  -o $@
 
 $(OBJ_DIR)/%.o: src/%.c $(HEADER)
@@ -62,6 +63,7 @@ obj_printf:
 clean:
 	$(MAKE) -C lib/libft clean
 	$(MAKE) -C lib/ft_printf clean
+	make -C lib/MLX42/build clean
 	$(RM) $(OBJ_DIR)
 	$(RM) $(BNS_OBJ_DIR)
 
@@ -70,9 +72,6 @@ fclean: clean
 	$(MAKE) -C lib/ft_printf fclean
 	$(RM) $(NAME) 
 re: fclean all
-#print the src bonus
-print:
-	@echo $(BONUS_SRC)
 
 $(BNS_OBJ_DIR)/%.o: bonus/%.c $(BONUS_HEADER)
 	@mkdir -p $(@D)

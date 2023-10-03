@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/02 19:49:35 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:35:56 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_error(char *str)
+int ft_error(char *str)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	return (1);
 }
 
-int	ft_minilibx(t_map *map, t_parse *parse, t_game_data *game)
+int ft_minilibx(t_map *map, t_parse *parse, t_game_data *game)
 {
-	mlx_t	*mlx;
+	mlx_t *mlx;
 
 	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
 	if (!mlx)
@@ -37,9 +37,9 @@ int	ft_minilibx(t_map *map, t_parse *parse, t_game_data *game)
 	return (0);
 }
 
-int	ft_init_pars(t_map *map, t_parse *parse, char **argv)
+int ft_init_pars(t_map *map, t_parse *parse, char **argv)
 {
-	int	fd;
+	int fd;
 
 	fd = open(argv[1], O_DIRECTORY);
 	if ((fd != -1))
@@ -61,13 +61,17 @@ int	ft_init_pars(t_map *map, t_parse *parse, char **argv)
 	close(fd);
 	return (0);
 }
-
-int	main(int argc, char **argv)
+void f()
 {
-	t_map		*map;
-	t_parse		*parse;
-	t_game_data	*game;
+	system("leaks cub3D");
+}
 
+int main(int argc, char **argv)
+{
+	t_map *map;
+	t_parse *parse;
+	t_game_data *game;
+	atexit(f);
 	if (argc == 2)
 	{
 		if (check_file(argv[1]))
