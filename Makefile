@@ -6,7 +6,7 @@
 #    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/10/03 18:36:03 by hasserao         ###   ########.fr        #
+#    Updated: 2023/10/03 19:32:41 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@
 # Variables
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
+BUILD = lib/MLX42/build
 CC = cc
 FLAGS = -Wall -Werror -Wextra  
-MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
+MLX = lib/MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
 
 RM = rm -rf
 LIBTFT = lib/libft/libft.a
@@ -35,7 +36,12 @@ BONUS_HEADER = bonus/cub3d_bonus.h
 # Targets
 all: $(NAME)
 
-$(NAME): $(OBJ) obj_libft obj_printf $(HEADER)
+$(BUILD):
+	@if [ ! -d lib/MLX42/build ]; then \
+		(cd lib/MLX42 && cmake -B build); \
+    fi
+
+$(NAME): $(BUILD) $(OBJ)  obj_libft obj_printf $(HEADER)
 	$(MAKE) -C lib/MLX42/build
 	@$(CC)  $(FLAGS) $(MLX) $(OBJ) $(LIBTFT) $(PRINTF)  -o $@
 
@@ -63,15 +69,15 @@ obj_printf:
 clean:
 	$(MAKE) -C lib/libft clean
 	$(MAKE) -C lib/ft_printf clean
-	make -C lib/MLX42/build clean
+	-make -C lib/MLX42/build clean
 	$(RM) $(OBJ_DIR)
 	$(RM) $(BNS_OBJ_DIR)
 
 fclean: clean
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/ft_printf fclean
-	$(RM) $(NAME) 
-	$(RM) $(NAME_BONUS)
+	$(RM)  $(NAME) 
+	$(RM)  $(NAME_BONUS)
 re: fclean all
 
 $(BNS_OBJ_DIR)/%.o: bonus/%.c $(BONUS_HEADER)
@@ -86,7 +92,7 @@ $(BNS_OBJ_DIR)/%.o: bonus/*/*/%.c $(BONUS_HEADER)
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -c $< -o $@
 
-bonus:  $(BONUS_HEADER) $(BONUS_OBJ) obj_libft obj_printf
+bonus:$(BUILD)  $(BONUS_HEADER) $(BONUS_OBJ) obj_libft obj_printf
 	$(MAKE) -C lib/MLX42/build
 	@$(CC)  $(FLAGS) $(MLX) $(BONUS_OBJ) $(LIBTFT) $(PRINTF)  -o $(NAME_BONUS)
 	
