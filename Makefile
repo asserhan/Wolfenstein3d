@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
+#    By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/10/03 16:42:23 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/10/03 17:37:42 by hasserao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ LIBTFT = lib/libft/libft.a
 PRINTF = lib/ft_printf/libftprintf.a
 OBJ_DIR = obj
 BNS_OBJ_DIR = obj_bonus
-SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment.c free_ressource.c \
+SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment.c free_ressource.c colors.c \
  ray_cast.c textures.c get_next_line.c get_next_line_utils.c hooks.c main.c check_map.c check_texture.c dimensions.c map_utils.c read_map.c texture_utils.c utils.c
-BONUS_SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment_bonus.c ray_cast.c textures.c get_next_line.c get_next_line_utils.c\
+BONUS_SRC := angle_helpers.c cast_horizantally.c cast_vertically.c drawing.c ft_check.c init.c mini_map.c movment_bonus.c ray_cast.c textures.c get_next_line.c get_next_line_utils.c colors.c\
  hooks_bonus.c main.c check_map.c check_texture.c dimensions.c map_utils.c read_map.c texture_utils.c utils.c free_ressource.c
 
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))

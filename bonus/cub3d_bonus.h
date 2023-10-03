@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/03 16:53:40 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:37:30 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void				free_resources(t_game_data *game);
 void				free_textures(t_game_data *game);
 int					check_digit(char **str);
 int					valid_comma(char *str);
+int					get_floor(t_parse *parse, char **rgb);
+int					get_ceiling(t_parse *parse, char **rgb);
 char				**matrix_push_back(char **matrix, char *back);
 int					matrix_size(char **tab);
 int					ft_strcmp(const char *s1, const char *s2);

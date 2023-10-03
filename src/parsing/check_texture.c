@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/03 16:50:26 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:33:17 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,15 @@ int	floor_ceiling(t_parse *parse, char c, char **rgb)
 {
 	if (c == 'F')
 	{
-		if (parse->f.r != -1 || parse->f.g != -1 || parse->f.b != -1)
-			return (free_matrix(rgb), ft_error("in colors\n"));
-		parse->in++;
-		parse->f.r = ft_atoi(rgb[0]);
-		parse->f.g = ft_atoi(rgb[1]);
-		parse->f.b = ft_atoi(rgb[2]);
-		if (parse->f.r < 0 || parse->f.r > 255 || parse->f.g < 0
-			|| parse->f.g > 255 || parse->f.b < 0 || parse->f.b > 255)
-			return (free_matrix(rgb), ft_error("in colors\n"));
+		if (get_floor(parse, rgb))
+			return (1);
 	}
 	else if (c == 'C')
 	{
-		if (parse->c.r != -1 || parse->c.g != -1 || parse->c.b != -1)
-			return (free_matrix(rgb), ft_error("in colors\n"));
-		parse->in++;
-		parse->c.r = ft_atoi(rgb[0]);
-		parse->c.g = ft_atoi(rgb[1]);
-		parse->c.b = ft_atoi(rgb[2]);
-		if (parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0
-			|| parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
-			return (free_matrix(rgb), ft_error("in colors\n"));
+		if (get_ceiling(parse, rgb))
+			return (1);
 	}
+	free_matrix(rgb);
 	return (0);
 }
 
@@ -83,8 +70,6 @@ int	get_color(t_parse *parse, char **tab)
 	{
 		return (free_matrix(join), ft_error("in colors\n"));
 	}
-	floor_ceiling(parse, tab[0][0], join);
-	free_matrix(join);
 	if (floor_ceiling(parse, tab[0][0], join))
 		return (1);
 	return (0);

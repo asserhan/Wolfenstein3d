@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:41:10 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/02 16:28:36 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:41:27 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	get_first_line(t_map *map, char *line, t_parse *parse)
 {
 	if (parse->in == 6)
 	{
-		if (line[0] == 'C' || line[0] == 'F')
+		if (line[0] == 'C' || line[0] == 'F' || !ft_strncmp(line, "NO", 2)
+			|| !ft_strncmp(line, "SO", 2) || !ft_strncmp(line, "WE", 2)
+			|| !ft_strncmp(line, "EA", 2))
 			return ;
 		if (just_spaces(line) || line[0] == '\n')
 			return ;
