@@ -6,13 +6,14 @@
 #    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/15 09:59:05 by otait-ta          #+#    #+#              #
-#    Updated: 2023/10/03 15:53:34 by otait-ta         ###   ########.fr        #
+#    Updated: 2023/10/03 16:42:23 by otait-ta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # Variables
 NAME = cub3D
+NAME_BONUS = cub3D_bonus
 CC = cc
 FLAGS = -Wall -Werror -Wextra  -g
 MLX = ../MLX42/build/libmlx42.a  -Iinclude -lglfw -L"/Users/$(USER)/goinfre/homebrew/opt/glfw/lib"
@@ -71,6 +72,7 @@ fclean: clean
 	$(MAKE) -C lib/libft fclean
 	$(MAKE) -C lib/ft_printf fclean
 	$(RM) $(NAME) 
+	$(RM) $(NAME_BONUS)
 re: fclean all
 
 $(BNS_OBJ_DIR)/%.o: bonus/%.c $(BONUS_HEADER)
@@ -85,8 +87,9 @@ $(BNS_OBJ_DIR)/%.o: bonus/*/*/%.c $(BONUS_HEADER)
 	@mkdir -p $(@D)
 	$(CC) $(FLAGS) -c $< -o $@
 
-bonus: fclean $(BONUS_HEADER) $(BONUS_OBJ) obj_libft obj_printf
-	@$(CC)  $(FLAGS) $(MLX) $(BONUS_OBJ) $(LIBTFT) $(PRINTF)  -o $(NAME)
+bonus:  $(BONUS_HEADER) $(BONUS_OBJ) obj_libft obj_printf
+	$(MAKE) -C lib/MLX42/build
+	@$(CC)  $(FLAGS) $(MLX) $(BONUS_OBJ) $(LIBTFT) $(PRINTF)  -o $(NAME_BONUS)
 	
 	
 
