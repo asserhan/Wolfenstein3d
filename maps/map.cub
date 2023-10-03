@@ -1,36 +1,37 @@
 
+F 10,50,120
 C 10,50,120
       
 
 
 
 
+  NO     /Users/otait-ta/Desktop/cub3d/maps/3.png 
 
 
-
-
+EA    /Users/otait-ta/Desktop/Cub3D/maps/3.png
     
 
-SO    /Users/otait-ta/Desktop/Cub3D/maps/so.png
+SO    /Users/otait-ta/Desktop/Cub3D/maps/1.png
+WE    /Users/otait-ta/Desktop/Cub3D/maps/1.png
   
 
 
-WE /Users/otait-ta/Desktop/Cub3D/maps/we.png 
 
-       NO     /Users/otait-ta/Desktop/cub3d/maps/   n   ,o   .png     
-F 10,50,120
-
-EA    /Users/otait-ta/Desktop/Cub3D/maps/so1.png
+         
 
 
 
 
-111111111
-100000001
-100N00001
-1000110001
-100000001
-11111111
+
+
+
+111111111  11111111
+100000001  100000001
+10000000111100000001
+1000N000000000000001
+10000000111110000001
+11111111   11111111
 
 
 
