@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:03:51 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/03 16:31:46 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:52:18 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int north_path(t_parse *parse, char **tab, char *line)
+int	north_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
 	if (parse->no)
@@ -23,7 +23,7 @@ int north_path(t_parse *parse, char **tab, char *line)
 	return (0);
 }
 
-int south_path(t_parse *parse, char **tab, char *line)
+int	south_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
 	if (parse->so)
@@ -34,7 +34,7 @@ int south_path(t_parse *parse, char **tab, char *line)
 	return (0);
 }
 
-int west_path(t_parse *parse, char **tab, char *line)
+int	west_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
 	if (parse->we)
@@ -45,7 +45,7 @@ int west_path(t_parse *parse, char **tab, char *line)
 	return (0);
 }
 
-int east_path(t_parse *parse, char **tab, char *line)
+int	east_path(t_parse *parse, char **tab, char *line)
 {
 	parse->in++;
 	if (parse->ea)
@@ -56,10 +56,10 @@ int east_path(t_parse *parse, char **tab, char *line)
 	return (0);
 }
 
-int valid_comma(char *str)
+int	valid_comma(char *str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:23:28 by hasserao          #+#    #+#             */
-/*   Updated: 2023/10/03 16:30:11 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/03 16:52:55 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-int floor_ceiling(t_parse *parse, char c, char **rgb)
+int	floor_ceiling(t_parse *parse, char c, char **rgb)
 {
 	if (c == 'F')
 	{
@@ -22,7 +22,8 @@ int floor_ceiling(t_parse *parse, char c, char **rgb)
 		parse->f.r = ft_atoi(rgb[0]);
 		parse->f.g = ft_atoi(rgb[1]);
 		parse->f.b = ft_atoi(rgb[2]);
-		if (parse->f.r < 0 || parse->f.r > 255 || parse->f.g < 0 || parse->f.g > 255 || parse->f.b < 0 || parse->f.b > 255)
+		if (parse->f.r < 0 || parse->f.r > 255 || parse->f.g < 0
+			|| parse->f.g > 255 || parse->f.b < 0 || parse->f.b > 255)
 			return (free_matrix(rgb), ft_error("in colors\n"));
 	}
 	else if (c == 'C')
@@ -33,18 +34,18 @@ int floor_ceiling(t_parse *parse, char c, char **rgb)
 		parse->c.r = ft_atoi(rgb[0]);
 		parse->c.g = ft_atoi(rgb[1]);
 		parse->c.b = ft_atoi(rgb[2]);
-		if (parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0 || parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
+		if (parse->c.r < 0 || parse->c.r > 255 || parse->c.g < 0
+			|| parse->c.g > 255 || parse->c.b < 0 || parse->c.b > 255)
 			return (free_matrix(rgb), ft_error("in colors\n"));
 	}
-	free_matrix(rgb);
 	return (0);
 }
 
-int join_rgb(char **tab, char ***join, int i)
+int	join_rgb(char **tab, char ***join, int i)
 {
-	char **rgb;
-	char **tmp;
-	int j;
+	char	**rgb;
+	char	**tmp;
+	int		j;
 
 	rgb = ft_split(tab[i], ',');
 	if (!rgb)
@@ -63,10 +64,10 @@ int join_rgb(char **tab, char ***join, int i)
 	return (0);
 }
 
-int get_color(t_parse *parse, char **tab)
+int	get_color(t_parse *parse, char **tab)
 {
-	char **join;
-	int i;
+	char	**join;
+	int		i;
 
 	parse->valid = 1;
 	tab[matrix_size(tab) - 1][ft_strlen(tab[matrix_size(tab) - 1]) - 1] = '\0';
@@ -82,12 +83,14 @@ int get_color(t_parse *parse, char **tab)
 	{
 		return (free_matrix(join), ft_error("in colors\n"));
 	}
+	floor_ceiling(parse, tab[0][0], join);
+	free_matrix(join);
 	if (floor_ceiling(parse, tab[0][0], join))
 		return (1);
 	return (0);
 }
 
-int ft_textures(t_parse *parse, char **tab, char *line)
+int	ft_textures(t_parse *parse, char **tab, char *line)
 {
 	if (ft_strcmp(tab[0], "NO") == 0)
 	{
@@ -116,9 +119,9 @@ int ft_textures(t_parse *parse, char **tab, char *line)
 	return (0);
 }
 
-int check_textures(t_parse *parse, char *line)
+int	check_textures(t_parse *parse, char *line)
 {
-	char **tab;
+	char	**tab;
 
 	line = skip_spaces(line);
 	if (line[0] == '1')
