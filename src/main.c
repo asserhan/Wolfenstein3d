@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/03 16:42:52 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:05:44 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 		if (!parse || !map)
 			return (ft_error("Failed to allocate memory\n"), 1);
 		if (ft_init_pars(map, parse, argv))
-			return (1);
+			return (free(parse), free(map), 1);
 		game = ft_calloc(1, sizeof(t_game_data));
 		if (!game)
 			return (ft_error("Failed to allocate memory for game\n"));

@@ -1,6 +1,6 @@
 
-F 10,50,120
-C 10,50,120
+F 69, 54, 45
+C 250,250,250
       
 
 
@@ -13,8 +13,9 @@ EA    /Users/otait-ta/Desktop/Cub3D/maps/2.png
     
 
 SO    /Users/otait-ta/Desktop/Cub3D/maps/3.png
-WE    /Users/otait-ta/Desktop/Cub3D/maps/4.png
+
   
+WE    /Users/otait-ta/Desktop/Cub3D/maps/4.png
 
 
 
@@ -26,15 +27,12 @@ WE    /Users/otait-ta/Desktop/Cub3D/maps/4.png
 
 
 
-111111111  11111111
+111111111111111111111
 100000001  100000001
 10000000111100000001
 1000N000000000000001
 10000000111110000001
 11111111   11111111
-
-
-
 
 
 
