@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake
+CMAKE_COMMAND = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake
 
 # The command to remove a file.
-RM = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
+RM = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild
+CMAKE_SOURCE_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild
+CMAKE_BINARY_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild
 
 # Utility rule file for glfw-populate.
 
@@ -77,60 +77,60 @@ CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
 CMakeFiles/glfw-populate-complete: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'glfw-populate'"
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E make_directory /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'glfw-populate'"
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E make_directory /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate-complete
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-done
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update:
 .PHONY : glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "No build step for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure: glfw-populate-prefix/tmp/glfw-populate-cfgcmd.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "No configure step for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-configure
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-gitinfo.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Performing download step (git clone) for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitclone.cmake
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'glfw-populate'"
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -Dcfgdir= -P /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'glfw-populate'"
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -Dcfgdir= -P /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-mkdirs.cmake
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-mkdir
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch-info.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'glfw-populate'"
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'glfw-populate'"
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-patch
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update:
 .PHONY : glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No test step for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E echo_append
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E touch /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-test
 
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update-info.txt
 glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-update: glfw-populate-prefix/src/glfw-populate-stamp/glfw-populate-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'glfw-populate'"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -Dcan_fetch=YES -P /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Performing update step for 'glfw-populate'"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -Dcan_fetch=YES -P /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp/glfw-populate-gitupdate.cmake
 
 glfw-populate: CMakeFiles/glfw-populate
 glfw-populate: CMakeFiles/glfw-populate-complete
@@ -154,6 +154,6 @@ CMakeFiles/glfw-populate.dir/clean:
 .PHONY : CMakeFiles/glfw-populate.dir/clean
 
 CMakeFiles/glfw-populate.dir/depend:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/glfw-populate.dir/depend
 

@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake
+CMAKE_COMMAND = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake
 
 # The command to remove a file.
-RM = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
+RM = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42
+CMAKE_SOURCE_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build
+CMAKE_BINARY_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build
 
 # Utility rule file for uninstall.
 
@@ -67,7 +67,7 @@ include _deps/glfw-build/CMakeFiles/uninstall.dir/compiler_depend.make
 include _deps/glfw-build/CMakeFiles/uninstall.dir/progress.make
 
 _deps/glfw-build/CMakeFiles/uninstall:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build/cmake_uninstall.cmake
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build/cmake_uninstall.cmake
 
 uninstall: _deps/glfw-build/CMakeFiles/uninstall
 uninstall: _deps/glfw-build/CMakeFiles/uninstall.dir/build.make
@@ -78,10 +78,10 @@ _deps/glfw-build/CMakeFiles/uninstall.dir/build: uninstall
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/build
 
 _deps/glfw-build/CMakeFiles/uninstall.dir/clean:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build && $(CMAKE_COMMAND) -P CMakeFiles/uninstall.dir/cmake_clean.cmake
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/clean
 
 _deps/glfw-build/CMakeFiles/uninstall.dir/depend:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/otait-ta/Desktop/Cub3D/lib/MLX42 /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/hasserao/Desktop/cub3d/lib/MLX42 /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src /Users/hasserao/Desktop/cub3d/lib/MLX42/build /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build/CMakeFiles/uninstall.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : _deps/glfw-build/CMakeFiles/uninstall.dir/depend
 

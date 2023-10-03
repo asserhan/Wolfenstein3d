@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake
+CMAKE_COMMAND = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake
 
 # The command to remove a file.
-RM = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
+RM = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild
+CMAKE_SOURCE_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild
+CMAKE_BINARY_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subb
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

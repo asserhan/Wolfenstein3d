@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake
+CMAKE_COMMAND = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake
 
 # The command to remove a file.
-RM = /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
+RM = /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42
+CMAKE_SOURCE_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build
+CMAKE_BINARY_DIR = /Users/hasserao/Desktop/cub3d/lib/MLX42/build
 
 # Utility rule file for update_mappings.
 
@@ -67,8 +67,8 @@ include _deps/glfw-build/src/CMakeFiles/update_mappings.dir/compiler_depend.make
 include _deps/glfw-build/src/CMakeFiles/update_mappings.dir/progress.make
 
 _deps/glfw-build/src/CMakeFiles/update_mappings:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src/src && /goinfre/otait-ta/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/hasserao/Desktop/cub3d/lib/MLX42/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src/src && /goinfre/hasserao/homebrew/Cellar/cmake/3.27.6/bin/cmake -P /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 
 update_mappings: _deps/glfw-build/src/CMakeFiles/update_mappings
 update_mappings: _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build.make
@@ -79,10 +79,10 @@ _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build: update_mappings
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/build
 
 _deps/glfw-build/src/CMakeFiles/update_mappings.dir/clean:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build/src && $(CMAKE_COMMAND) -P CMakeFiles/update_mappings.dir/cmake_clean.cmake
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/clean
 
 _deps/glfw-build/src/CMakeFiles/update_mappings.dir/depend:
-	cd /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/otait-ta/Desktop/Cub3D/lib/MLX42 /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src/src /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build/src /Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/hasserao/Desktop/cub3d/lib/MLX42/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/hasserao/Desktop/cub3d/lib/MLX42 /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src/src /Users/hasserao/Desktop/cub3d/lib/MLX42/build /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build/src /Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build/src/CMakeFiles/update_mappings.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : _deps/glfw-build/src/CMakeFiles/update_mappings.dir/depend
 

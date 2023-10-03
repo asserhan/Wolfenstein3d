@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-src"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-build"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src"
-  "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-src"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-build"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/tmp"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src"
+  "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/otait-ta/Desktop/Cub3D/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/hasserao/Desktop/cub3d/lib/MLX42/build/_deps/glfw-subbuild/glfw-populate-prefix/src/glfw-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()
