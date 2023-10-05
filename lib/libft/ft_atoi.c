@@ -6,7 +6,7 @@
 /*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 20:17:31 by hasserao          #+#    #+#             */
-/*   Updated: 2023/05/27 15:02:25 by hasserao         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:54:07 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	ft_atoi(const char *str)
 {
-	unsigned long long	result;
 	int					sign;
+	unsigned long long	result;
 
 	result = 0;
 	sign = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\v'
-		|| *str == '\n' || *str == '\f' || *str == '\r')
+	while (*str == ' ' || *str == '\t' || *str == '\v' || *str == '\n'
+		|| *str == '\f' || *str == '\r')
 		str++;
 	if (*str == '-' || *str == '+')
 	{

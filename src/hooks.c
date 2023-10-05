@@ -3,56 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 10:23:13 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/12 15:22:06 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/09/28 21:45:12 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hook(int key, t_mlx_info *info)
+void	keyhook(void *param)
 {
-	t_player *player;
+	t_game_data	*game;
 
-	player = info->player;
-	ft_printf("key: %d\n", key);
-	if (key == 123)
-	{
-		info->player->rotation_angle -= info->player->rotation_speed;
-	}
-	else if (key == 124)
-	{
-		info->player->rotation_angle += info->player->rotation_speed;
-	}
-	else if (key == 1)
-	{
-		move_backward(info);
-	}
-	else if (key == 13)
-	{
-		move_forward(info);
-	}
-	else if (key == 0)
-	{
-		move_left(info);
-	}
-	else if (key == 2)
-	{
-		move_right(info);
-	}
-	else if (key == 53)
-	{
-		exit(0);
-	}
-	info->player->rotation_angle = normalize_angle(info->player->rotation_angle);
-	mlx_clear_window(info->mlx_ptr, info->win_ptr);
-	cast_all_rays(info);
-	draw_mini_map(info, info->map);
-	draw_player(info, info->player);
+	game = (t_game_data *)param;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		move_forward(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		move_backward(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		move_left(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		move_right(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		rotate_left(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		rotate_right(game);
+	cast_all_rays(game);
+}
 
-	mlx_put_image_to_window(info->mlx_ptr, info->win_ptr, info->img_data.img, 0,
-			0);
-	return (0);
+void	mousehook(double x, double y, void *param)
+{
+	t_game_data	*game;
+	int			x_diff;
+	double		sensitivity;
+
+	game = (t_game_data *)param;
+	if (x > 0 && x < WINDOW_WIDTH && y > 0 && y < WINDOW_HEIGHT)
+	{
+		if (game->prev_x != -1)
+		{
+			x_diff = x - game->prev_x;
+			sensitivity = 0.008;
+			game->player->player_vue += x_diff * sensitivity;
+		}
+		game->prev_x = x;
+	}
+	else
+		game->prev_x = -1;
 }

@@ -3,44 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 10:01:19 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/21 12:07:39 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/03 18:33:03 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+int	ft_error(char *str)
 {
-	t_mlx_info	mlx_info;
-	t_player	player;
-	char		**map;
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(str, 2);
+	return (1);
+}
 
-	map = (char **)malloc(sizeof(char *) * 12);
-	map[0] = "111111111111111111111111111";
-	map[1] = "100001000000000000000000001";
-	map[2] = "100001000000000000000000001";
-	map[3] = "100001000000000000000000001";
-	map[4] = "100001000000000000000000001";
-	map[5] = "100001000000100000000000001";
-	map[6] = "100001000000010000000000001";
-	map[7] = "100001000000000000000000001";
-	map[8] = "100001000000000000000000001";
-	map[9] = "100001000000000000000000001";
-	map[10] = "100001000000000000000000001";
-	map[11] = "111111111111111111111111111";
-	init_mlx(&mlx_info);
-	init_player(&player);
-	mlx_info.player = &player;
-	mlx_info.map = map;
-	cast_all_rays(&mlx_info);
-	draw_mini_map(&mlx_info, map);
-	draw_player(&mlx_info, &player);
-	mlx_hook(mlx_info.win_ptr, 2, 1L << 0, key_hook, &mlx_info);
-	mlx_put_image_to_window(mlx_info.mlx_ptr, mlx_info.win_ptr,
-			mlx_info.img_data.img, 0, 0);
-	mlx_loop(mlx_info.mlx_ptr);
+int	ft_minilibx(t_map *map, t_parse *parse, t_game_data *game)
+{
+	mlx_t	*mlx;
+
+	mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "CUB3d", true);
+	if (!mlx)
+		return (ft_error("Failed to create mlx\n"));
+	game->map = map;
+	if (init_game(mlx, game, parse))
+		return (1);
+	mlx_cursor_hook(mlx, &mousehook, game);
+	mlx_loop_hook(mlx, &keyhook, game);
+	mlx_set_cursor_mode(mlx, MLX_MOUSE_HIDDEN);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 	return (0);
+}
+
+int	ft_init_pars(t_map *map, t_parse *parse, char **argv)
+{
+	int	fd;
+
+	fd = open(argv[1], O_DIRECTORY);
+	if ((fd != -1))
+		return (ft_error("Is a directory\n"), 1);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (ft_error("file does not open\n"), 1);
+	init_file(parse, map);
+	if (ft_parsing(parse, fd, map))
+	{
+		close(fd);
+		exit(1);
+	}
+	if (get_map(map, argv[1]))
+	{
+		close(fd);
+		exit(1);
+	}
+	close(fd);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_map		*map;
+	t_parse		*parse;
+	t_game_data	*game;
+
+	if (argc == 2)
+	{
+		if (check_file(argv[1]))
+			return (ft_error("Invalid file\n"), 1);
+		parse = ft_calloc(1, sizeof(t_parse));
+		map = ft_calloc(1, sizeof(t_map));
+		if (!parse || !map)
+			return (ft_error("Failed to allocate memory\n"), 1);
+		if (ft_init_pars(map, parse, argv))
+			return (free(parse), free(map), 1);
+		game = ft_calloc(1, sizeof(t_game_data));
+		if (!game)
+			return (ft_error("Failed to allocate memory for game\n"));
+		ft_minilibx(map, parse, game);
+		free_resources(game);
+	}
+	else
+		ft_error("Invalid number of arguments\n");
+	return (EXIT_SUCCESS);
 }

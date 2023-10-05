@@ -3,115 +3,205 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hasserao <hasserao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 09:57:21 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/12 14:42:30 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/03 17:33:55 by hasserao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-typedef struct s_img_data
-{
-	void			*img;
-	char			*addr;
-	int				bpp;
-	int				size_line;
-	int				endian;
-}					t_img_data;
-
-typedef struct s_player
-{
-	// to change names
-	double			x;
-	double			y;
-	double			angle;
-	double			turn_direction;
-	double			walk_direction;
-	double			rotation_angle;
-	int				facing_up;
-	int				facing_right;
-	double			move_speed;
-	double			rotation_speed;
-}					t_player;
-
-typedef struct s_ray
-{
-	double			ray_angle;
-	int				ray_id;
-
-}					t_ray;
-
-typedef struct s_mlx_info
-{
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_img_data		img_data;
-	struct s_player	*player;
-	char			**map;
-}					t_mlx_info;
-
-void				init_mlx(t_mlx_info *mlx_info);
-void				init_player(t_player *player);
-void				draw_pixel(t_mlx_info *info, int x, int y, int color);
-void				draw_pixel_no_scale(t_mlx_info *info, int x, int y,
-						int color);
-/*pixel_cord : [0] for x , [1] for y*/
-void				draw_square(t_mlx_info *mlx_info, int *pixel_cord,
-						int square_size, int color);
-void				draw_circle(t_mlx_info *mlx_info, int *pixel_cord,
-						int radius, int color);
-void				draw_mini_map(t_mlx_info *mlx_info, char **map);
-int					wall_check(char **map, int x, int y);
-void				draw_player(t_mlx_info *mlx_info, t_player *player);
-void				draw_line(t_mlx_info *mlx_info, int *start_pixel_cord,
-						double *end_pixel_cord, int color);
-int					key_hook(int key, t_mlx_info *info);
-void				move_forward(t_mlx_info *info);
-void				move_backward(t_mlx_info *info);
-void move_right(t_mlx_info *info);
-void move_left(t_mlx_info *info);
-void				cast_all_rays(t_mlx_info *mlx_info);
-double				normalize_angle(double angle_radians);
-int					is_face_up(double angle);
-int					is_face_right(double angle);
-int					distance_between_points(double x1, double y1, double x2,
-						double y2);
-void				draw_3d_line(t_mlx_info *mlx_info, int *p_cords,
-						double *ray_cords, t_ray *ray);
-void	draw_line_2(t_mlx_info *mlx_info,
-					double *start_pixel_cord,
-					double *end_pixel_cord,
-					int color);
-/**********************CONSTANTS*******************************/
-
-# define SQUARE_SIZE 64
+# define WHITE_SPACES " \t\n\v\f\r"
+# define BUFFER_SIZE 1
+# define SQUARE_SIZE 32
+# define FOV_ANGLE 1.0471975512
+# define WINDOW_WIDTH 1440
+# define WINDOW_HEIGHT 960
 
 # define RED 0
 # define GREEN 1
 # define BLUE 2
 
-# define GRID_COLS 28
-# define GRID_ROWS 12
-# define MAP_SCALE 0.2
+# define GRID_COLS 13
+# define GRID_ROWS 5
 
-# define WINDOW_WIDTH (GRID_COLS * SQUARE_SIZE)
-# define WINDOW_HEIGHT (GRID_ROWS * SQUARE_SIZE)
-# define FOV_ANGLE (60 * (M_PI / 180))
-# define NUM_RAYS WINDOW_WIDTH
+# define FORWARD 1
+# define BACKWARD -1
+# define RIGHT 2
+# define LEFT -2
 
-# define VERTICAL 0
-# define HORIZONTAL 1
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
+typedef struct t_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_rgb;
+
+typedef struct s_parse
+{
+	char			**info;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	t_rgb			f;
+	t_rgb			c;
+	int				in;
+	int				map_found;
+	int				valid;
+
+}					t_parse;
+typedef struct s_map
+{
+	int				player_x;
+	int				player_y;
+	char			player_vue;
+	int				rows;
+	int				cols;
+	int				player_num;
+	char			**map;
+	int				c;
+	char			*f_line;
+	mlx_texture_t	**textures;
+	t_rgb			floor;
+	t_rgb			ceiling;
+
+}					t_map;
+
+/**********************************/
+
+typedef struct s_player
+{
+	double			x;
+	double			y;
+	double			player_vue;
+	double			move_speed;
+	double			rotation_speed;
+}					t_player;
+
+typedef struct s_game_data
+{
+	mlx_image_t		*img;
+	t_player		*player;
+	t_map			*map;
+	mlx_t			*mlx;
+	t_parse			*parse;
+	int				prev_x;
+}					t_game_data;
+
+typedef struct s_ray
+{
+	int				id;
+	double			ray_angle;
+	double			wall_hit_x;
+	double			wall_hit_y;
+	double			distance;
+	int				is_facing_up;
+	int				is_facing_down;
+	int				is_facing_right;
+	int				is_facing_left;
+	int				was_hit_vertical;
+	int				was_hit_horizontal;
+}					t_ray;
+/**********************Parsing*******************************/
+
+/******get_next_line********/
+
+char				*get_next_line(int fd);
+size_t				ft_strlen(const char *s);
+size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strchr(const char *s, int c);
+char				*ft_strdup(const char *s1);
+char				*read_and_add(int fd, char *reserve);
+char				*update_reserve(char **reserve, int i);
+char				*extract(char **reserve);
+
+/************************/
+
+int					ft_error(char *str);
+void				free_resources(t_game_data *game);
+void				free_textures(t_game_data *game);
+int					check_digit(char **str);
+int					valid_comma(char *str);
+int					get_floor(t_parse *parse, char **rgb);
+int					get_ceiling(t_parse *parse, char **rgb);
+char				**matrix_push_back(char **matrix, char *back);
+int					matrix_size(char **tab);
+int					ft_strcmp(const char *s1, const char *s2);
+void				free_matrix(char **tab);
+int					check_file(char *file);
+int					check_char(char c);
+char				*skip_spaces(char *line);
+int					just_spaces(char *line);
+char				*check_path(char *line);
+int					check_spaces(t_map *map);
+int					north_path(t_parse *parse, char **tab, char *line);
+int					west_path(t_parse *parse, char **tab, char *line);
+int					south_path(t_parse *parse, char **tab, char *line);
+int					east_path(t_parse *parse, char **tab, char *line);
+int					ft_textures(t_parse *parse, char **tab, char *line);
+void				get_first_line(t_map *map, char *line, t_parse *parse);
+int					read_for_dimensions(t_map *map, char *line, int fd);
+int					find_size(t_map *map, int fd);
+int					get_color(t_parse *parse, char **tab);
+int					check_textures(t_parse *parse, char *line);
+int					get_map(t_map *map, char *file);
+int					check_borders(t_map *map);
+int					ft_parsing(t_parse *parse, int fd, t_map *map);
+int					is_wall(char *line);
+void				init_file(t_parse *parse, t_map *map);
+/***************************/
+
+/***REY CASTING*/
+
+int					init_game(mlx_t *mlx, t_game_data *game, t_parse *parse);
+int					check_obstacles(t_game_data *game, double new_x,
+						double new_y);
+void				keyhook(void *param);
+void				mousehook(double a, double b, void *param);
+void				move_forward(t_game_data *game);
+void				move_backward(t_game_data *game);
+void				move_left(t_game_data *game);
+void				move_right(t_game_data *game);
+void				rotate_left(t_game_data *game);
+void				rotate_right(t_game_data *game);
+void				draw_texture(t_game_data *game, t_ray *ray, int height,
+						int texture);
+void				draw_line(t_game_data *game, t_ray *ray, int texture);
+double				normalize_angle(double angle);
+int					is_face_up(double angle);
+int					is_face_right(double angle);
+double				distance_between_points(double x1, double y1, double x2,
+						double y2);
+
+int					check_wall(int x, int y, t_map *map);
+int					get_rgba(int r, int g, int b, int a);
+void				draw_line_texture(t_game_data *game, t_ray *ray,
+						double height, int texture);
+double				get_line_height(t_game_data *game, t_ray *ray);
+int					cast_all_rays(t_game_data *game);
+void				cast_vertically(t_ray *ray, t_game_data *game);
+void				cast_horizontally(t_ray *ray, t_game_data *game);
+void				draw_3d_line(t_game_data *game, t_ray *ray);
+void				free_resources(t_game_data *game);
+
+/**********************CONSTANTS*******************************/
 #endif
